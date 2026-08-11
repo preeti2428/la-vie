@@ -874,11 +874,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
         {/* Top Control Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 pointer-events-auto">
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#2D2926]/15 text-[11px] font-medium text-[#2D2926] shadow-md">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#8A7B9B] animate-pulse" />
-            <span className="uppercase tracking-widest text-[10px] font-bold text-[#5B4970]">{t.badge}</span>
-            <span className="text-[#2D2926]/40 text-[10px] pl-1 border-l border-[#2D2926]/20">Interactive Room</span>
-          </div>
+
 
           {/* Lighting Mood Controls */}
           <div className="flex items-center gap-1.5 bg-white/85 backdrop-blur-md p-1.5 rounded-full border border-[#2D2926]/15 shadow-lg">
@@ -956,13 +952,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
 
         </div>
 
-        {/* Bottom Pointer Indicator */}
-        <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[#2D2926]/80 pointer-events-auto bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-[#2D2926]/15 w-fit shadow-sm">
-          <span className="flex items-center gap-2">
-            <RefreshCw className="w-3 h-3 animate-spin-slow text-[#8A7B9B]" />
-            <span>3D Orbit Active — Drag cursor to orbit room</span>
-          </span>
-        </div>
+
 
       </div>
 
