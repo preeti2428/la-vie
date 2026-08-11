@@ -945,30 +945,13 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center gap-2 mt-4">
-            
-            <button
-              onClick={onOpenStaging}
-              className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#8A7B9B] to-[#7D8471] hover:from-[#78698A] hover:to-[#6C7360] text-white font-bold text-[10px] uppercase tracking-widest flex items-center gap-1.5 shadow-md hover:shadow-lg transition-all"
-            >
-              <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-              <span>AI Staging (Free)</span>
-            </button>
-
             <button
               onClick={onOpenBooking}
-              className="px-3.5 py-2.5 rounded-full bg-[#2D2926] hover:bg-[#3D3834] text-white font-medium text-[10px] uppercase tracking-widest flex items-center gap-1.5 shadow-sm transition-all"
+              className="px-4 py-2.5 rounded-full bg-[#2D2926] hover:bg-[#3D3834] text-white font-medium text-[10px] uppercase tracking-widest flex items-center gap-1.5 shadow-sm transition-all"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>{t.callBtn}</span>
             </button>
-
-            <button
-              onClick={onOpenChat}
-              className="px-3.5 py-2.5 rounded-full bg-white/50 hover:bg-white text-[#2D2926] border border-[#2D2926]/15 font-medium text-[10px] uppercase tracking-widest flex items-center gap-1.5 transition-all shadow-sm"
-            >
-              <span>{t.chatBtn}</span>
-            </button>
-
           </div>
 
         </div>
