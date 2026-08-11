@@ -107,24 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className={currentLang === 'en' ? 'text-[#7D8471]' : 'text-[#2D2926]/40'}>EN</span>
           </button>
 
-          {/* AI Chat Trigger */}
-          <button
-            onClick={onOpenChat}
-            className="hidden lg:flex items-center gap-1.5 px-2 xl:px-3.5 py-1.5 rounded-full bg-[#E6E2DC] hover:bg-[#DCD7D0] text-[#2D2926] text-[9px] xl:text-[10px] uppercase tracking-widest font-medium transition-colors"
-            title="Open LA VIE Assistant Chat"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#8A7B9B]" />
-            <span>{t.aiConcierge}</span>
-          </button>
 
-          {/* Call a Designer CTA Button */}
-          <button
-            onClick={onOpenBooking}
-            className="px-4 py-2 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-[11px] uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all group shrink-0"
-          >
-            <PhoneCall className="w-3.5 h-3.5 text-white group-hover:rotate-12 transition-transform" />
-            <span className="hidden sm:inline">{t.callDesigner}</span>
-          </button>
 
           {/* Mobile Menu Hamburger Toggle */}
           <button
