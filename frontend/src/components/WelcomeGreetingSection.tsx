@@ -1,0 +1,136 @@
+import React, { useEffect, useState } from 'react';
+import { Sparkles, Award, CheckCircle, HelpCircle, Briefcase, User } from 'lucide-react';
+import { Language } from '../types';
+import { translations } from '../translations';
+import { getBrandingSettings, getImageStyle, ImageTransform } from '../lib/brandingStore';
+
+interface WelcomeGreetingProps {
+  currentLang: Language;
+  onOpenBooking: () => void;
+}
+
+export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ currentLang, onOpenBooking }) => {
+  const t = translations[currentLang].welcome;
+  const [photoHero, setPhotoHero] = useState<string>('');
+  const [photoTransform, setPhotoTransform] = useState<ImageTransform | undefined>(undefined);
+
+  useEffect(() => {
+    const update = () => {
+      const b = getBrandingSettings();
+      setPhotoHero(b.photoHero);
+      setPhotoTransform(b.photoHeroTransform);
+    };
+    update();
+    window.addEventListener('lavie_branding_updated', update);
+    return () => window.removeEventListener('lavie_branding_updated', update);
+  }, []);
+
+  return (
+    <section id="welcome" className="py-16 sm:py-20 bg-[#F7F5F2] border-b border-[#2D2926]/10 relative overflow-hidden">
+      
+      {/* Background Subtle Organic Lighting */}
+      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-80 h-80 bg-[#7D8471]/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          {/* Portrait Column (5 cols) */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-md border border-[#2D2926]/10 group">
+              <img
+                src={photoHero || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80'}
+                alt="Cornelia Schmid - Owner LA VIE ACADEMY GmbH"
+                style={getImageStyle(photoTransform)}
+                className="w-full h-full group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Badge */}
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <div className="font-serif text-2xl font-light tracking-wide">Cornelia Schmid</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#DCD7D0] font-medium mt-1">
+                  Owner &amp; Founder | LA VIE ACADEMY GmbH
+                </div>
+              </div>
+            </div>
+
+            {/* Corner Experience Pill */}
+            <div className="absolute -bottom-4 -right-2 glass px-4 py-3 rounded-2xl border border-[#2D2926]/10 shadow-sm flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-[#7D8471] text-white flex items-center justify-center font-bold">
+                <Sparkles className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-[#2D2926]">15+ Jahre Erfahrung</div>
+                <div className="text-[10px] uppercase tracking-wider text-[#2D2926]/60">Feng Shui &amp; Staging</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Text & Actions Column (7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
+              {t.tag}
+            </span>
+
+            <div className="space-y-2">
+              <h2 className="font-serif text-3xl sm:text-5xl text-[#2D2926] font-light leading-tight tracking-tight">
+                {t.greeting}
+              </h2>
+              <p className="font-serif text-2xl sm:text-3xl text-[#7D8471] italic font-light">
+                {t.subtitle}
+              </p>
+            </div>
+
+            <p className="text-sm sm:text-base text-[#2D2926]/80 leading-relaxed font-light">
+              {t.description}
+            </p>
+
+            {/* Quick Link Navigation Pills */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              
+              <a
+                href="#about"
+                className="px-5 py-2.5 rounded-full bg-[#2D2926] text-[#F7F5F2] hover:bg-[#1A1816] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
+              >
+                <User className="w-3.5 h-3.5 text-[#7D8471]" />
+                <span>{t.moreAboutMe}</span>
+              </a>
+
+              <a
+                href="#portfolio"
+                className="px-5 py-2.5 rounded-full bg-white border border-[#2D2926]/15 text-[#2D2926] hover:bg-[#E6E2DC] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
+              >
+                <Briefcase className="w-3.5 h-3.5 text-[#7D8471]" />
+                <span>{t.ourPortfolio}</span>
+              </a>
+
+              <a
+                href="#faq"
+                className="px-5 py-2.5 rounded-full bg-white border border-[#2D2926]/15 text-[#2D2926] hover:bg-[#E6E2DC] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
+              >
+                <HelpCircle className="w-3.5 h-3.5 text-[#7D8471]" />
+                <span>{t.faqs}</span>
+              </a>
+
+            </div>
+
+            {/* Sub Guarantee Badge */}
+            <div className="pt-4 border-t border-[#2D2926]/10 flex items-center gap-6 text-xs text-[#2D2926]/70">
+              <span className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-[#7D8471]" />
+                Persönliche Betreuung
+              </span>
+              <span className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-[#7D8471]" />
+                Zertifiziertes Meisterwissen
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};

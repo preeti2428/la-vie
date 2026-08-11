@@ -1,0 +1,6 @@
+{
+  "name": "LA VIE Academy 3D Digital Showroom",
+  "description": "Interactive 3D digital showroom, Feng Shui & Virtual Staging showcase, and AI Lead Qualification assistant for Cornelia Schmid | LA VIE Academy GmbH.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
