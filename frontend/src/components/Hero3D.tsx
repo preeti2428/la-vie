@@ -876,46 +876,35 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
           
 
 
-          {/* Lighting Mood Controls */}
-          <div className="flex items-center gap-1.5 bg-white/85 backdrop-blur-md p-1.5 rounded-full border border-[#2D2926]/15 shadow-lg">
-            
-            <button
-              onClick={() => setLightingMood('lavender')}
-              className={`px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all flex items-center gap-1.5 ${
-                lightingMood === 'lavender'
-                  ? 'bg-[#8A7B9B] text-white shadow-md scale-105'
-                  : 'text-[#2D2926]/80 hover:bg-[#2D2926]/5'
-              }`}
-            >
-              <Flower2 className="w-3.5 h-3.5 text-purple-200" />
-              <span>Lavender Sanctuary</span>
-            </button>
-
-            <button
-              onClick={() => setLightingMood('golden')}
-              className={`px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all flex items-center gap-1.5 ${
-                lightingMood === 'golden'
-                  ? 'bg-[#D97706] text-white shadow-md scale-105'
-                  : 'text-[#2D2926]/80 hover:bg-[#2D2926]/5'
-              }`}
-            >
-              <Sun className="w-3.5 h-3.5 text-amber-200" />
-              <span>Golden Hour</span>
-            </button>
-
-            <button
-              onClick={() => setLightingMood('daylight')}
-              className={`px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all flex items-center gap-1.5 ${
-                lightingMood === 'daylight'
-                  ? 'bg-[#2D2926] text-white shadow-md scale-105'
-                  : 'text-[#2D2926]/80 hover:bg-[#2D2926]/5'
-              }`}
-            >
-              <Moon className="w-3.5 h-3.5" />
-              <span>Pure Daylight</span>
-            </button>
-
-          </div>
+          {/* Lighting Mood Controls - Cyclical Toggle */}
+          <button
+            onClick={() => {
+              if (lightingMood === 'lavender') setLightingMood('golden');
+              else if (lightingMood === 'golden') setLightingMood('daylight');
+              else setLightingMood('lavender');
+            }}
+            className="flex items-center gap-2 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border border-[#2D2926]/15 shadow-lg hover:bg-white hover:scale-105 transition-all text-[10px] uppercase tracking-widest font-bold text-[#2D2926]"
+            title="Toggle Lighting Mood"
+          >
+            {lightingMood === 'lavender' && (
+              <>
+                <Flower2 className="w-3.5 h-3.5 text-[#8A7B9B]" />
+                <span className="text-[#8A7B9B]">Lavender Sanctuary</span>
+              </>
+            )}
+            {lightingMood === 'golden' && (
+              <>
+                <Sun className="w-3.5 h-3.5 text-[#D97706]" />
+                <span className="text-[#D97706]">Golden Hour</span>
+              </>
+            )}
+            {lightingMood === 'daylight' && (
+              <>
+                <Moon className="w-3.5 h-3.5" />
+                <span>Pure Daylight</span>
+              </>
+            )}
+          </button>
 
         </div>
 
