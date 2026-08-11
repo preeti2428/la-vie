@@ -3,6 +3,7 @@ import { Sparkles, Award, CheckCircle, HelpCircle, Briefcase, User } from 'lucid
 import { Language } from '../types';
 import { translations } from '../translations';
 import { getBrandingSettings, getImageStyle, ImageTransform } from '../lib/brandingStore';
+import { AestheticFrame } from './AestheticFrame';
 
 interface WelcomeGreetingProps {
   currentLang: Language;
@@ -36,23 +37,25 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
           
           {/* Portrait Column (5 cols) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-md border border-[#2D2926]/10 group">
-              <img
-                src={photoHero || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80'}
-                alt="Cornelia Schmid - Owner LA VIE ACADEMY GmbH"
-                style={getImageStyle(photoTransform)}
-                className="w-full h-full group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            <AestheticFrame text="INTERIOR DESIGN + FENG SHUI">
+              <div className="relative aspect-[4/5] overflow-hidden shadow-md border border-[#2D2926]/10 group">
+                <img
+                  src={photoHero || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80'}
+                  alt="Cornelia Schmid - Owner LA VIE ACADEMY GmbH"
+                  style={getImageStyle(photoTransform)}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="font-serif text-2xl font-light tracking-wide">Cornelia Schmid</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#DCD7D0] font-medium mt-1">
-                  Owner &amp; Founder | LA VIE ACADEMY GmbH
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <div className="font-serif text-2xl font-light tracking-wide">Cornelia Schmid</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#DCD7D0] font-medium mt-1">
+                    Owner &amp; Founder | LA VIE ACADEMY GmbH
+                  </div>
                 </div>
               </div>
-            </div>
+            </AestheticFrame>
 
             {/* Corner Experience Pill */}
             <div className="absolute -bottom-4 -right-2 glass px-4 py-3 rounded-2xl border border-[#2D2926]/10 shadow-sm flex items-center gap-3">

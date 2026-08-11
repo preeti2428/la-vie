@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Award, CheckCircle, Quote, PhoneCall } from 'lucide-react';
 import { CLIENT_TESTIMONIALS } from '../data/mockData';
 import { getBrandingSettings, getImageStyle, ImageTransform } from '../lib/brandingStore';
+import { AestheticFrame } from './AestheticFrame';
 
 interface AboutCorneliaProps {
   onOpenBooking: () => void;
@@ -31,22 +32,24 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
           
           {/* Portrait Image (5 cols) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-sm border border-[#2D2926]/10">
-              <img
-                src={photoAbout || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1000&q=80'}
-                alt="Cornelia Schmid - LA VIE Academy GmbH"
-                style={getImageStyle(photoTransform)}
-                className="w-full h-full"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="font-serif text-2xl font-light">Cornelia Schmid</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#DCD7D0] font-medium mt-0.5">
-                  Gründerin &amp; Spatial Design Expertin | LA VIE Academy GmbH
+            <AestheticFrame text="DER KREATIVE KOPF">
+              <div className="relative aspect-[4/5] overflow-hidden shadow-sm border border-[#2D2926]/10">
+                <img
+                  src={photoAbout || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1000&q=80'}
+                  alt="Cornelia Schmid - LA VIE Academy GmbH"
+                  style={getImageStyle(photoTransform)}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <div className="font-serif text-2xl font-light">Cornelia Schmid</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#DCD7D0] font-medium mt-0.5">
+                    Gründerin &amp; Spatial Design Expertin | LA VIE Academy GmbH
+                  </div>
                 </div>
               </div>
-            </div>
+            </AestheticFrame>
 
             {/* Floating Credentials Badge */}
             <div className="absolute -bottom-6 -right-4 glass p-4 rounded-2xl shadow-lg border border-[#2D2926]/10 max-w-xs hidden sm:flex items-center gap-3">
