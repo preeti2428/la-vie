@@ -16,16 +16,16 @@ export const AestheticFrame: React.FC<AestheticFrameProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`relative ${className} pt-8 pl-8 sm:pt-12 sm:pl-12 lg:pt-16 lg:pl-16`}>
+    <div className={`relative ${className} mt-8 ml-8 sm:mt-12 sm:ml-12`}>
       {/* The offset background block */}
       <div 
-        className="absolute top-0 left-0 bottom-[10%] right-[10%] z-0"
+        className="absolute inset-0 z-0 -translate-x-6 -translate-y-6 sm:-translate-x-10 sm:-translate-y-10"
         style={{ backgroundColor: bgColor }}
       >
         {/* Vertical Text along the left edge */}
         {text && (
           <div 
-            className="absolute top-1/2 -left-3 sm:-left-4 -translate-y-1/2 -translate-x-1/2 -rotate-90 origin-center whitespace-nowrap uppercase tracking-[0.3em] text-[9px] sm:text-[10px] font-semibold"
+            className="absolute bottom-4 -left-6 origin-bottom-left -rotate-90 whitespace-nowrap uppercase tracking-[0.3em] text-[9px] sm:text-[10px] font-semibold"
             style={{ color: textColor }}
           >
             {text}

@@ -40,12 +40,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const navItems = [
-    { id: 'home' as PageView, label: t.welcome, icon: Home },
-    { id: 'portfolio' as PageView, label: t.portfolio, icon: Box },
-    { id: 'services' as PageView, label: t.services, icon: Star },
-    { id: 'blog' as PageView, label: t.blog, icon: BookOpen },
-    { id: 'about' as PageView, label: t.about, icon: User },
-    { id: 'contact' as PageView, label: t.contact, icon: Mail },
+    { id: 'home' as PageView, label: t.welcome },
+    { id: 'portfolio' as PageView, label: t.portfolio },
+    { id: 'services' as PageView, label: t.services },
+    { id: 'about' as PageView, label: t.about },
+    { id: 'contact' as PageView, label: t.contact },
+    { id: 'blog' as PageView, label: t.blog },
   ];
 
   return (
@@ -61,22 +61,21 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-3 xl:gap-5 text-[10px] xl:text-[11px] uppercase tracking-[0.1em] xl:tracking-[0.18em] font-medium text-[#2D2926]">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8 text-[11px] xl:text-[12px] uppercase tracking-[0.15em] font-medium text-[#2D2926]">
           {navItems.map((item) => {
-            const Icon = item.icon;
             const isActive = currentPage === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`transition-all flex items-center gap-1.5 py-1.5 border-b-2 whitespace-nowrap ${
+                className={`transition-all flex items-center gap-1.5 py-1.5 whitespace-nowrap ${
                   isActive
-                    ? 'text-[#7D8471] font-bold border-[#7D8471]'
-                    : 'text-[#2D2926]/80 hover:text-[#7D8471] border-transparent'
+                    ? 'text-[#2D2926]/50 font-medium'
+                    : 'text-[#2D2926] hover:text-[#7D8471]'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#7D8471]' : 'text-[#2D2926]/50'}`} />
                 <span>{item.label}</span>
+                {item.id === 'services' && <span className="text-[8px] opacity-60 translate-y-[1px]">▼</span>}
               </button>
             );
           })}
@@ -106,8 +105,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="text-[#2D2926]/20">/</span>
             <span className={currentLang === 'en' ? 'text-[#7D8471]' : 'text-[#2D2926]/40'}>EN</span>
           </button>
-
-
 
           {/* Mobile Menu Hamburger Toggle */}
           <button
