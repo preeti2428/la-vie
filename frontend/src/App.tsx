@@ -5,7 +5,7 @@ import { WelcomeGreetingSection } from './components/WelcomeGreetingSection';
 import { WhatMakesUsSpecial } from './components/WhatMakesUsSpecial';
 import { OurServicesSection } from './components/OurServicesSection';
 import { BeforeAfterStaging } from './components/BeforeAfterStaging';
-import { HotspotPortfolio } from './components/HotspotPortfolio';
+import { FengShuiGame } from './components/FengShuiGame';
 import { CallADesignerSection } from './components/CallADesignerSection';
 import { InstagramReelsGrid } from './components/InstagramReelsGrid';
 import { BlogSection } from './components/BlogSection';
@@ -210,7 +210,7 @@ export default function App() {
               onOpenBooking={() => setIsBookingOpen(true)}
             />
 
-            <HotspotPortfolio onOpenBooking={() => setIsBookingOpen(true)} />
+            <FengShuiGame />
 
             <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
 
@@ -228,7 +228,7 @@ export default function App() {
         {/* DEDICATED PORTFOLIO PAGE */}
         {currentPage === 'portfolio' && (
           <div className="space-y-16 py-8">
-            <HotspotPortfolio onOpenBooking={() => setIsBookingOpen(true)} />
+            <FengShuiGame />
             <BeforeAfterStaging onOpenBooking={() => setIsBookingOpen(true)} />
           </div>
         )}

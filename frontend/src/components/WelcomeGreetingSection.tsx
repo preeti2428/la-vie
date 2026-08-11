@@ -43,7 +43,7 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
                   src={photoHero || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80'}
                   alt="Cornelia Schmid - Owner LA VIE ACADEMY GmbH"
                   style={getImageStyle(photoTransform)}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
@@ -72,9 +72,7 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
           {/* Text & Actions Column (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-center flex flex-col items-center">
             
-            <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
-              {t.tag}
-            </span>
+
 
             <div className="space-y-4 max-w-xl mx-auto">
               <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight tracking-tight">
@@ -85,50 +83,22 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-[#2D2926]/80 leading-relaxed font-light max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-[#2D2926]/80 leading-relaxed font-light max-w-2xl mx-auto mb-8">
               {t.description}
             </p>
 
-            {/* Quick Link Navigation Pills */}
-            <div className="pt-2 flex flex-wrap justify-center items-center gap-3">
-              
-              <a
-                href="#about"
-                className="px-5 py-2.5 rounded-full bg-[#2D2926] text-[#F7F5F2] hover:bg-[#1A1816] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
-              >
-                <User className="w-3.5 h-3.5 text-[#7D8471]" />
-                <span>{t.moreAboutMe}</span>
-              </a>
-
+            {/* Portfolio Action Button */}
+            <div className="pt-4 flex justify-center w-full">
               <a
                 href="#portfolio"
-                className="px-5 py-2.5 rounded-full bg-white border border-[#2D2926]/15 text-[#2D2926] hover:bg-[#E6E2DC] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
+                className="inline-block px-10 py-3.5 bg-black text-white text-[11px] uppercase tracking-[0.25em] font-medium hover:bg-black/80 transition-colors"
               >
-                <Briefcase className="w-3.5 h-3.5 text-[#7D8471]" />
-                <span>{t.ourPortfolio}</span>
+                TO THE PORTFOLIO
               </a>
-
-              <a
-                href="#faq"
-                className="px-5 py-2.5 rounded-full bg-white border border-[#2D2926]/15 text-[#2D2926] hover:bg-[#E6E2DC] text-xs uppercase tracking-widest font-medium flex items-center gap-2 shadow-sm transition-all"
-              >
-                <HelpCircle className="w-3.5 h-3.5 text-[#7D8471]" />
-                <span>{t.faqs}</span>
-              </a>
-
             </div>
 
-            {/* Sub Guarantee Badge */}
-            <div className="pt-4 border-t border-[#2D2926]/10 flex items-center justify-center gap-6 text-xs text-[#2D2926]/70 w-full">
-              <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#7D8471]" />
-                Persönliche Betreuung
-              </span>
-              <span className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#7D8471]" />
-                Zertifiziertes Meisterwissen
-              </span>
-            </div>
+
+
 
           </div>
 
