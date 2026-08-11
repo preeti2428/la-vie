@@ -70,14 +70,14 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
           </div>
 
           {/* Text & Actions Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 text-center flex flex-col items-center">
             
             <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
               {t.tag}
             </span>
 
-            <div className="space-y-2">
-              <h2 className="font-serif text-3xl sm:text-5xl text-[#2D2926] font-light leading-tight tracking-tight">
+            <div className="space-y-4 max-w-xl mx-auto">
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight tracking-tight">
                 {t.greeting}
               </h2>
               <p className="font-serif text-2xl sm:text-3xl text-[#7D8471] italic font-light">
@@ -85,12 +85,12 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-[#2D2926]/80 leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-[#2D2926]/80 leading-relaxed font-light max-w-2xl mx-auto">
               {t.description}
             </p>
 
             {/* Quick Link Navigation Pills */}
-            <div className="pt-2 flex flex-wrap items-center gap-3">
+            <div className="pt-2 flex flex-wrap justify-center items-center gap-3">
               
               <a
                 href="#about"
@@ -119,7 +119,7 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
             </div>
 
             {/* Sub Guarantee Badge */}
-            <div className="pt-4 border-t border-[#2D2926]/10 flex items-center gap-6 text-xs text-[#2D2926]/70">
+            <div className="pt-4 border-t border-[#2D2926]/10 flex items-center justify-center gap-6 text-xs text-[#2D2926]/70 w-full">
               <span className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#7D8471]" />
                 Persönliche Betreuung

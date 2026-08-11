@@ -40,12 +40,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const navItems = [
-    { id: 'home' as PageView, label: t.welcome },
-    { id: 'portfolio' as PageView, label: t.portfolio },
-    { id: 'services' as PageView, label: t.services },
-    { id: 'about' as PageView, label: t.about },
-    { id: 'contact' as PageView, label: t.contact },
-    { id: 'blog' as PageView, label: t.blog },
+    { id: 'home' as PageView, label: t.welcome, icon: Home },
+    { id: 'portfolio' as PageView, label: t.portfolio, icon: Box },
+    { id: 'services' as PageView, label: t.services, icon: Star },
+    { id: 'about' as PageView, label: t.about, icon: User },
+    { id: 'contact' as PageView, label: t.contact, icon: Mail },
+    { id: 'blog' as PageView, label: t.blog, icon: BookOpen },
   ];
 
   return (
