@@ -1,41 +1,66 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DoorOpen, LayoutGrid, CheckCircle2, AlertCircle, Lightbulb, Maximize2 } from 'lucide-react';
+import { DoorOpen, LayoutGrid, CheckCircle2, AlertCircle, Lightbulb, Maximize2, Camera as CameraIcon, UploadCloud } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { FengShuiGame3DCanvas } from './FengShuiGame3DCanvas';
 
-type ItemType = 'bed' | 'desk' | 'plant' | 'sofa' | 'rug';
+export type ItemType = 'bed' | 'desk' | 'plant' | 'sofa' | 'rug' | 'custom';
 
-interface PlacedItem {
+export interface PlacedItem {
   type: ItemType;
   x: number;
   y: number;
   rotation: number;
   scale: number;
+  customImage?: string;
 }
 
 // ------------------------------------------------------------------
 // Real Photo Assets (AI Generated)
 // ------------------------------------------------------------------
 const ASSETS = {
-  bed: '/assets/game/top_down_bed_1786477342972.png',
-  desk: '/assets/game/top_down_desk_1786477384783.png',
-  sofa: '/assets/game/top_down_sofa_1786477394425.png',
-  plant: '/assets/game/top_down_plant_1786477407586.png',
-  rug: '/assets/game/top_down_rug_1786477421997.png'
+  bed: '/assets/game/bed_3d_1786515982912.png',
+  desk: '/assets/game/desk_3d_1786515998320.png',
+  sofa: '/assets/game/sofa_3d_1786516011189.png',
+  plant: '/assets/game/plant_3d_1786516044115.png',
+  rug: '/assets/game/rug_3d_1786516077097.png'
 };
 
-const RealFurniture = ({ type, isDragging }: { type: ItemType, isDragging?: boolean }) => {
+export const THEMES = {
+  lightWood: {
+    bg: '#d1a783',
+    style: { backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 42px)` }
+  },
+  darkWood: {
+    bg: '#4a3b32',
+    style: { backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(0,0,0,0.3) 35px, rgba(0,0,0,0.3) 37px)` }
+  },
+  concrete: {
+    bg: '#a9a9a9',
+    style: { backgroundImage: `none` }
+  },
+  carpet: {
+    bg: '#e3dfd8',
+    style: { backgroundImage: `repeating-radial-gradient(circle, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 100%)`, backgroundSize: '10px 10px' }
+  }
+};
+
+const RealFurniture = ({ type, isDragging, customImage }: { type: ItemType, isDragging?: boolean, customImage?: string }) => {
   let widthClass = 'w-20'; // Increased base size
   if (type === 'bed') widthClass = 'w-28';
   if (type === 'sofa') widthClass = 'w-32';
   if (type === 'rug') widthClass = 'w-40';
   if (type === 'plant') widthClass = 'w-14';
+  if (type === 'custom') widthClass = 'w-24';
+
+  const src = type === 'custom' && customImage ? customImage : ASSETS[type as keyof typeof ASSETS];
+  const blendClass = type !== 'custom' ? 'mix-blend-multiply' : 'rounded-lg object-cover';
 
   return (
     <img 
-      src={ASSETS[type]} 
+      src={src} 
       alt={type} 
       draggable={false}
-      className={`${widthClass} h-auto mix-blend-multiply drop-shadow-2xl select-none pointer-events-none transition-transform duration-200 ${isDragging ? 'opacity-50 scale-95' : 'scale-100 hover:scale-105'}`}
+      className={`${widthClass} h-auto ${blendClass} drop-shadow-2xl select-none pointer-events-none transition-transform duration-200 ${isDragging ? 'opacity-50 scale-95' : 'scale-100 hover:scale-105'}`}
     />
   );
 };
@@ -49,6 +74,70 @@ export const FengShuiGame: React.FC = () => {
   const [score, setScore] = useState<{ points: number; hints: string[] }>({ points: 0, hints: ["Drag furniture into the room to start!"] });
   const [hasCelebrated, setHasCelebrated] = useState(false);
   const roomRef = useRef<HTMLDivElement>(null);
+
+  const [theme, setTheme] = useState<'lightWood' | 'darkWood' | 'concrete' | 'carpet'>('lightWood');
+  const [isCameraActive, setIsCameraActive] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      mediaStreamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+      setIsCameraActive(true);
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      alert("Could not access camera.");
+    }
+  };
+
+  const stopCamera = () => {
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop());
+      mediaStreamRef.current = null;
+    }
+    setIsCameraActive(false);
+  };
+
+  const capturePhoto = () => {
+    if (videoRef.current) {
+      const canvas = document.createElement('canvas');
+      canvas.width = videoRef.current.videoWidth;
+      canvas.height = videoRef.current.videoHeight;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(videoRef.current, 0, 0);
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        const filtered = placedItems.filter(item => item.type !== 'custom');
+        setPlacedItems([...filtered, { type: 'custom', x: 50, y: 50, rotation: 0, scale: 1, customImage: dataUrl }]);
+        setSelectedItem('custom');
+        stopCamera();
+      }
+    }
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const filtered = placedItems.filter(item => item.type !== 'custom');
+        setPlacedItems([...filtered, { type: 'custom', x: 50, y: 50, rotation: 0, scale: 1, customImage: reader.result as string }]);
+        setSelectedItem('custom');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      stopCamera();
+    };
+  }, []);
 
   useEffect(() => {
     let points = 0;
@@ -152,9 +241,10 @@ export const FengShuiGame: React.FC = () => {
     const existingItem = placedItems.find(item => item.type === itemType);
     const rotation = existingItem ? existingItem.rotation : 0;
     const scale = existingItem ? existingItem.scale : 1;
+    const customImage = existingItem ? existingItem.customImage : undefined;
 
     const filtered = placedItems.filter(item => item.type !== itemType);
-    setPlacedItems([...filtered, { type: itemType, x, y, rotation, scale }]);
+    setPlacedItems([...filtered, { type: itemType, x, y, rotation, scale, customImage }]);
     setSelectedItem(itemType); 
   };
 
@@ -173,6 +263,12 @@ export const FengShuiGame: React.FC = () => {
     if (!selectedItem) return;
     setPlacedItems(items => items.map(item => 
       item.type === selectedItem ? { ...item, scale: newScale } : item
+    ));
+  };
+
+  const handleUpdateItem = (type: ItemType, pos: { x: number, y: number }, rotation: number) => {
+    setPlacedItems(items => items.map(item => 
+      item.type === type ? { ...item, x: pos.x, y: pos.y, rotation } : item
     ));
   };
 
@@ -273,6 +369,35 @@ export const FengShuiGame: React.FC = () => {
                   );
                 })}
               </div>
+
+              {/* Custom Item Upload Area */}
+              <div className="bg-white border border-[#2D2926]/10 rounded p-2 shadow-sm text-center flex-shrink-0">
+                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2">Custom Photo</span>
+                <div className="flex gap-2 justify-center">
+                   <button onClick={() => fileInputRef.current?.click()} className="p-2 bg-[#F7F5F2] rounded-full hover:bg-gray-200 transition-colors" title="Upload Photo">
+                     <UploadCloud className="w-4 h-4 text-[#7D8471]" />
+                   </button>
+                   <button onClick={startCamera} className="p-2 bg-[#F7F5F2] rounded-full hover:bg-gray-200 transition-colors" title="Take Photo">
+                     <CameraIcon className="w-4 h-4 text-[#7D8471]" />
+                   </button>
+                   <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileUpload} />
+                </div>
+              </div>
+
+              {/* Theme Picker */}
+              <div className="bg-white border border-[#2D2926]/10 rounded p-2 shadow-sm flex-shrink-0">
+                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2 text-center">Room Theme</span>
+                <select 
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value as any)}
+                  className="w-full text-xs p-1.5 border border-[#2D2926]/10 rounded bg-[#F9F8F6] focus:outline-none focus:ring-1 focus:ring-[#7D8471]"
+                >
+                  <option value="lightWood">Light Oak Wood</option>
+                  <option value="darkWood">Dark Walnut</option>
+                  <option value="concrete">Modern Concrete</option>
+                  <option value="carpet">Soft Carpet</option>
+                </select>
+              </div>
             </div>
             
             <div className="pt-2 mt-auto">
@@ -282,7 +407,7 @@ export const FengShuiGame: React.FC = () => {
             </div>
           </div>
 
-          {/* Game Area - Free Form Room */}
+          {/* Game Area - 3D Free Form Room */}
           <div className="lg:col-span-3 relative">
             <div 
               ref={roomRef}
@@ -291,15 +416,26 @@ export const FengShuiGame: React.FC = () => {
               className="aspect-[16/10] bg-white shadow-xl overflow-hidden relative border-[12px] border-[#3E3A35] rounded-sm"
             >
               
-              <div 
-                className="absolute inset-0 bg-[#d1a783] opacity-80"
-                style={{
-                  backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 42px)`
-                }}
+              <FengShuiGame3DCanvas 
+                placedItems={placedItems} 
+                theme={theme} 
+                onUpdateItem={handleUpdateItem} 
               />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(255,255,255,0.6)_0%,transparent_70%)] pointer-events-none" />
 
-              {/* Dynamic Door (Draggable) */}
+              {/* Camera Overlay */}
+              {isCameraActive && (
+                <div className="absolute inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
+                  <video ref={videoRef} autoPlay playsInline className="w-full max-w-lg rounded-xl shadow-2xl mb-6" />
+                  <div className="flex gap-4">
+                    <button onClick={stopCamera} className="px-6 py-2 bg-white text-[#2D2926] text-xs font-bold uppercase tracking-widest rounded-full">Cancel</button>
+                    <button onClick={capturePhoto} className="px-6 py-2 bg-[#7D8471] text-white text-xs font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
+                      <CameraIcon className="w-4 h-4" /> Take Photo
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Dynamic Door (Draggable over 3D Canvas) */}
               <div 
                 draggable
                 onDragStart={(e) => handleDragStart(e, 'door')}
@@ -317,7 +453,7 @@ export const FengShuiGame: React.FC = () => {
                  </span>
               </div>
               
-              {/* Dynamic Window (Draggable) */}
+              {/* Dynamic Window (Draggable over 3D Canvas) */}
               <div 
                 draggable
                 onDragStart={(e) => handleDragStart(e, 'window')}
@@ -334,25 +470,6 @@ export const FengShuiGame: React.FC = () => {
                  </span>
               </div>
 
-              {/* Render Placed Items */}
-              {placedItems
-                .sort((a, b) => (a.type === 'rug' ? -1 : b.type === 'rug' ? 1 : 0))
-                .map((item) => (
-                <div 
-                  key={item.type}
-                  onClick={(e) => handleItemClick(item.type, e)}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, item.type)}
-                  className={`absolute z-30 cursor-grab active:cursor-grabbing rounded transition-all duration-200 ${selectedItem === item.type ? 'ring-2 ring-[#7D8471]/60 shadow-[0_0_15px_rgba(125,132,113,0.3)]' : 'hover:ring-1 hover:ring-[#7D8471]/30'}`}
-                  style={{ 
-                    left: `${item.x}%`, 
-                    top: `${item.y}%`, 
-                    transform: `translate(-50%, -50%) rotate(${item.rotation}deg) scale(${item.scale})` 
-                  }}
-                >
-                  <RealFurniture type={item.type} />
-                </div>
-              ))}
             </div>
             
             <div className="absolute inset-0 shadow-[inset_0_10px_20px_rgba(0,0,0,0.15)] pointer-events-none rounded-sm" />
