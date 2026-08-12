@@ -281,8 +281,8 @@ export const FengShuiGame: React.FC = () => {
   };
 
   return (
-    <section className="py-10 bg-white border-y border-[#2D2926]/10" onClick={() => setSelectedItem(null)}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pt-24 pb-12 bg-white border-y border-[#2D2926]/10" onClick={() => setSelectedItem(null)}>
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
         
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-[9px] uppercase tracking-[0.2em] bg-[#2D2926] text-white px-2 py-0.5 rounded-full font-medium inline-block shadow-sm mb-2">
@@ -413,7 +413,7 @@ export const FengShuiGame: React.FC = () => {
               ref={roomRef}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
-              className="aspect-[16/10] bg-white shadow-xl overflow-hidden relative border-[12px] border-[#3E3A35] rounded-sm"
+              className="h-[60vh] lg:h-[80vh] min-h-[600px] bg-white shadow-xl overflow-hidden relative border-[12px] border-[#3E3A35] rounded-sm"
             >
               
               <FengShuiGame3DCanvas 
