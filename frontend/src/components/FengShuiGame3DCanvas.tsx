@@ -29,6 +29,7 @@ const DraggableItem = ({
     <TransformControls 
       mode="translate" 
       showY={false} // Only move on X and Z floor
+      // @ts-ignore - type missing in some versions of drei
       onDraggingChanged={(e) => {
         if (!e?.value && meshRef.current) {
           // Finished dragging, update parent state
