@@ -153,9 +153,9 @@ export const FengShuiGame3DCanvas = ({
   onUpdateItem: (type: ItemType, pos: {x: number, y: number}, rot: number) => void 
 }) => {
   return (
-    <div className="absolute inset-0 z-10 w-full h-full bg-[#F3EFF8]">
+    <div className="absolute inset-0 z-10 w-full h-full bg-black">
       <Canvas shadows camera={{ position: [0, 8, 8], fov: 45 }}>
-        <color attach="background" args={['#F3EFF8']} />
+        <color attach="background" args={['#000000']} />
         
         <ambientLight intensity={1.2} />
         <directionalLight 
