@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { UploadCloud, Wand2, Image as ImageIcon, Sliders, CheckCircle2, X } from 'lucide-react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { UploadCloud, Wand2, Image as ImageIcon, Sliders, CheckCircle2, X, Camera } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
 
 interface Props {
@@ -20,6 +20,61 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [isCameraActive, setIsCameraActive] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      mediaStreamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+      setIsCameraActive(true);
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      alert("Could not access camera. Please check your permissions.");
+    }
+  };
+
+  const stopCamera = () => {
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop());
+      mediaStreamRef.current = null;
+    }
+    setIsCameraActive(false);
+  };
+
+  const capturePhoto = () => {
+    if (videoRef.current) {
+      const canvas = document.createElement('canvas');
+      canvas.width = videoRef.current.videoWidth;
+      canvas.height = videoRef.current.videoHeight;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(videoRef.current, 0, 0);
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        setUploadedImage(dataUrl);
+        setResultReady(false);
+        setProgress(0);
+        setErrorMsg(null);
+        stopCamera();
+      }
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      stopCamera();
+    };
+  }, []);
+
+  const handleClose = () => {
+    stopCamera();
+    onClose();
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -111,13 +166,13 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div className="fixed inset-0 bg-[#2D2926]/80 backdrop-blur-sm transition-opacity" onClick={onClose} />
+      <div className="fixed inset-0 bg-[#2D2926]/80 backdrop-blur-sm transition-opacity" onClick={handleClose} />
       
       <div className="relative w-full max-w-6xl max-h-[95vh] overflow-y-auto bg-white rounded-3xl shadow-2xl ring-1 ring-black/5 transform transition-all">
         
         {/* Close Button */}
         <button 
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-6 right-6 z-50 w-12 h-12 bg-[#F7F5F2] hover:bg-[#E6E2DC] text-[#2D2926] rounded-full flex items-center justify-center shadow-sm transition-colors"
         >
           <X className="w-5 h-5" />
@@ -248,12 +303,36 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
             <div className="bg-[#F7F5F2] rounded-[2rem] p-3 border border-[#2D2926]/10 shadow-inner h-[500px] lg:h-[600px] relative overflow-hidden flex items-center justify-center">
               
               {!uploadedImage ? (
+                isCameraActive ? (
+                  <div className="w-full h-full rounded-3xl overflow-hidden relative bg-black flex items-center justify-center shadow-inner">
+                    <video 
+                      ref={videoRef} 
+                      autoPlay 
+                      playsInline 
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-6 z-10">
+                      <button 
+                        onClick={stopCamera}
+                        className="px-6 py-3 bg-white text-[#2D2926] rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-gray-100 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button 
+                        onClick={capturePhoto}
+                        className="px-6 py-3 bg-[#7D8471] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-[#6C7360] transition-colors flex items-center gap-2"
+                      >
+                        <Camera className="w-4 h-4" />
+                        Take Photo
+                      </button>
+                    </div>
+                  </div>
+                ) : (
                 // Upload State
                 <div 
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
-                  className="w-full h-full border-2 border-dashed border-[#2D2926]/20 rounded-3xl flex flex-col items-center justify-center bg-white/50 hover:bg-white/80 transition-colors cursor-pointer group"
-                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full h-full border-2 border-dashed border-[#2D2926]/20 rounded-3xl flex flex-col items-center justify-center bg-white/50 transition-colors group relative"
                 >
                   <input 
                     type="file" 
@@ -262,14 +341,28 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                     accept="image/*"
                     onChange={handleFileUpload}
                   />
-                  <div className="w-16 h-16 rounded-full bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <UploadCloud className="w-8 h-8" />
+                  <div className="flex gap-4 mb-4">
+                    <button 
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-16 h-16 rounded-full bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
+                      title="Upload File"
+                    >
+                      <UploadCloud className="w-8 h-8" />
+                    </button>
+                    <button 
+                      onClick={startCamera}
+                      className="w-16 h-16 rounded-full bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
+                      title="Take Photo"
+                    >
+                      <Camera className="w-8 h-8" />
+                    </button>
                   </div>
                   <h4 className="text-sm font-bold text-[#2D2926] mb-1">Upload Room Image</h4>
-                  <p className="text-xs text-[#2D2926]/50 max-w-xs text-center">
-                    Drag and drop your photo here, or click to browse files. JPG or PNG up to 10MB.
+                  <p className="text-xs text-[#2D2926]/50 max-w-xs text-center px-4">
+                    Drag and drop your photo here, click the cloud to browse files, or use the camera to take a picture. JPG or PNG up to 10MB.
                   </p>
                 </div>
+                )
               ) : resultReady ? (
                 // Result State (Before/After Slider)
                 <div 
