@@ -353,13 +353,13 @@ export default function App() {
       {/* Floating AI Staging Trigger Button - Prominent & Descriptive */}
       <button
         onClick={() => setIsStagingOpen(true)}
-        className="fixed top-40 right-6 z-40 bg-gradient-to-r from-[#2D2926]/95 to-[#3D3834]/95 backdrop-blur-md rounded-full text-white px-5 py-3 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 group border border-white/20 hover:border-white/40 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-top-right"
+        className="fixed top-40 right-6 z-40 bg-gradient-to-r from-[#2D2926]/95 to-[#3D3834]/95 backdrop-blur-md rounded-full text-white px-3 py-2 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group border border-white/20 hover:border-white/40 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-top-right"
       >
-        <span className="font-bold text-xs uppercase tracking-widest text-white whitespace-nowrap">
+        <span className="font-bold text-[10px] uppercase tracking-widest text-white whitespace-nowrap pl-1">
           AI Virtual Staging (Live)
         </span>
-        <div className="bg-[#8A7B9B] p-1.5 rounded-full shadow-inner group-hover:bg-[#9b8bad] transition-colors">
-          <Sparkles className="w-4 h-4 text-white animate-pulse" />
+        <div className="bg-[#8A7B9B] p-1 rounded-full shadow-inner group-hover:bg-[#9b8bad] transition-colors">
+          <Sparkles className="w-3 h-3 text-white animate-pulse" />
         </div>
       </button>
 
