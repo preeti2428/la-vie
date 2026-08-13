@@ -90,6 +90,57 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const t = {
+    de: {
+      backToHome: "Zurück zur Startseite",
+      home: "Home",
+      portfolioLabel: "Showroom & Interactive Gallery",
+      portfolioTitle: "Portfolio &",
+      portfolioTitleItalic: "Spatial Hotspots",
+      portfolioDesc: "Erleben Sie interaktive Feng Shui Hotspots und Vorher/Nachher 3D Staging Vergleiche realer Luxus-Objekte.",
+      servicesLabel: "Ganzheitliche Beratung",
+      servicesTitle: "Unsere",
+      servicesTitleItalic: "Design & Feng Shui Services",
+      servicesDesc: "Vom 1-stündigen \"Call a Designer\" Express-Call bis zum schlüsselfertigen 3D Virtual Staging für Immobilien.",
+      blogLabel: "Journal & Social Editorial",
+      blogTitle: "Magazin &",
+      blogTitleItalic: "Instagram Reels",
+      blogDesc: "Wertvolles Wissen über die 60-30-10 Farbdramaturgie, Bagua-Energieflüsse und virtuelle Staging-Trends.",
+      aboutLabel: "Gründerin & Philosophie",
+      aboutTitle: "Über",
+      aboutTitleItalic: "Cornelia Schmid",
+      aboutDesc: "Pionierin für energetische Raumgestaltung, Feng Shui Expertin und Gründerin der LA VIE ACADEMY.",
+      contactLabel: "Direct Contact & Booking",
+      contactTitle: "Kontakt &",
+      contactTitleItalic: "Terminvereinbarung",
+      contactDesc: "Treten Sie direkt mit uns in Verbindung oder buchen Sie Ihren 1:1 Beratungstermin per Kalender."
+    },
+    en: {
+      backToHome: "Back to Home",
+      home: "Home",
+      portfolioLabel: "Showroom & Interactive Gallery",
+      portfolioTitle: "Portfolio &",
+      portfolioTitleItalic: "Spatial Hotspots",
+      portfolioDesc: "Experience interactive Feng Shui hotspots and Before/After 3D staging comparisons of real luxury properties.",
+      servicesLabel: "Holistic Consulting",
+      servicesTitle: "Our",
+      servicesTitleItalic: "Design & Feng Shui Services",
+      servicesDesc: "From a 1-hour 'Call a Designer' express call to turnkey 3D virtual staging for real estate.",
+      blogLabel: "Journal & Social Editorial",
+      blogTitle: "Magazine &",
+      blogTitleItalic: "Instagram Reels",
+      blogDesc: "Valuable knowledge about the 60-30-10 color dramaturgy, Bagua energy flows, and virtual staging trends.",
+      aboutLabel: "Founder & Philosophy",
+      aboutTitle: "About",
+      aboutTitleItalic: "Cornelia Schmid",
+      aboutDesc: "Pioneer in energetic interior design, Feng Shui expert, and founder of the LA VIE ACADEMY.",
+      contactLabel: "Direct Contact & Booking",
+      contactTitle: "Contact &",
+      contactTitleItalic: "Appointments",
+      contactDesc: "Get in touch directly or book your 1:1 consultation appointment via calendar."
+    }
+  }[currentLang];
+
   return (
     <div className="min-h-screen bg-[#F7F5F2] text-[#2D2926] font-sans selection:bg-[#8A7B9B] selection:text-white flex flex-col">
       
@@ -124,7 +175,7 @@ export default function App() {
                   className="flex items-center gap-2 text-[#8A7B9B] hover:text-white font-medium transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  <span>Zurück zur Startseite</span>
+                  <span>{t.backToHome}</span>
                 </button>
 
                 <div className="flex items-center gap-2 text-white/50 font-light uppercase tracking-widest text-[10px]">
@@ -136,7 +187,7 @@ export default function App() {
                     className="hover:underline flex items-center gap-1"
                   >
                     <Home className="w-3 h-3 text-[#8A7B9B]" />
-                    <span>Home</span>
+                    <span>{t.home}</span>
                   </button>
                   <span>/</span>
                   <span className="text-white font-bold uppercase">{currentPage}</span>
@@ -147,13 +198,13 @@ export default function App() {
               {currentPage === 'portfolio' && (
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
-                    Showroom & Interactive Gallery
+                    {t.portfolioLabel}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
-                    Portfolio & <span className="italic text-[#8A7B9B]">Spatial Hotspots</span>
+                    {t.portfolioTitle} <span className="italic text-[#8A7B9B]">{t.portfolioTitleItalic}</span>
                   </h1>
                   <p className="text-sm text-[#DCD7D0] max-w-xl font-light">
-                    Erleben Sie interaktive Feng Shui Hotspots und Vorher/Nachher 3D Staging Vergleiche realer Luxus-Objekte.
+                    {t.portfolioDesc}
                   </p>
                 </div>
               )}
@@ -161,13 +212,13 @@ export default function App() {
               {currentPage === 'services' && (
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 ">
-                    Ganzheitliche Beratung
+                    {t.servicesLabel}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
-                    Unsere <span className="italic text-[#8A7B9B]">Design & Feng Shui Services</span>
+                    {t.servicesTitle} <span className="italic text-[#8A7B9B]">{t.servicesTitleItalic}</span>
                   </h1>
                   <p className="text-sm text-[#DCD7D0] max-w-xl font-light">
-                    Vom 1-stündigen "Call a Designer" Express-Call bis zum schlüsselfertigen 3D Virtual Staging für Immobilien.
+                    {t.servicesDesc}
                   </p>
                 </div>
               )}
@@ -175,13 +226,13 @@ export default function App() {
               {currentPage === 'blog' && (
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
-                    Journal & Social Editorial
+                    {t.blogLabel}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
-                    Magazin & <span className="italic text-[#8A7B9B]">Instagram Reels</span>
+                    {t.blogTitle} <span className="italic text-[#8A7B9B]">{t.blogTitleItalic}</span>
                   </h1>
                   <p className="text-sm text-[#DCD7D0] max-w-xl font-light">
-                    Wertvolles Wissen über die 60-30-10 Farbdramaturgie, Bagua-Energieflüsse und virtuelle Staging-Trends.
+                    {t.blogDesc}
                   </p>
                 </div>
               )}
@@ -189,13 +240,13 @@ export default function App() {
               {currentPage === 'about' && (
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
-                    Gründerin & Philosophie
+                    {t.aboutLabel}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
-                    Über <span className="italic text-[#8A7B9B]">Cornelia Schmid</span>
+                    {t.aboutTitle} <span className="italic text-[#8A7B9B]">{t.aboutTitleItalic}</span>
                   </h1>
                   <p className="text-sm text-[#DCD7D0] max-w-xl font-light">
-                    Pionierin für energetische Raumgestaltung, Feng Shui Expertin und Gründerin der LA VIE ACADEMY.
+                    {t.aboutDesc}
                   </p>
                 </div>
               )}
@@ -203,13 +254,13 @@ export default function App() {
               {currentPage === 'contact' && (
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 ">
-                    Direct Contact & Booking
+                    {t.contactLabel}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
-                    Kontakt & <span className="italic text-[#8A7B9B]">Terminvereinbarung</span>
+                    {t.contactTitle} <span className="italic text-[#8A7B9B]">{t.contactTitleItalic}</span>
                   </h1>
                   <p className="text-sm text-[#DCD7D0] max-w-xl font-light">
-                    Treten Sie direkt mit uns in Verbindung oder buchen Sie Ihren 1:1 Beratungstermin per Kalender.
+                    {t.contactDesc}
                   </p>
                 </div>
               )}
@@ -245,24 +296,24 @@ export default function App() {
               </>
             )}
 
-            <BeforeAfterStaging onOpenBooking={() => setIsBookingOpen(true)} />
+            <BeforeAfterStaging currentLang={currentLang} onOpenBooking={() => setIsBookingOpen(true)} />
 
             <OurServicesSection
               currentLang={currentLang}
               onOpenBooking={() => setIsBookingOpen(true)}
             />
 
-            <TestimonialsSection />
+            <TestimonialsSection currentLang={currentLang} />
 
-            <FengShuiGame />
+            <FengShuiGame currentLang={currentLang} />
 
             <FengShuiQuiz currentLang={currentLang} />
 
-            <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
+            <CallADesignerSection currentLang={currentLang} onOpenBooking={() => setIsBookingOpen(true)} />
 
-            <PortfolioGrid />
+            <PortfolioGrid currentLang={currentLang} />
 
-            <InstagramReelsGrid />
+            <InstagramReelsGrid currentLang={currentLang} />
             
             <ShopSection currentLang={currentLang} />
 
@@ -276,7 +327,7 @@ export default function App() {
         {/* DEDICATED PORTFOLIO PAGE */}
         {currentPage === 'portfolio' && (
           <div className="space-y-16 py-8">
-            <PortfolioGrid />
+            <PortfolioGrid currentLang={currentLang} />
           </div>
         )}
 
@@ -284,7 +335,7 @@ export default function App() {
         {currentPage === 'blog' && (
           <div className="space-y-16 py-8">
             <BlogSection currentLang={currentLang} />
-            <InstagramReelsGrid />
+            <InstagramReelsGrid currentLang={currentLang} />
           </div>
         )}
 
@@ -295,7 +346,7 @@ export default function App() {
               currentLang={currentLang}
               onOpenBooking={() => setIsBookingOpen(true)}
             />
-            <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
+            <CallADesignerSection currentLang={currentLang} onOpenBooking={() => setIsBookingOpen(true)} />
             <BentoGridSection
               currentLang={currentLang}
             />
@@ -304,7 +355,7 @@ export default function App() {
 
         {/* DEDICATED ABOUT PAGE */}
         {currentPage === 'about' && (
-          <AboutPage onOpenBooking={() => setIsBookingOpen(true)} />
+          <AboutPage currentLang={currentLang} onOpenBooking={() => setIsBookingOpen(true)} />
         )}
 
         {/* DEDICATED CONTACT PAGE */}
@@ -324,7 +375,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onPageChange={setCurrentPage} />
+      <Footer currentLang={currentLang} onPageChange={setCurrentPage} />
 
       {/* Persistent AI Chatbot Assistant Widget */}
       <AIChatbotWidget
@@ -338,6 +389,7 @@ export default function App() {
       <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
+        currentLang={currentLang}
       />
 
       {/* Admin Booking & Appointment Dashboard */}
@@ -348,7 +400,7 @@ export default function App() {
       />
 
       {/* AI Virtual Staging Modal */}
-      {isStagingOpen && <AIVirtualStagingTool isOpen={isStagingOpen} onClose={() => setIsStagingOpen(false)} />}
+      {isStagingOpen && <AIVirtualStagingTool currentLang={currentLang} isOpen={isStagingOpen} onClose={() => setIsStagingOpen(false)} />}
 
       {/* Floating AI Staging Trigger Button - Prominent & Descriptive */}
       <button
@@ -356,7 +408,7 @@ export default function App() {
         className="fixed top-40 right-6 z-40 bg-gradient-to-r from-[#2D2926]/95 to-[#3D3834]/95 backdrop-blur-md rounded-full text-white px-2 py-1.5 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-1.5 group border border-white/20 hover:border-white/40 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-top-right"
       >
         <span className="font-bold text-[8px] uppercase tracking-widest text-white whitespace-nowrap pl-0.5">
-          AI Virtual Staging (Live)
+          {currentLang === 'de' ? 'AI Virtual Staging (Live)' : 'AI Virtual Staging (Live)'}
         </span>
         <div className="bg-[#8A7B9B] p-0.5 rounded-full shadow-inner group-hover:bg-[#9b8bad] transition-colors">
           <Sparkles className="w-2.5 h-2.5 text-white animate-pulse" />
@@ -369,7 +421,9 @@ export default function App() {
           onClick={() => setHeroTheme(prev => prev === 'luxury' ? 'classic' : 'luxury')}
           className="fixed bottom-6 left-6 z-50 bg-[#2D2926] text-white px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-bold shadow-lg hover:bg-[#8A7B9B] transition-colors rounded-sm animate-fade-in"
         >
-          {heroTheme === 'luxury' ? 'Switch to Classic 3D Hero' : 'Switch to AVARIA Luxury Hero'}
+          {heroTheme === 'luxury' 
+            ? (currentLang === 'de' ? 'Wechsel zu Classic 3D Hero' : 'Switch to Classic 3D Hero')
+            : (currentLang === 'de' ? 'Wechsel zu AVARIA Luxury Hero' : 'Switch to AVARIA Luxury Hero')}
         </button>
       )}
 

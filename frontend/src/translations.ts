@@ -4,13 +4,13 @@ export const translations = {
   de: {
     nav: {
       showroom: '3D Showroom',
-      welcome: 'Home',
+      welcome: 'Startseite',
       portfolio: 'Portfolio',
       special: 'Besonderheiten',
-      services: 'Services',
-      blog: 'Blog',
-      about: 'About',
-      contact: 'Contact',
+      services: 'Leistungen',
+      blog: 'Magazin',
+      about: 'Über uns',
+      contact: 'Kontakt',
       admin: 'Admin Portal',
       faq: 'FAQs',
       callDesigner: 'Feng Shui Beratung',
