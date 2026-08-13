@@ -14,7 +14,7 @@ export const WhatMakesUsSpecial: React.FC<WhatMakesUsSpecialProps> = ({ currentL
   useEffect(() => {
     const update = () => {
       const b = getBrandingSettings();
-      setPhotoSpecial(b.photoSpecial || '/lavie.png');
+      setPhotoSpecial(b.photoSpecial || '/lavie1.jpeg');
       setPhotoTransform(b.photoSpecialTransform);
     };
     update();

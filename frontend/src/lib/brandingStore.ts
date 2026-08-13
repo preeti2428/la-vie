@@ -49,7 +49,7 @@ export const DEFAULT_BRANDING: BrandingSettings = {
   photoAboutTransform: { ...DEFAULT_TRANSFORM },
   photoBlog: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1000&q=80',
   photoBlogTransform: { ...DEFAULT_TRANSFORM },
-  photoSpecial: '/lavie.png',
+  photoSpecial: '/lavie1.jpeg',
   photoSpecialTransform: { ...DEFAULT_TRANSFORM, fit: 'contain' },
 };
 
@@ -82,7 +82,7 @@ export const PRESET_PHOTOS = {
     { name: 'Warm Lighting Editorial', url: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80' },
   ],
   special: [
-    { name: 'Special Collage (Default)', url: '/lavie.png' },
+    { name: 'Special Collage (Default)', url: '/lavie1.jpeg' },
     { name: 'Minimalist Office', url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80' },
     { name: 'Luxury Interior', url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80' },
   ],
