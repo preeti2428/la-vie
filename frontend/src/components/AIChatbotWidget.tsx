@@ -106,9 +106,9 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
           className="fixed bottom-6 right-6 z-50 p-2.5 px-4 rounded-full bg-[#7D8471]/90 backdrop-blur-md text-white shadow-2xl hover:scale-105 transition-all duration-300 border border-[#2D2926]/10 flex items-center gap-2.5 group"
           title="LA VIE Assistant öffnen"
         >
-          <div className="relative">
-            <Bot className="w-5 h-5 text-white group-hover:rotate-12 transition-transform" />
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-[1.5px] border-[#7D8471]" />
+          <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/20">
+            <img src="/assets/game/chatbot_girl.jpeg" alt="Chatbot Girl" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-[1.5px] border-[#7D8471] z-10" />
           </div>
           <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest pr-1">
             LA VIE Assistant
@@ -123,9 +123,9 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
           {/* Header */}
           <div className="bg-[#2D2926] text-[#F7F5F2] p-4 flex items-center justify-between border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9  bg-[#7D8471] border border-white/20 flex items-center justify-center font-serif text-sm font-light text-white">
-                LV
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500  border-2 border-[#2D2926]" />
+              <div className="relative w-9 h-9 border border-white/20 flex items-center justify-center font-serif text-sm font-light text-white rounded-full overflow-hidden">
+                <img src="/assets/game/chatbot_girl.jpeg" alt="Chatbot Girl" className="w-full h-full object-cover" />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#2D2926] rounded-full z-10" />
               </div>
               <div>
                 <div className="font-serif text-sm font-light tracking-wide flex items-center gap-1.5">

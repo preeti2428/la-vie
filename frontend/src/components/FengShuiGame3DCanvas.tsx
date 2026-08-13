@@ -140,9 +140,11 @@ const CustomImageBillboard = ({ url }: { url: string }) => {
 };
 
 const ApartmentModel = () => {
-  const { scene } = useGLTF('/assets/game/appartement.glb');
+  const { scene } = useGLTF('/assets/game/appartement_compressed.glb');
   return <primitive object={scene} position={[0, -0.01, 0]} receiveShadow castShadow />;
 };
+
+useGLTF.preload('/assets/game/appartement_compressed.glb');
 
 export const FengShuiGame3DCanvas = ({ 
   placedItems, 
@@ -163,8 +165,8 @@ export const FengShuiGame3DCanvas = ({
           position={[5, 10, 5]} 
           intensity={2} 
           castShadow 
-          shadow-mapSize-width={1024} 
-          shadow-mapSize-height={1024} 
+          shadow-mapSize-width={512} 
+          shadow-mapSize-height={512} 
           shadow-camera-far={20}
           shadow-camera-left={-10}
           shadow-camera-right={10}
