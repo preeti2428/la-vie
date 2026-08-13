@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroLuxury } from './components/HeroLuxury';
 import { Hero3D } from './components/Hero3D';
 import { WelcomeGreetingSection } from './components/WelcomeGreetingSection';
+import { WhatMakesUsSpecial } from './components/WhatMakesUsSpecial';
 import { BentoGridSection } from './components/BentoGridSection';
 import { OurServicesSection } from './components/OurServicesSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -218,9 +219,10 @@ export default function App() {
         {currentPage === 'home' && (
           <>
             {heroTheme === 'luxury' ? (
-              <HeroLuxury
-                currentLang={currentLang}
-              />
+              <>
+                <HeroLuxury currentLang={currentLang} />
+                <BentoGridSection currentLang={currentLang} />
+              </>
             ) : (
               <>
                 <Hero3D
@@ -233,12 +235,12 @@ export default function App() {
                   currentLang={currentLang}
                   onOpenBooking={() => setIsBookingOpen(true)}
                 />
+                <WhatMakesUsSpecial
+                  currentLang={currentLang}
+                  onOpenBooking={() => setIsBookingOpen(true)}
+                />
               </>
             )}
-
-            <BentoGridSection
-              currentLang={currentLang}
-            />
 
             <OurServicesSection
               currentLang={currentLang}
