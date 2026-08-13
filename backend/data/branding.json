@@ -35,10 +35,10 @@
     "contrast": 100,
     "rotate": 0
   },
-  "photoSpecial": "http://localhost:3000/uploads/428d256eca1657d6372e486603adf86a.jpeg",
+  "photoSpecial": "/lavie1.png",
   "photoSpecialTransform": {
     "zoom": 100,
-    "fit": "cover",
+    "fit": "contain",
     "position": "center",
     "brightness": 100,
     "contrast": 100,
