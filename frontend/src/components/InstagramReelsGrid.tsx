@@ -1,11 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { INSTAGRAM_REELS } from '../data/mockData';
-import { InstagramReel } from '../types';
+import { InstagramReel, Language } from '../types';
 import { Instagram, Play, Heart, Eye, Sparkles, X, Share2, ExternalLink } from 'lucide-react';
 
-export const InstagramReelsGrid: React.FC = () => {
+interface InstagramReelsGridProps {
+  currentLang: Language;
+}
+
+export const InstagramReelsGrid: React.FC<InstagramReelsGridProps> = ({ currentLang }) => {
   const [activeReelModal, setActiveReelModal] = useState<InstagramReel | null>(null);
   const [reels, setReels] = useState<InstagramReel[]>(INSTAGRAM_REELS);
+
+  const t = {
+    de: {
+      headerTag: "Instagram Reels • @cornelia.lavie",
+      title: "Design Impulsen auf Instagram folgen",
+      desc: "Tägliche Inspirationen zu Feng Shui Hacks, Virtual Staging Geheimnissen und Farbdramaturgie direkt von Cornelia Schmid.",
+      followBtn: "@cornelia.lavie folgen",
+      views: "Aufrufe",
+      likes: "Likes",
+      watchBtn: "Auf Instagram ansehen"
+    },
+    en: {
+      headerTag: "Instagram Reels • @cornelia.lavie",
+      title: "Follow Design Impulses on Instagram",
+      desc: "Daily inspiration on Feng Shui hacks, Virtual Staging secrets, and color dramaturgy directly from Cornelia Schmid.",
+      followBtn: "Follow @cornelia.lavie",
+      views: "Views",
+      likes: "Likes",
+      watchBtn: "Watch on Instagram"
+    }
+  }[currentLang];
 
   useEffect(() => {
     fetch('http://localhost:3000/api/reels')
@@ -26,13 +51,13 @@ export const InstagramReelsGrid: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-2.5 py-0.5 mb-3 inline-block font-medium">
-              Instagram Reels • @cornelia.lavie
+              {t.headerTag}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light tracking-tight">
-              Design Impulsen auf Instagram folgen
+              {t.title}
             </h2>
             <p className="mt-2 text-sm text-[#2D2926]/75 max-w-xl">
-              Tägliche Inspirationen zu Feng Shui Hacks, Virtual Staging Geheimnissen und Farbdramaturgie direkt von Cornelia Schmid.
+              {t.desc}
             </p>
           </div>
 
@@ -43,7 +68,7 @@ export const InstagramReelsGrid: React.FC = () => {
             className="self-start md:self-auto px-5 py-2.5  bg-white/80 hover:bg-[#E6E2DC] border border-[#2D2926]/10 text-[11px] font-medium uppercase tracking-widest text-[#2D2926] flex items-center gap-2 shadow-sm transition-all"
           >
             <Instagram className="w-4 h-4 text-[#7D8471]" />
-            <span>@cornelia.lavie folgen</span>
+            <span>{t.followBtn}</span>
             <ExternalLink className="w-3.5 h-3.5 text-[#2D2926]/60" />
           </a>
         </div>
@@ -167,7 +192,7 @@ export const InstagramReelsGrid: React.FC = () => {
               {/* Modal Actions */}
               <div className="p-4 bg-[#F7F5F2] flex items-center justify-between border-t border-[#2D2926]/10">
                 <div className="text-xs text-[#2D2926]/70">
-                  {activeReelModal.views} Aufrufe • {activeReelModal.likes} Likes
+                  {activeReelModal.views} {t.views} • {activeReelModal.likes} {t.likes}
                 </div>
 
                 <a
@@ -177,7 +202,7 @@ export const InstagramReelsGrid: React.FC = () => {
                   className="px-4 py-2  bg-[#7D8471] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-1.5 hover:bg-[#6C7360] transition-colors"
                 >
                   <Instagram className="w-3.5 h-3.5 text-white" />
-                  <span>Auf Instagram ansehen</span>
+                  <span>{t.watchBtn}</span>
                 </a>
               </div>
 

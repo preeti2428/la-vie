@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { GridPortfolioItem } from '../types';
+import { GridPortfolioItem, Language } from '../types';
 import { GRID_PORTFOLIO_ITEMS } from '../data/mockData';
 
-export const PortfolioGrid: React.FC = () => {
+interface PortfolioGridProps {
+  currentLang: Language;
+}
+
+export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ currentLang }) => {
   const [filter, setFilter] = useState<'ALL' | 'BUSINESS' | 'PRIVAT'>('ALL');
   const [items, setItems] = useState<GridPortfolioItem[]>(GRID_PORTFOLIO_ITEMS);
+
+  const t = {
+    de: {
+      all: "ALLE",
+      business: "BUSINESS",
+      private: "PRIVAT",
+      commercialProj: "Gewerbliches Projekt",
+      privateRes: "Privatwohnsitz"
+    },
+    en: {
+      all: "ALL",
+      business: "BUSINESS",
+      private: "PRIVATE",
+      commercialProj: "Commercial Project",
+      privateRes: "Private Residence"
+    }
+  }[currentLang];
 
   useEffect(() => {
     fetch('http://localhost:3000/api/portfolio')
@@ -32,19 +53,19 @@ export const PortfolioGrid: React.FC = () => {
             onClick={() => setFilter('ALL')}
             className={`transition-colors hover:text-[#2D2926] ${filter === 'ALL' ? 'text-[#2D2926] border-b border-[#2D2926] pb-1' : ''}`}
           >
-            ALL
+            {t.all}
           </button>
           <button 
             onClick={() => setFilter('BUSINESS')}
             className={`transition-colors hover:text-[#2D2926] ${filter === 'BUSINESS' ? 'text-[#2D2926] border-b border-[#2D2926] pb-1' : ''}`}
           >
-            BUSINESS
+            {t.business}
           </button>
           <button 
             onClick={() => setFilter('PRIVAT')}
             className={`transition-colors hover:text-[#2D2926] ${filter === 'PRIVAT' ? 'text-[#2D2926] border-b border-[#2D2926] pb-1' : ''}`}
           >
-            PRIVAT
+            {t.private}
           </button>
         </div>
 
@@ -66,7 +87,7 @@ export const PortfolioGrid: React.FC = () => {
                     {item.title}
                   </span>
                   <span className="text-white/70 text-[10px] uppercase tracking-widest font-medium">
-                    {item.category === 'business' ? 'Commercial Project' : 'Private Residence'}
+                    {item.category === 'business' ? t.commercialProj : t.privateRes}
                   </span>
                 </div>
               </div>

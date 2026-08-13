@@ -1,32 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import { Language } from '../types';
 
-const testimonials = [
-  {
-    id: 1,
-    text: "„Ich bin total begeistert!\nCornelia hat mein Haus bereits in der Entstehungsphase ganzheitlich mit großem Feingefühl und Professionalität designed.\nDie Analyse war klar dokumentiert, inklusive Moodboard für meine Handwerker. Schon jetzt spüre ich, wie positive Energie fließt, in meinen Räumen und in mir.\nHerzlichen Dank für deine Arbeit, liebe Cornelia!“",
-    author: "Regina Lackner"
-  },
-  {
-    id: 2,
-    text: "„Eine wunderbare Erfahrung!\nDie Räume fühlen sich nun viel weiter und harmonischer an. Die Beratung war professionell und sehr auf meine persönlichen Bedürfnisse abgestimmt.\nIch kann LA VIE Design jedem wärmstens empfehlen.“",
-    author: "Thomas Meier"
-  },
-  {
-    id: 3,
-    text: "„Fantastische Arbeit!\nVon der ersten Konzeption bis zur finalen Umsetzung war alles perfekt. Das Feng Shui Konzept hat mein Home Office in einen Ort der Produktivität und Ruhe verwandelt.“",
-    author: "Sarah Weber"
-  }
-];
+interface TestimonialsSectionProps {
+  currentLang: Language;
+}
 
-export const TestimonialsSection: React.FC = () => {
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ currentLang }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const t = {
+    de: {
+      subtitle: "WAS MEINE KUNDEN SAGEN:",
+      testimonials: [
+        {
+          id: 1,
+          text: "„Ich bin total begeistert!\nCornelia hat mein Haus bereits in der Entstehungsphase ganzheitlich mit großem Feingefühl und Professionalität designed.\nDie Analyse war klar dokumentiert, inklusive Moodboard für meine Handwerker. Schon jetzt spüre ich, wie positive Energie fließt, in meinen Räumen und in mir.\nHerzlichen Dank für deine Arbeit, liebe Cornelia!“",
+          author: "Regina Lackner"
+        },
+        {
+          id: 2,
+          text: "„Eine wunderbare Erfahrung!\nDie Räume fühlen sich nun viel weiter und harmonischer an. Die Beratung war professionell und sehr auf meine persönlichen Bedürfnisse abgestimmt.\nIch kann LA VIE Design jedem wärmstens empfehlen.“",
+          author: "Thomas Meier"
+        },
+        {
+          id: 3,
+          text: "„Fantastische Arbeit!\nVon der ersten Konzeption bis zur finalen Umsetzung war alles perfekt. Das Feng Shui Konzept hat mein Home Office in einen Ort der Produktivität und Ruhe verwandelt.“",
+          author: "Sarah Weber"
+        }
+      ]
+    },
+    en: {
+      subtitle: "WHAT MY CLIENTS ARE SAYING:",
+      testimonials: [
+        {
+          id: 1,
+          text: "\"I am absolutely thrilled!\nCornelia designed my house holistically during the development phase with great sensitivity and professionalism.\nThe analysis was clearly documented, including a mood board for my craftsmen. I can already feel positive energy flowing, in my rooms and in myself.\nThank you very much for your work, dear Cornelia!\"",
+          author: "Regina Lackner"
+        },
+        {
+          id: 2,
+          text: "\"A wonderful experience!\nThe rooms now feel much more spacious and harmonious. The consultation was professional and highly tailored to my personal needs.\nI can warmly recommend LA VIE Design to anyone.\"",
+          author: "Thomas Meier"
+        },
+        {
+          id: 3,
+          text: "\"Fantastic work!\nFrom the initial concept to the final implementation, everything was perfect. The Feng Shui concept transformed my home office into a place of productivity and tranquility.\"",
+          author: "Sarah Weber"
+        }
+      ]
+    }
+  }[currentLang];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % t.testimonials.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [t.testimonials.length]);
 
   return (
     <section className="relative w-full py-32 overflow-hidden flex items-center justify-center min-h-[70vh]">
@@ -44,11 +74,11 @@ export const TestimonialsSection: React.FC = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white flex flex-col items-center justify-center">
         
         <p className="text-[11px] md:text-sm font-medium tracking-[0.3em] uppercase mb-12 text-white/90">
-          WHAT MY CLIENTS ARE SAYING:
+          {t.subtitle}
         </p>
 
         <div className="relative w-full grid items-center justify-center">
-          {testimonials.map((testimonial, index) => (
+          {t.testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id}
               className={`col-start-1 row-start-1 w-full transition-all duration-1000 ease-in-out flex flex-col items-center justify-center ${
@@ -68,7 +98,7 @@ export const TestimonialsSection: React.FC = () => {
 
         {/* Dots Navigation */}
         <div className="flex gap-3 mt-12">
-          {testimonials.map((_, index) => (
+          {t.testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
