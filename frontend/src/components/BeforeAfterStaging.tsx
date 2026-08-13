@@ -186,25 +186,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               </button>
             </div>
 
-            {/* Day/Night Toggle Toggle */}
-            <div className="absolute bottom-4 right-4 z-40">
-              <button
-                onClick={() => setIsNightMode(!isNightMode)}
-                className="glass-dark hover:bg-[#2D2926]/90 transition-colors px-3 py-2 text-white flex items-center gap-2 shadow-sm rounded-md border border-white/20"
-              >
-                {isNightMode ? (
-                  <>
-                    <Sun className="w-4 h-4 text-[#E6E2DC]" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">Day Mode</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="w-4 h-4 text-[#8A7B9B]" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">Night Mode</span>
-                  </>
-                )}
-              </button>
-            </div>
+
 
           </div>
 
