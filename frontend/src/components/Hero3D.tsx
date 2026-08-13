@@ -909,7 +909,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
         </div>
 
         {/* Compact, Sleek Side Floating Hero Overlay Box */}
-        <div className="pointer-events-auto self-start max-w-md bg-white/85 backdrop-blur-md p-6  border border-[#2D2926]/15 shadow-xl mt-auto mb-2 text-[#2D2926]">
+        <div className="pointer-events-auto self-start max-w-sm bg-white/85 backdrop-blur-md p-6 rounded-3xl border border-[#2D2926]/15 shadow-2xl mt-auto mb-2 text-[#2D2926]">
           
           <div className="flex items-center justify-between mb-2">
             <span className="text-[9px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-2.5 py-0.5  font-bold">
