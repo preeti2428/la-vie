@@ -66,7 +66,7 @@ export const PortfolioGrid: React.FC = () => {
                     {item.title}
                   </span>
                   <span className="text-white/70 text-[10px] uppercase tracking-widest font-medium">
-                    {item.category === 'BUSINESS' ? 'Commercial Project' : 'Private Residence'}
+                    {item.category === 'business' ? 'Commercial Project' : 'Private Residence'}
                   </span>
                 </div>
               </div>
