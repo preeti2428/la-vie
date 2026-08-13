@@ -53,7 +53,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
     // 3. Renderer with high-end tone mapping
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -762,6 +762,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
       cameraRef.current.aspect = newW / newH;
       cameraRef.current.updateProjectionMatrix();
       rendererRef.current.setSize(newW, newH);
+      rendererRef.current.setPixelRatio(window.devicePixelRatio);
     };
 
     window.addEventListener('resize', handleResize);
