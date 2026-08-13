@@ -3,16 +3,6 @@ import { Sparkles, ArrowRight, RefreshCcw, Leaf, Flame, Droplets, Mountain, Diam
 import { Language } from '../types';
 
 interface FengShuiQuizProps {
-  currentLang?: Language;
-}
-
-type ElementType = 'Wood' | 'Fire' | 'Earth' | 'Metal' | 'Water' | null;
-
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, RefreshCcw, Leaf, Flame, Droplets, Mountain, Diamond } from 'lucide-react';
-import { Language } from '../types';
-
-interface FengShuiQuizProps {
   currentLang: Language;
 }
 
