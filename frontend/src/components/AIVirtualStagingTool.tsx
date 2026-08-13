@@ -168,12 +168,12 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="fixed inset-0 bg-[#2D2926]/80 backdrop-blur-sm transition-opacity" onClick={handleClose} />
       
-      <div className="relative w-full max-w-6xl max-h-[95vh] overflow-y-auto bg-white rounded-3xl shadow-2xl ring-1 ring-black/5 transform transition-all">
+      <div className="relative w-full max-w-6xl max-h-[95vh] overflow-y-auto bg-white  shadow-2xl ring-1 ring-black/5 transform transition-all">
         
         {/* Close Button */}
         <button 
           onClick={handleClose}
-          className="absolute top-6 right-6 z-50 w-12 h-12 bg-[#F7F5F2] hover:bg-[#E6E2DC] text-[#2D2926] rounded-full flex items-center justify-center shadow-sm transition-colors"
+          className="absolute top-6 right-6 z-50 w-12 h-12 bg-[#F7F5F2] hover:bg-[#E6E2DC] text-[#2D2926]  flex items-center justify-center shadow-sm transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -183,7 +183,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8A7B9B]/10 text-[#5B4970] text-xs font-bold tracking-widest uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1  bg-[#8A7B9B]/10 text-[#5B4970] text-xs font-bold tracking-widest uppercase mb-4">
             <Wand2 className="w-3.5 h-3.5" />
             <span>AI Design Concept</span>
           </div>
@@ -200,7 +200,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
           {/* Controls Panel */}
           <div className="lg:col-span-4 space-y-6">
             
-            <div className="bg-[#F7F5F2] rounded-3xl p-6 border border-[#2D2926]/5 shadow-sm">
+            <div className="bg-[#F7F5F2]  p-6 border border-[#2D2926]/5 shadow-sm">
               <h3 className="text-sm font-bold uppercase tracking-widest text-[#2D2926] mb-5">1. Setup Room Details</h3>
               
               <div className="space-y-4">
@@ -209,7 +209,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                   <select 
                     value={roomType}
                     onChange={(e) => setRoomType(e.target.value)}
-                    className="w-full bg-white border border-[#2D2926]/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7D8471] focus:ring-1 focus:ring-[#7D8471] transition-all"
+                    className="w-full bg-white border border-[#2D2926]/15  px-4 py-3 text-sm focus:outline-none focus:border-[#7D8471] focus:ring-1 focus:ring-[#7D8471] transition-all"
                   >
                     <option>Living Room</option>
                     <option>Bedroom</option>
@@ -223,7 +223,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                   <select 
                     value={designStyle}
                     onChange={(e) => setDesignStyle(e.target.value)}
-                    className="w-full bg-white border border-[#2D2926]/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7D8471] focus:ring-1 focus:ring-[#7D8471] transition-all"
+                    className="w-full bg-white border border-[#2D2926]/15  px-4 py-3 text-sm focus:outline-none focus:border-[#7D8471] focus:ring-1 focus:ring-[#7D8471] transition-all"
                   >
                     <option>Modern Feng Shui</option>
                     <option>Scandinavian Minimalist</option>
@@ -235,7 +235,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
             </div>
 
             {errorMsg && (
-              <div className="bg-red-50 text-red-600 p-4 rounded-xl text-xs font-medium border border-red-100 flex items-start gap-2">
+              <div className="bg-red-50 text-red-600 p-4  text-xs font-medium border border-red-100 flex items-start gap-2">
                 <span className="shrink-0 mt-0.5">⚠️</span>
                 <p>{errorMsg}</p>
               </div>
@@ -244,7 +244,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
             <button
               onClick={generateDesign}
               disabled={!uploadedImage || isGenerating}
-              className={`w-full py-4 rounded-2xl text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
+              className={`w-full py-4  text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
                 !uploadedImage 
                   ? 'bg-[#2D2926]/20 cursor-not-allowed' 
                   : isGenerating 
@@ -254,7 +254,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
             >
               {isGenerating ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white  animate-spin" />
                   <span>Generating...</span>
                 </>
               ) : resultReady ? (
@@ -272,8 +272,8 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
 
             {/* AI Generation Status Steps */}
             {isGenerating && (
-              <div className="bg-white rounded-2xl p-5 border border-[#2D2926]/10 shadow-sm animate-fade-in">
-                <div className="h-1.5 w-full bg-[#F7F5F2] rounded-full mb-4 overflow-hidden">
+              <div className="bg-white  p-5 border border-[#2D2926]/10 shadow-sm animate-fade-in">
+                <div className="h-1.5 w-full bg-[#F7F5F2]  mb-4 overflow-hidden">
                   <div 
                     className="h-full bg-[#8A7B9B] transition-all duration-300 ease-out"
                     style={{ width: `${progress}%` }}
@@ -300,11 +300,11 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
 
           {/* Canvas Area */}
           <div className="lg:col-span-8">
-            <div className="bg-[#F7F5F2] rounded-[2rem] p-3 border border-[#2D2926]/10 shadow-inner h-[500px] lg:h-[600px] relative overflow-hidden flex items-center justify-center">
+            <div className="bg-[#F7F5F2] -[2rem] p-3 border border-[#2D2926]/10 shadow-inner h-[500px] lg:h-[600px] relative overflow-hidden flex items-center justify-center">
               
               {!uploadedImage ? (
                 isCameraActive ? (
-                  <div className="w-full h-full rounded-3xl overflow-hidden relative bg-black flex items-center justify-center shadow-inner">
+                  <div className="w-full h-full  overflow-hidden relative bg-black flex items-center justify-center shadow-inner">
                     <video 
                       ref={videoRef} 
                       autoPlay 
@@ -314,13 +314,13 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                     <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-6 z-10">
                       <button 
                         onClick={stopCamera}
-                        className="px-6 py-3 bg-white text-[#2D2926] rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-gray-100 transition-colors"
+                        className="px-6 py-3 bg-white text-[#2D2926]  text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-gray-100 transition-colors"
                       >
                         Cancel
                       </button>
                       <button 
                         onClick={capturePhoto}
-                        className="px-6 py-3 bg-[#7D8471] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-[#6C7360] transition-colors flex items-center gap-2"
+                        className="px-6 py-3 bg-[#7D8471] text-white  text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-[#6C7360] transition-colors flex items-center gap-2"
                       >
                         <Camera className="w-4 h-4" />
                         Take Photo
@@ -332,7 +332,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                 <div 
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
-                  className="w-full h-full border-2 border-dashed border-[#2D2926]/20 rounded-3xl flex flex-col items-center justify-center bg-white/50 transition-colors group relative"
+                  className="w-full h-full border-2 border-dashed border-[#2D2926]/20  flex flex-col items-center justify-center bg-white/50 transition-colors group relative"
                 >
                   <input 
                     type="file" 
@@ -344,14 +344,14 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                   <div className="flex gap-4 mb-4">
                     <button 
                       onClick={() => fileInputRef.current?.click()}
-                      className="w-16 h-16 rounded-full bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
+                      className="w-16 h-16  bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
                       title="Upload File"
                     >
                       <UploadCloud className="w-8 h-8" />
                     </button>
                     <button 
                       onClick={startCamera}
-                      className="w-16 h-16 rounded-full bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
+                      className="w-16 h-16  bg-[#F7F5F2] text-[#8A7B9B] flex items-center justify-center hover:scale-110 transition-transform shadow-sm hover:shadow-md"
                       title="Take Photo"
                     >
                       <Camera className="w-8 h-8" />
@@ -369,7 +369,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                   ref={containerRef}
                   onMouseMove={handleMouseMove}
                   onTouchMove={handleTouchMove}
-                  className="w-full h-full relative rounded-3xl overflow-hidden cursor-ew-resize select-none"
+                  className="w-full h-full relative  overflow-hidden cursor-ew-resize select-none"
                 >
                   {/* Close / Remove Button */}
                   <button
@@ -377,7 +377,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                       setUploadedImage(null);
                       setResultReady(false);
                     }}
-                    className="absolute top-4 right-4 z-40 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-[#2D2926] flex items-center justify-center shadow-md backdrop-blur-sm transition-all"
+                    className="absolute top-4 right-4 z-40 w-10 h-10  bg-white/80 hover:bg-white text-[#2D2926] flex items-center justify-center shadow-md backdrop-blur-sm transition-all"
                     title="Upload new photo"
                   >
                     <X className="w-5 h-5" />
@@ -410,14 +410,14 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                     className="absolute inset-y-0 z-30 w-[2px] bg-white cursor-ew-resize shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                     style={{ left: `${sliderPos}%` }}
                   >
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#2D2926] flex items-center justify-center shadow-xl border border-[#2D2926]/10">
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10  bg-white text-[#2D2926] flex items-center justify-center shadow-xl border border-[#2D2926]/10">
                       <Sliders className="w-4 h-4 text-[#8A7B9B]" />
                     </div>
                   </div>
                 </div>
               ) : (
                 // Processing or Initial Image State
-                <div className="w-full h-full relative rounded-3xl overflow-hidden group">
+                <div className="w-full h-full relative  overflow-hidden group">
                   <img 
                     src={uploadedImage} 
                     alt="Uploaded Room" 
@@ -428,7 +428,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <button 
                         onClick={() => setUploadedImage(null)}
-                        className="px-4 py-2 bg-white rounded-full text-xs font-bold uppercase tracking-widest text-[#2D2926] hover:bg-[#E6E2DC] transition-colors"
+                        className="px-4 py-2 bg-white  text-xs font-bold uppercase tracking-widest text-[#2D2926] hover:bg-[#E6E2DC] transition-colors"
                       >
                         Remove Image
                       </button>
@@ -437,7 +437,7 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
 
                   {isGenerating && (
                     <div className="absolute inset-0 bg-[#2D2926]/60 flex flex-col items-center justify-center text-white p-6 text-center backdrop-blur-sm">
-                      <div className="w-16 h-16 border-4 border-white/20 border-t-[#8A7B9B] rounded-full animate-spin mb-6" />
+                      <div className="w-16 h-16 border-4 border-white/20 border-t-[#8A7B9B]  animate-spin mb-6" />
                       <h4 className="font-serif text-2xl mb-2">Transforming Space</h4>
                       <p className="text-xs text-white/70 uppercase tracking-widest">Please wait while AI works its magic...</p>
                     </div>
@@ -455,3 +455,4 @@ export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
     </div>
   );
 };
+

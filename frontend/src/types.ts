@@ -22,6 +22,13 @@ export interface PortfolioItem {
   roiMetric?: string;
 }
 
+export interface GridPortfolioItem {
+  id: string;
+  title: string;
+  category: 'business' | 'privat';
+  imageUrl: string;
+}
+
 export interface InstagramReel {
   id: string;
   title: string;

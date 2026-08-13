@@ -30,7 +30,7 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
     <section id="welcome" className="py-16 sm:py-20 bg-[#F7F5F2] border-b border-[#2D2926]/10 relative overflow-hidden">
       
       {/* Background Subtle Organic Lighting */}
-      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-80 h-80 bg-[#7D8471]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-80 h-80 bg-[#7D8471]/10  blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -58,8 +58,8 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
             </AestheticFrame>
 
             {/* Corner Experience Pill */}
-            <div className="absolute -bottom-4 -right-2 glass px-4 py-3 rounded-2xl border border-[#2D2926]/10 shadow-sm flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#7D8471] text-white flex items-center justify-center font-bold">
+            <div className="absolute -bottom-4 -right-2 glass px-4 py-3  border border-[#2D2926]/10 shadow-sm flex items-center gap-3">
+              <div className="w-9 h-9  bg-[#7D8471] text-white flex items-center justify-center font-bold">
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
               <div>
@@ -107,3 +107,4 @@ export const WelcomeGreetingSection: React.FC<WelcomeGreetingProps> = ({ current
     </section>
   );
 };
+

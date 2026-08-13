@@ -883,7 +883,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
               else if (lightingMood === 'golden') setLightingMood('daylight');
               else setLightingMood('lavender');
             }}
-            className="flex items-center gap-2 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border border-[#2D2926]/15 shadow-lg hover:bg-white hover:scale-105 transition-all text-[10px] uppercase tracking-widest font-bold text-[#2D2926]"
+            className="flex items-center gap-2 bg-white/85 backdrop-blur-md px-4 py-2  border border-[#2D2926]/15 shadow-lg hover:bg-white hover:scale-105 transition-all text-[10px] uppercase tracking-widest font-bold text-[#2D2926]"
             title="Toggle Lighting Mood"
           >
             {lightingMood === 'lavender' && (
@@ -909,10 +909,10 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
         </div>
 
         {/* Compact, Sleek Side Floating Hero Overlay Box */}
-        <div className="pointer-events-auto self-start max-w-md bg-white/85 backdrop-blur-md p-6 rounded-3xl border border-[#2D2926]/15 shadow-xl mt-auto mb-2 text-[#2D2926]">
+        <div className="pointer-events-auto self-start max-w-md bg-white/85 backdrop-blur-md p-6  border border-[#2D2926]/15 shadow-xl mt-auto mb-2 text-[#2D2926]">
           
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[9px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-2.5 py-0.5 rounded font-bold">
+            <span className="text-[9px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-2.5 py-0.5  font-bold">
               {t.tagline}
             </span>
             <span className="text-[10px] text-[#2D2926]/60 uppercase tracking-widest font-medium">
@@ -932,7 +932,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
           <div className="flex flex-wrap items-center gap-2 mt-4">
             <button
               onClick={onOpenBooking}
-              className="px-4 py-2.5 rounded-full bg-[#2D2926] hover:bg-[#3D3834] text-white font-medium text-[10px] uppercase tracking-widest flex items-center gap-1.5 shadow-sm transition-all"
+              className="px-4 py-2.5  bg-[#2D2926] hover:bg-[#3D3834] text-white font-medium text-[10px] uppercase tracking-widest flex items-center gap-1.5 shadow-sm transition-all"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>{t.callBtn}</span>
@@ -948,3 +948,4 @@ export const Hero3D: React.FC<Hero3DProps> = ({ currentLang, onOpenBooking, onOp
     </section>
   );
 };
+

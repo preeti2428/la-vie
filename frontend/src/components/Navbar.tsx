@@ -50,18 +50,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#F7F5F2]/95 backdrop-blur-md border-b border-[#2D2926]/10 transition-all">
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 lg:gap-4">
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-2 lg:gap-4">
         
         {/* Brand Logo */}
         <button
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-2 group py-2 text-left shrink-0"
         >
-          <Logo variant="dark" showSubtitle={true} size="md" className="group-hover:opacity-90 transition-opacity" />
+          <Logo variant="dark" showSubtitle={true} size="lg" className="group-hover:opacity-90 transition-opacity" />
         </button>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-8 text-[11px] xl:text-[12px] uppercase tracking-[0.15em] font-medium text-[#2D2926]">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8 text-[13px] xl:text-[14px] uppercase tracking-[0.15em] font-medium text-[#2D2926]">
           {navItems.map((item) => {
             const isActive = currentPage === item.id;
             return (
@@ -87,17 +87,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Admin Management Panel Toggle */}
           <button
             onClick={onOpenAdmin}
-            className="hidden lg:flex items-center gap-1.5 px-2 xl:px-3 py-1.5 rounded-full border border-[#8A7B9B]/30 bg-[#8A7B9B]/10 hover:bg-[#8A7B9B]/20 text-[9px] xl:text-[10px] uppercase tracking-widest font-bold text-[#5B4970] transition-all"
+            className="hidden lg:flex items-center gap-1.5 px-3 xl:px-4 py-2 border border-[#8A7B9B]/30 bg-[#8A7B9B]/10 hover:bg-[#8A7B9B]/20 text-[11px] xl:text-[12px] uppercase tracking-widest font-bold text-[#5B4970] transition-all"
             title="Open Cornelia's Booking Manager & Branding Settings"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-[#8A7B9B]" />
+            <ShieldCheck className="w-4 h-4 text-[#8A7B9B]" />
             <span>{t.admin}</span>
           </button>
 
           {/* Language Switcher */}
           <button
             onClick={() => onLanguageChange(currentLang === 'de' ? 'en' : 'de')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#2D2926]/15 bg-white hover:bg-[#E6E2DC] text-[10px] uppercase tracking-widest font-bold text-[#2D2926] transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-2 border border-[#2D2926]/15 bg-white hover:bg-[#E6E2DC] text-[12px] uppercase tracking-widest font-bold text-[#2D2926] transition-all shadow-sm"
             title="Switch Language / Sprache wechseln"
           >
             <Globe className="w-3.5 h-3.5 text-[#7D8471]" />
@@ -109,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Menu Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-9 h-9 rounded-full bg-[#E6E2DC] text-[#2D2926] flex items-center justify-center hover:bg-[#DCD7D0] transition-colors"
+            className="lg:hidden w-9 h-9  bg-[#E6E2DC] text-[#2D2926] flex items-center justify-center hover:bg-[#DCD7D0] transition-colors"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center gap-3 p-2.5 rounded-xl text-xs uppercase tracking-widest font-semibold transition-all text-left ${
+                  className={`flex items-center gap-3 p-2.5  text-xs uppercase tracking-widest font-semibold transition-all text-left ${
                     isActive ? 'bg-[#7D8471] text-white' : 'text-[#2D2926] hover:bg-[#E6E2DC]'
                   }`}
                 >
@@ -147,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenAdmin();
               }}
-              className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-[#8A7B9B]/15 text-[#5B4970] text-xs uppercase tracking-widest font-bold"
+              className="flex items-center justify-center gap-2 p-2.5  bg-[#8A7B9B]/15 text-[#5B4970] text-xs uppercase tracking-widest font-bold"
             >
               <ShieldCheck className="w-4 h-4 text-[#8A7B9B]" />
               <span>{t.admin}</span>
@@ -158,7 +158,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenChat();
               }}
-              className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-[#E6E2DC] text-[#2D2926] text-xs uppercase tracking-widest font-medium"
+              className="flex items-center justify-center gap-2 p-2.5  bg-[#E6E2DC] text-[#2D2926] text-xs uppercase tracking-widest font-medium"
             >
               <Sparkles className="w-4 h-4 text-[#8A7B9B]" />
               <span>{t.aiConcierge}</span>
@@ -169,3 +169,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+

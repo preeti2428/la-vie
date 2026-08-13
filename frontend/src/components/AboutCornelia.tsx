@@ -52,8 +52,8 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
             </AestheticFrame>
 
             {/* Floating Credentials Badge */}
-            <div className="absolute -bottom-6 -right-4 glass p-4 rounded-2xl shadow-lg border border-[#2D2926]/10 max-w-xs hidden sm:flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#7D8471] text-white flex items-center justify-center font-bold">
+            <div className="absolute -bottom-6 -right-4 glass p-4  shadow-lg border border-[#2D2926]/10 max-w-xs hidden sm:flex items-center gap-3">
+              <div className="w-10 h-10  bg-[#7D8471] text-white flex items-center justify-center font-bold">
                 <Award className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -98,7 +98,7 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
 
             <button
               onClick={onOpenBooking}
-              className="px-6 py-3.5 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest inline-flex items-center gap-2 shadow-sm transition-all"
+              className="px-6 py-3.5  bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest inline-flex items-center gap-2 shadow-sm transition-all"
             >
               <PhoneCall className="w-4 h-4 text-white" />
               <span>Persönliche Beratung buchen (€199)</span>
@@ -116,7 +116,7 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CLIENT_TESTIMONIALS.map((t, idx) => (
-              <div key={idx} className="glass p-6 rounded-2xl shadow-sm border border-[#2D2926]/10 flex flex-col justify-between">
+              <div key={idx} className="glass p-6  shadow-sm border border-[#2D2926]/10 flex flex-col justify-between">
                 <div>
                   <Quote className="w-8 h-8 text-[#7D8471]/40 mb-3" />
                   <p className="text-xs sm:text-sm text-[#2D2926]/80 italic leading-relaxed mb-6 font-light">
@@ -125,7 +125,7 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
                 </div>
 
                 <div className="flex items-center gap-3 pt-4 border-t border-[#2D2926]/10">
-                  <img src={t.image} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-[#2D2926]/10" />
+                  <img src={t.image} alt={t.name} className="w-10 h-10  object-cover border border-[#2D2926]/10" />
                   <div>
                     <div className="text-xs font-bold text-[#2D2926]">{t.name}</div>
                     <div className="text-[11px] text-[#2D2926]/60">{t.role} • {t.location}</div>
@@ -140,3 +140,4 @@ export const AboutCornelia: React.FC<AboutCorneliaProps> = ({ onOpenBooking }) =
     </section>
   );
 };
+

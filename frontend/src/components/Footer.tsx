@@ -37,14 +37,14 @@ export const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9  bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
                 title="Instagram @cornelia.lavie"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="mailto:office@lavie-design.com"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9  bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
                 title="E-Mail senden"
               >
                 <Mail className="w-4 h-4" />
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                 href="https://calendly.com/lavie-design/call-a-feng-shui-designer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9  bg-white/10 hover:bg-[#8A7B9B] text-white flex items-center justify-center transition-colors"
                 title="Calendly Kalender"
               >
                 <Calendar className="w-4 h-4" />
@@ -121,3 +121,4 @@ export const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
     </footer>
   );
 };
+

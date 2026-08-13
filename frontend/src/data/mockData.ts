@@ -260,3 +260,11 @@ export const CONSULTATION_TYPES = [
     ]
   }
 ];
+
+export const GRID_PORTFOLIO_ITEMS: import('../types').GridPortfolioItem[] = [
+  { id: '1', title: 'Modern Living', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80' },
+  { id: '2', title: 'Office Space', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' },
+  { id: '3', title: 'Cozy Bedroom', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80' },
+  { id: '4', title: 'Meeting Room', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80' }
+];
+

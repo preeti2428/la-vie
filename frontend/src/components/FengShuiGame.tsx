@@ -53,7 +53,7 @@ const RealFurniture = ({ type, isDragging, customImage }: { type: ItemType, isDr
   if (type === 'custom') widthClass = 'w-24';
 
   const src = type === 'custom' && customImage ? customImage : ASSETS[type as keyof typeof ASSETS];
-  const blendClass = type !== 'custom' ? 'mix-blend-multiply' : 'rounded-lg object-cover';
+  const blendClass = type !== 'custom' ? 'mix-blend-multiply' : ' object-cover';
 
   return (
     <img 
@@ -281,11 +281,11 @@ export const FengShuiGame: React.FC = () => {
   };
 
   return (
-    <section className="pt-24 pb-12 bg-white border-y border-[#2D2926]/10" onClick={() => setSelectedItem(null)}>
+    <section className="pt-24 pb-32 bg-white border-y border-[#2D2926]/10" onClick={() => setSelectedItem(null)}>
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
         
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="text-[9px] uppercase tracking-[0.2em] bg-[#2D2926] text-white px-2 py-0.5 rounded-full font-medium inline-block shadow-sm mb-2">
+          <span className="text-[9px] uppercase tracking-[0.2em] bg-[#2D2926] text-white px-2 py-0.5  font-medium inline-block shadow-sm mb-2">
             Ultimate Realism Features
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight">
@@ -299,11 +299,11 @@ export const FengShuiGame: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
           
           {/* Inventory & Inspector Sidebar */}
-          <div className="lg:col-span-1 bg-[#F9F8F6] p-3 rounded-lg shadow-inner flex flex-col border border-[#2D2926]/5" onClick={(e) => e.stopPropagation()}>
+          <div className="lg:col-span-1 bg-[#F9F8F6] p-3  shadow-inner flex flex-col border border-[#2D2926]/5" onClick={(e) => e.stopPropagation()}>
             
             <div className="flex-1 space-y-3 flex flex-col">
               {/* Live Scorecard */}
-              <div className="bg-white -mx-3 -mt-3 p-3 rounded-t-lg border-b border-[#2D2926]/5 text-center shadow-sm">
+              <div className="bg-white -mx-3 -mt-3 p-3  border-b border-[#2D2926]/5 text-center shadow-sm">
                 <span className="text-[8px] uppercase tracking-widest text-[#7D8471] font-bold">Energy Score</span>
                 <div className="flex items-center justify-center gap-1 my-0.5 transition-all duration-500">
                   <div className={`text-4xl font-serif ${score.points >= 80 ? 'text-[#7D8471]' : score.points >= 50 ? 'text-amber-600' : 'text-[#2D2926]'}`}>
@@ -314,7 +314,7 @@ export const FengShuiGame: React.FC = () => {
               </div>
 
               {/* Smart Hints UI */}
-              <div className="bg-amber-50 border border-amber-200/50 rounded p-2 flex-shrink-0">
+              <div className="bg-amber-50 border border-amber-200/50  p-2 flex-shrink-0">
                 <div className="flex items-center gap-1 mb-1.5">
                   <Lightbulb className="w-3 h-3 text-amber-600" />
                   <span className="text-[9px] uppercase tracking-widest text-amber-800 font-bold">Consultant Hints</span>
@@ -330,7 +330,7 @@ export const FengShuiGame: React.FC = () => {
 
               {/* Item Inspector (Resize) */}
               {selectedItem && (
-                <div className="bg-[#2D2926] text-white rounded p-2 animate-fade-in shadow-sm flex-shrink-0">
+                <div className="bg-[#2D2926] text-white  p-2 animate-fade-in shadow-sm flex-shrink-0">
                   <div className="flex items-center gap-1 mb-2">
                     <Maximize2 className="w-3 h-3 text-[#7D8471]" />
                     <span className="text-[9px] uppercase tracking-widest font-bold">Resize: {selectedItem}</span>
@@ -355,7 +355,7 @@ export const FengShuiGame: React.FC = () => {
                       key={type}
                       draggable={!isPlaced}
                       onDragStart={(e) => handleDragStart(e, type)}
-                      className={`relative p-1.5 rounded-lg transition-all flex flex-col items-center justify-center min-h-[60px] bg-white shadow-sm border ${
+                      className={`relative p-1.5  transition-all flex flex-col items-center justify-center min-h-[60px] bg-white shadow-sm border ${
                         isPlaced 
                           ? 'opacity-30 cursor-not-allowed border-transparent' 
                           : 'cursor-grab active:cursor-grabbing hover:border-[#7D8471] border-[#2D2926]/10'
@@ -364,20 +364,20 @@ export const FengShuiGame: React.FC = () => {
                       <div className="scale-[0.35] origin-center pointer-events-none absolute">
                         <RealFurniture type={type} />
                       </div>
-                      <span className="absolute bottom-1 capitalize text-[8px] uppercase tracking-widest font-bold text-[#2D2926] bg-white/90 px-1.5 rounded">{type}</span>
+                      <span className="absolute bottom-1 capitalize text-[8px] uppercase tracking-widest font-bold text-[#2D2926] bg-white/90 px-1.5 ">{type}</span>
                     </div>
                   );
                 })}
               </div>
 
               {/* Custom Item Upload Area */}
-              <div className="bg-white border border-[#2D2926]/10 rounded p-2 shadow-sm text-center flex-shrink-0">
+              <div className="bg-white border border-[#2D2926]/10  p-2 shadow-sm text-center flex-shrink-0">
                 <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2">Custom Photo</span>
                 <div className="flex gap-2 justify-center">
-                   <button onClick={() => fileInputRef.current?.click()} className="p-2 bg-[#F7F5F2] rounded-full hover:bg-gray-200 transition-colors" title="Upload Photo">
+                   <button onClick={() => fileInputRef.current?.click()} className="p-2 bg-[#F7F5F2]  hover:bg-gray-200 transition-colors" title="Upload Photo">
                      <UploadCloud className="w-4 h-4 text-[#7D8471]" />
                    </button>
-                   <button onClick={startCamera} className="p-2 bg-[#F7F5F2] rounded-full hover:bg-gray-200 transition-colors" title="Take Photo">
+                   <button onClick={startCamera} className="p-2 bg-[#F7F5F2]  hover:bg-gray-200 transition-colors" title="Take Photo">
                      <CameraIcon className="w-4 h-4 text-[#7D8471]" />
                    </button>
                    <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileUpload} />
@@ -385,12 +385,12 @@ export const FengShuiGame: React.FC = () => {
               </div>
 
               {/* Theme Picker */}
-              <div className="bg-white border border-[#2D2926]/10 rounded p-2 shadow-sm flex-shrink-0">
+              <div className="bg-white border border-[#2D2926]/10  p-2 shadow-sm flex-shrink-0">
                 <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2 text-center">Room Theme</span>
                 <select 
                   value={theme}
                   onChange={(e) => setTheme(e.target.value as any)}
-                  className="w-full text-xs p-1.5 border border-[#2D2926]/10 rounded bg-[#F9F8F6] focus:outline-none focus:ring-1 focus:ring-[#7D8471]"
+                  className="w-full text-xs p-1.5 border border-[#2D2926]/10  bg-[#F9F8F6] focus:outline-none focus:ring-1 focus:ring-[#7D8471]"
                 >
                   <option value="lightWood">Light Oak Wood</option>
                   <option value="darkWood">Dark Walnut</option>
@@ -401,7 +401,7 @@ export const FengShuiGame: React.FC = () => {
             </div>
             
             <div className="pt-2 mt-auto">
-              <button onClick={resetGame} className="w-full py-2 bg-white border border-[#2D2926]/20 text-[#2D2926] text-[8px] uppercase tracking-widest font-bold hover:bg-gray-50 rounded transition-colors">
+              <button onClick={resetGame} className="w-full py-2 bg-white border border-[#2D2926]/20 text-[#2D2926] text-[8px] uppercase tracking-widest font-bold hover:bg-gray-50  transition-colors">
                 Clear Room
               </button>
             </div>
@@ -413,7 +413,7 @@ export const FengShuiGame: React.FC = () => {
               ref={roomRef}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
-              className="h-[60vh] lg:h-[80vh] min-h-[600px] bg-white shadow-xl overflow-hidden relative border-[12px] border-[#3E3A35] rounded-sm"
+              className="h-[60vh] lg:h-[80vh] min-h-[600px] bg-white shadow-xl overflow-hidden relative border-[12px] border-[#3E3A35] "
             >
               
               <FengShuiGame3DCanvas 
@@ -425,10 +425,10 @@ export const FengShuiGame: React.FC = () => {
               {/* Camera Overlay */}
               {isCameraActive && (
                 <div className="absolute inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
-                  <video ref={videoRef} autoPlay playsInline className="w-full max-w-lg rounded-xl shadow-2xl mb-6" />
+                  <video ref={videoRef} autoPlay playsInline className="w-full max-w-lg  shadow-2xl mb-6" />
                   <div className="flex gap-4">
-                    <button onClick={stopCamera} className="px-6 py-2 bg-white text-[#2D2926] text-xs font-bold uppercase tracking-widest rounded-full">Cancel</button>
-                    <button onClick={capturePhoto} className="px-6 py-2 bg-[#7D8471] text-white text-xs font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
+                    <button onClick={stopCamera} className="px-6 py-2 bg-white text-[#2D2926] text-xs font-bold uppercase tracking-widest ">Cancel</button>
+                    <button onClick={capturePhoto} className="px-6 py-2 bg-[#7D8471] text-white text-xs font-bold uppercase tracking-widest  flex items-center gap-2">
                       <CameraIcon className="w-4 h-4" /> Take Photo
                     </button>
                   </div>
@@ -447,8 +447,8 @@ export const FengShuiGame: React.FC = () => {
                 }}
               >
                  <div className="absolute bottom-0 left-0 w-full h-full border-b-8 border-l-8 border-[#3E3A35] pointer-events-none" />
-                 <div className="absolute bottom-0 left-0 w-[150%] h-[150%] border-t-2 border-r-2 border-white/40 rounded-tr-full pointer-events-none" />
-                 <span className="bg-white/90 px-1.5 py-0.5 m-1 rounded shadow text-[8px] font-bold text-gray-800 flex items-center gap-1">
+                 <div className="absolute bottom-0 left-0 w-[150%] h-[150%] border-t-2 border-r-2 border-white/40  pointer-events-none" />
+                 <span className="bg-white/90 px-1.5 py-0.5 m-1  shadow text-[8px] font-bold text-gray-800 flex items-center gap-1">
                    <DoorOpen className="w-2.5 h-2.5" /> ENTRANCE
                  </span>
               </div>
@@ -465,14 +465,14 @@ export const FengShuiGame: React.FC = () => {
                 }}
               >
                  <div className="absolute top-0 left-0 w-full h-3 bg-blue-200/60 border-b-2 border-blue-400/40 shadow-sm pointer-events-none" />
-                 <span className="bg-white/90 px-1.5 py-0.5 mt-1 rounded shadow text-[8px] font-bold text-blue-800 flex items-center gap-1">
+                 <span className="bg-white/90 px-1.5 py-0.5 mt-1  shadow text-[8px] font-bold text-blue-800 flex items-center gap-1">
                    <LayoutGrid className="w-2.5 h-2.5" /> WINDOW
                  </span>
               </div>
 
             </div>
             
-            <div className="absolute inset-0 shadow-[inset_0_10px_20px_rgba(0,0,0,0.15)] pointer-events-none rounded-sm" />
+            <div className="absolute inset-0 shadow-[inset_0_10px_20px_rgba(0,0,0,0.15)] pointer-events-none " />
           </div>
 
         </div>
@@ -480,4 +480,5 @@ export const FengShuiGame: React.FC = () => {
     </section>
   );
 };
+
 

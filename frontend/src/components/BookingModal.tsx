@@ -47,12 +47,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in overflow-y-auto">
-      <div className="relative bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl border border-[#2D2926]/10 my-8">
+      <div className="relative bg-white max-w-2xl w-full  overflow-hidden shadow-2xl border border-[#2D2926]/10 my-8">
         
         {/* Header */}
         <div className="bg-[#2D2926] text-[#F7F5F2] p-6 flex items-center justify-between border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#8A7B9B] text-white flex items-center justify-center font-light font-serif text-lg">
+            <div className="w-9 h-9  bg-[#8A7B9B] text-white flex items-center justify-center font-light font-serif text-lg">
               LV
             </div>
             <div>
@@ -63,7 +63,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-2  text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -73,7 +73,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         <div className="bg-[#F7F5F2] p-2 border-b border-[#2D2926]/10 flex items-center justify-center gap-2">
           <button
             onClick={() => setActiveTab('calendly')}
-            className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 ${
+            className={`px-4 py-2  text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 ${
               activeTab === 'calendly'
                 ? 'bg-[#8A7B9B] text-white shadow-sm'
                 : 'text-[#2D2926]/70 hover:bg-[#E6E2DC]'
@@ -85,7 +85,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
           <button
             onClick={() => setActiveTab('direct')}
-            className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 ${
+            className={`px-4 py-2  text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 ${
               activeTab === 'direct'
                 ? 'bg-[#2D2926] text-white shadow-sm'
                 : 'text-[#2D2926]/70 hover:bg-[#E6E2DC]'
@@ -99,7 +99,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         {/* Calendly Tab */}
         {activeTab === 'calendly' && (
           <div className="p-8 text-center space-y-6">
-            <div className="w-16 h-16 bg-[#8A7B9B]/15 text-[#5B4970] rounded-full flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 bg-[#8A7B9B]/15 text-[#5B4970]  flex items-center justify-center mx-auto">
               <Calendar className="w-8 h-8" />
             </div>
 
@@ -112,7 +112,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#F7F5F2] border border-[#2D2926]/10 text-xs text-[#2D2926]/80 text-left max-w-md mx-auto space-y-1">
+            <div className="p-4  bg-[#F7F5F2] border border-[#2D2926]/10 text-xs text-[#2D2926]/80 text-left max-w-md mx-auto space-y-1">
               <div>✓ Sofortige Terminbestätigung & Zoom-Link</div>
               <div>✓ Vorab optional Grundriss & Fotoübermittlung</div>
               <div>✓ 1:1 Beratung mit Cornelia Schmid</div>
@@ -122,7 +122,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               href="https://calendly.com/lavie-design/call-a-feng-shui-designer"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#8A7B9B] hover:bg-[#726282] text-white font-medium text-xs uppercase tracking-widest shadow-md transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4  bg-[#8A7B9B] hover:bg-[#726282] text-white font-medium text-xs uppercase tracking-widest shadow-md transition-all"
             >
               <span>Calendly Kalender in neuem Tab öffnen</span>
               <ExternalLink className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     <div
                       key={type.id}
                       onClick={() => setSelectedService(type.id)}
-                      className={`p-4 rounded-2xl border transition-all flex items-start justify-between cursor-pointer ${
+                      className={`p-4  border transition-all flex items-start justify-between cursor-pointer ${
                         selectedService === type.id
                           ? 'border-[#2D2926] bg-[#F7F5F2] shadow-sm'
                           : 'border-[#2D2926]/10 hover:border-[#7D8471] bg-white'
@@ -155,7 +155,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                         <div className="font-bold text-[#2D2926] text-sm flex items-center gap-2">
                           {type.title}
                           {type.popular && (
-                            <span className="px-2 py-0.5 rounded-full bg-[#8A7B9B] text-white text-[10px] uppercase font-medium tracking-wider">
+                            <span className="px-2 py-0.5  bg-[#8A7B9B] text-white text-[10px] uppercase font-medium tracking-wider">
                               Empfohlen
                             </span>
                           )}
@@ -173,7 +173,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <div className="pt-4 flex justify-end">
                   <button
                     onClick={() => setStep(2)}
-                    className="px-6 py-3 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm"
+                    className="px-6 py-3  bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm"
                   >
                     <span>Weiter zu Datum & Uhrzeit</span>
                     <ArrowRight className="w-4 h-4 text-white" />
@@ -198,7 +198,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                       <button
                         key={d.value}
                         onClick={() => setSelectedDate(d.value)}
-                        className={`py-3 px-2 rounded-xl text-xs font-medium border transition-all ${
+                        className={`py-3 px-2  text-xs font-medium border transition-all ${
                           selectedDate === d.value
                             ? 'bg-[#2D2926] text-[#F7F5F2] border-[#2D2926]'
                             : 'bg-white text-[#2D2926] border-[#2D2926]/10 hover:bg-[#F7F5F2]'
@@ -219,7 +219,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                       <button
                         key={t}
                         onClick={() => setSelectedTime(t)}
-                        className={`py-2.5 px-2 rounded-xl text-xs font-medium border transition-all ${
+                        className={`py-2.5 px-2  text-xs font-medium border transition-all ${
                           selectedTime === t
                             ? 'bg-[#8A7B9B] text-white border-[#8A7B9B]'
                             : 'bg-white text-[#2D2926] border-[#2D2926]/10 hover:bg-[#F7F5F2]'
@@ -241,7 +241,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
                   <button
                     onClick={() => setStep(3)}
-                    className="px-6 py-3 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm"
+                    className="px-6 py-3  bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm"
                   >
                     <span>Weiter zu deinen Angaben</span>
                     <ArrowRight className="w-4 h-4 text-white" />
@@ -266,7 +266,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                       placeholder="z.B. Beatrix von Stauffenberg"
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
+                      className="w-full px-3.5 py-2.5  border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
                     />
                   </div>
 
@@ -278,7 +278,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                       placeholder="name@beispiel.ch"
                       value={clientEmail}
                       onChange={(e) => setClientEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
+                      className="w-full px-3.5 py-2.5  border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
                     />
                   </div>
                 </div>
@@ -290,7 +290,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     placeholder="+41 79 123 45 67"
                     value={clientPhone}
                     onChange={(e) => setClientPhone(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
+                    className="w-full px-3.5 py-2.5  border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
                   />
                 </div>
 
@@ -301,15 +301,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     placeholder="z.B. Wohnzimmer Grundriss soll nach Feng Shui optimiert werden..."
                     value={roomNotes}
                     onChange={(e) => setRoomNotes(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
+                    className="w-full px-3.5 py-2.5  border border-[#2D2926]/15 text-xs focus:ring-2 focus:ring-[#8A7B9B] focus:outline-none"
                   />
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#F7F5F2] border-2 border-dashed border-[#2D2926]/20 text-center">
+                <div className="p-4  bg-[#F7F5F2] border-2 border-dashed border-[#2D2926]/20 text-center">
                   <Upload className="w-6 h-6 text-[#8A7B9B] mx-auto mb-1" />
                   <div className="text-xs font-bold text-[#2D2D2D]">Grundriss oder Raumfoto hochladen (Optional)</div>
                   {uploadedFile ? (
-                    <div className="mt-2 text-xs font-semibold text-[#8A7B9B] bg-[#8A7B9B]/15 py-1 px-3 rounded-full inline-block">
+                    <div className="mt-2 text-xs font-semibold text-[#8A7B9B] bg-[#8A7B9B]/15 py-1 px-3  inline-block">
                       ✓ Datei geladen: {uploadedFile}
                     </div>
                   ) : (
@@ -334,7 +334,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   <button
                     onClick={handleConfirmBooking}
                     disabled={!clientName || !clientEmail}
-                    className="px-6 py-3.5 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm disabled:opacity-50"
+                    className="px-6 py-3.5  bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-2 shadow-sm disabled:opacity-50"
                   >
                     <PhoneCall className="w-4 h-4 text-white" />
                     <span>Termin anfragen</span>
@@ -346,7 +346,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
             {/* Step 4 */}
             {step === 4 && (
               <div className="p-8 text-center space-y-6">
-                <div className="w-16 h-16 bg-[#7D8471]/15 text-[#7D8471] rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 bg-[#7D8471]/15 text-[#7D8471]  flex items-center justify-center mx-auto">
                   <Check className="w-8 h-8 stroke-[3]" />
                 </div>
 
@@ -361,7 +361,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
                 <button
                   onClick={onClose}
-                  className="px-8 py-3 rounded-full bg-[#7D8471] text-white text-xs font-medium uppercase tracking-widest shadow-sm hover:bg-[#6C7360] transition-colors"
+                  className="px-8 py-3  bg-[#7D8471] text-white text-xs font-medium uppercase tracking-widest shadow-sm hover:bg-[#6C7360] transition-colors"
                 >
                   Schließen & Zurück
                 </button>
@@ -374,3 +374,4 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     </div>
   );
 };
+

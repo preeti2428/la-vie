@@ -1,0 +1,38 @@
+{
+  "logoUrl": "http://localhost:3000/uploads/266eee066e581d84af6f1d4e38eb8e72.png",
+  "logoTransform": {
+    "zoom": 100,
+    "fit": "contain",
+    "position": "center",
+    "brightness": 100,
+    "contrast": 100,
+    "rotate": 0
+  },
+  "photoHero": "http://localhost:3000/uploads/fc35099953b5437e743c158b507097a2.png",
+  "photoHeroTransform": {
+    "zoom": 100,
+    "fit": "cover",
+    "position": "center",
+    "brightness": 100,
+    "contrast": 100,
+    "rotate": 0
+  },
+  "photoAbout": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1000&q=80",
+  "photoAboutTransform": {
+    "zoom": 100,
+    "fit": "cover",
+    "position": "center",
+    "brightness": 100,
+    "contrast": 100,
+    "rotate": 0
+  },
+  "photoBlog": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1000&q=80",
+  "photoBlogTransform": {
+    "zoom": 100,
+    "fit": "cover",
+    "position": "center",
+    "brightness": 100,
+    "contrast": 100,
+    "rotate": 0
+  }
+}

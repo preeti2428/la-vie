@@ -1,0 +1,50 @@
+[
+  {
+    "id": "BK-346",
+    "clientName": "preeti",
+    "email": "preetisingththakur07@gmail.com",
+    "phone": "",
+    "service": "Call a Designer",
+    "date": "2026-08-19",
+    "time": "gaziabad",
+    "status": "pending",
+    "notes": "notizen",
+    "floorplanUploaded": false
+  },
+  {
+    "id": "BK-101",
+    "clientName": "Dr. Marc Obermeier",
+    "email": "m.obermeier@zurich-clinic.ch",
+    "phone": "+41 79 444 12 88",
+    "service": "Feng Shui Call a Designer",
+    "date": "14. August 2026",
+    "time": "10:00 - 11:00 Uhr",
+    "status": "pending",
+    "notes": "Penthouse Neugestaltung Zürich Enge. Möchte Sheng Qi Fluss im Arbeitszimmer maximieren.",
+    "floorplanUploaded": true
+  },
+  {
+    "id": "BK-102",
+    "clientName": "Sabine & Peter Frei",
+    "email": "sabine.frei@bluewin.ch",
+    "phone": "+41 78 910 22 33",
+    "service": "3D Virtual Staging (4 Räume)",
+    "date": "15. August 2026",
+    "time": "14:30 - 15:30 Uhr",
+    "status": "confirmed",
+    "notes": "Villa in Luzern für Verkauf vorbereiten. Vorab renderings gewünscht.",
+    "floorplanUploaded": true
+  },
+  {
+    "id": "BK-103",
+    "clientName": "Elena Vaspari",
+    "email": "elena@vaspari-interiors.de",
+    "phone": "+49 89 2020 4040",
+    "service": "Farb- & Materialkonzept 60-30-10",
+    "date": "18. August 2026",
+    "time": "11:00 - 12:00 Uhr",
+    "status": "completed",
+    "notes": "Atelier München. Farbcodes für NCS Wandfarben geliefert.",
+    "floorplanUploaded": false
+  }
+]

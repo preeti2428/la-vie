@@ -79,7 +79,12 @@ export const PRESET_PHOTOS = {
   ],
 };
 
+let globalBrandingCache: BrandingSettings | null = null;
+
 export const getBrandingSettings = (): BrandingSettings => {
+  if (globalBrandingCache) {
+    return globalBrandingCache;
+  }
   try {
     const saved = localStorage.getItem('lavie_branding_settings');
     if (saved) {
@@ -99,12 +104,44 @@ export const getBrandingSettings = (): BrandingSettings => {
   return DEFAULT_BRANDING;
 };
 
-export const saveBrandingSettings = (settings: BrandingSettings) => {
+export const syncGlobalBranding = async () => {
   try {
+    const res = await fetch('http://localhost:3000/api/settings/branding');
+    if (res.ok) {
+      const parsed = await res.json();
+      if (Object.keys(parsed).length > 0) {
+        globalBrandingCache = {
+          ...DEFAULT_BRANDING,
+          ...parsed,
+          logoTransform: { ...DEFAULT_LOGO_TRANSFORM, ...(parsed.logoTransform || {}) },
+          photoHeroTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoHeroTransform || {}) },
+          photoAboutTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoAboutTransform || {}) },
+          photoBlogTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoBlogTransform || {}) },
+        };
+        // fallback to localStorage cache
+        localStorage.setItem('lavie_branding_settings', JSON.stringify(globalBrandingCache));
+        window.dispatchEvent(new Event('lavie_branding_updated'));
+      }
+    }
+  } catch (e) {
+    console.error('Failed to sync global branding', e);
+  }
+};
+
+export const saveBrandingSettings = async (settings: BrandingSettings) => {
+  try {
+    globalBrandingCache = settings;
     localStorage.setItem('lavie_branding_settings', JSON.stringify(settings));
     window.dispatchEvent(new Event('lavie_branding_updated'));
+    
+    // Save to backend
+    await fetch('http://localhost:3000/api/settings/branding', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(settings),
+    });
   } catch (e) {
-    console.error('Failed to save branding settings', e);
+    console.error('Failed to save global branding settings', e);
   }
 };
 

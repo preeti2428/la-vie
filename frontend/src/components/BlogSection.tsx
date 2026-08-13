@@ -99,7 +99,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
           <div className="space-y-3 max-w-2xl">
-            <span className="text-[10px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
+            <span className="text-[10px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-3 py-1  font-medium inline-block shadow-sm">
               {t.tag}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight">
@@ -111,8 +111,8 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
           </div>
 
           {/* Author Badge for Blog / Journal */}
-          <div className="glass p-3 rounded-2xl border border-[#2D2926]/10 flex items-center gap-3 shrink-0">
-            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#8A7B9B] shadow-sm shrink-0">
+          <div className="glass p-3  border border-[#2D2926]/10 flex items-center gap-3 shrink-0">
+            <div className="w-12 h-12  overflow-hidden border-2 border-[#8A7B9B] shadow-sm shrink-0">
               <img
                 src={photoBlog || 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1000&q=80'}
                 alt="Cornelia Schmid - Chefredakteurin & Autorin"
@@ -133,7 +133,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
             <article
               key={art.id}
               onClick={() => setActiveArticle(art)}
-              className="glass rounded-3xl overflow-hidden border border-[#2D2926]/10 hover:border-[#8A7B9B]/50 transition-all duration-300 shadow-sm hover:-translate-y-1.5 group cursor-pointer flex flex-col justify-between"
+              className="glass  overflow-hidden border border-[#2D2926]/10 hover:border-[#8A7B9B]/50 transition-all duration-300 shadow-sm hover:-translate-y-1.5 group cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Article Image Container */}
@@ -143,7 +143,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
                     alt={art.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold text-[#5B4970]">
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1  text-[10px] uppercase tracking-widest font-semibold text-[#5B4970]">
                     {art.category}
                   </div>
                 </div>
@@ -184,19 +184,19 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
       {/* Full Article Reader Modal */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md animate-fade-in">
-          <div className="bg-[#F7F5F2] w-full max-w-3xl max-h-[90vh] rounded-3xl border border-[#2D2926]/20 shadow-2xl overflow-y-auto relative p-6 sm:p-10 space-y-6">
+          <div className="bg-[#F7F5F2] w-full max-w-3xl max-h-[90vh]  border border-[#2D2926]/20 shadow-2xl overflow-y-auto relative p-6 sm:p-10 space-y-6">
             
             {/* Close Button */}
             <button
               onClick={() => setActiveArticle(null)}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white border border-[#2D2926]/10 text-[#2D2926] flex items-center justify-center hover:bg-[#E6E2DC] transition-colors"
+              className="absolute top-6 right-6 w-10 h-10  bg-white border border-[#2D2926]/10 text-[#2D2926] flex items-center justify-center hover:bg-[#E6E2DC] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Header */}
             <div className="space-y-3">
-              <span className="text-[10px] uppercase tracking-widest bg-[#8A7B9B] text-white px-3 py-1 rounded-full font-semibold">
+              <span className="text-[10px] uppercase tracking-widest bg-[#8A7B9B] text-white px-3 py-1  font-semibold">
                 {activeArticle.category}
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl text-[#2D2926] font-light leading-tight">
@@ -212,7 +212,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
             </div>
 
             {/* Featured Image */}
-            <div className="rounded-2xl overflow-hidden aspect-[16/9]">
+            <div className=" overflow-hidden aspect-[16/9]">
               <img src={activeArticle.image} alt={activeArticle.title} className="w-full h-full object-cover" />
             </div>
 
@@ -225,7 +225,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
             <div className="pt-6 border-t border-[#2D2926]/10 flex items-center justify-between">
               <button
                 onClick={() => setActiveArticle(null)}
-                className="px-6 py-2.5 rounded-full bg-[#2D2926] text-white text-xs uppercase tracking-widest font-medium hover:bg-[#1A1816]"
+                className="px-6 py-2.5  bg-[#2D2926] text-white text-xs uppercase tracking-widest font-medium hover:bg-[#1A1816]"
               >
                 {t.close}
               </button>
@@ -238,3 +238,4 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ currentLang }) => {
     </section>
   );
 };
+

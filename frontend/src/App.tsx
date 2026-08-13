@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero3D } from './components/Hero3D';
 import { WelcomeGreetingSection } from './components/WelcomeGreetingSection';
-import { WhatMakesUsSpecial } from './components/WhatMakesUsSpecial';
+import { BentoGridSection } from './components/BentoGridSection';
 import { OurServicesSection } from './components/OurServicesSection';
-import { BeforeAfterStaging } from './components/BeforeAfterStaging';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { PortfolioGrid } from './components/PortfolioGrid';
+import { AboutPage } from './components/AboutPage';
 import { FengShuiGame } from './components/FengShuiGame';
 import { CallADesignerSection } from './components/CallADesignerSection';
 import { InstagramReelsGrid } from './components/InstagramReelsGrid';
@@ -19,6 +21,7 @@ import { Footer } from './components/Footer';
 import { AIVirtualStagingTool } from './components/AIVirtualStagingTool';
 import { Language, PageView } from './types';
 import { ArrowLeft, Home, Sparkles, Box, BookOpen, Star, User, Mail, ShieldCheck } from 'lucide-react';
+import { syncGlobalBranding } from './lib/brandingStore';
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<Language>('de');
@@ -27,6 +30,11 @@ export default function App() {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   const [isStagingOpen, setIsStagingOpen] = useState<boolean>(false);
+
+  // Fetch global branding config on startup
+  useEffect(() => {
+    syncGlobalBranding();
+  }, []);
 
   // Sync state with URL hash (/#/portfolio, /#/about, /#/services, /#/blog, /#/contact)
   useEffect(() => {
@@ -82,7 +90,7 @@ export default function App() {
         {/* Sub-Page Header & Breadcrumb Banner */}
         {currentPage !== 'home' && (
           <div className="bg-[#2D2926] text-[#F7F5F2] py-12 border-b border-white/10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#8A7B9B]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#8A7B9B]/20  blur-3xl pointer-events-none" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               
@@ -118,7 +126,7 @@ export default function App() {
               {/* Page Titles */}
               {currentPage === 'portfolio' && (
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
                     Showroom & Interactive Gallery
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
@@ -132,7 +140,7 @@ export default function App() {
 
               {currentPage === 'services' && (
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 ">
                     Ganzheitliche Beratung
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
@@ -146,7 +154,7 @@ export default function App() {
 
               {currentPage === 'blog' && (
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
                     Journal & Social Editorial
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
@@ -160,7 +168,7 @@ export default function App() {
 
               {currentPage === 'about' && (
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#8A7B9B] text-white px-3 py-1 inline-block font-medium mb-3 ">
                     Gründerin & Philosophie
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
@@ -174,7 +182,7 @@ export default function App() {
 
               {currentPage === 'contact' && (
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[0.25em] bg-[#7D8471] text-white px-3 py-1 inline-block font-medium mb-3 ">
                     Direct Contact & Booking
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl font-light text-white mb-2">
@@ -205,16 +213,22 @@ export default function App() {
               onOpenBooking={() => setIsBookingOpen(true)}
             />
 
+            <BentoGridSection
+              currentLang={currentLang}
+            />
+
             <OurServicesSection
               currentLang={currentLang}
               onOpenBooking={() => setIsBookingOpen(true)}
             />
 
+            <TestimonialsSection />
+
             <FengShuiGame />
 
             <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
 
-            <BeforeAfterStaging onOpenBooking={() => setIsBookingOpen(true)} />
+            <PortfolioGrid />
 
             <InstagramReelsGrid />
 
@@ -228,8 +242,7 @@ export default function App() {
         {/* DEDICATED PORTFOLIO PAGE */}
         {currentPage === 'portfolio' && (
           <div className="space-y-16 py-8">
-            <FengShuiGame />
-            <BeforeAfterStaging onOpenBooking={() => setIsBookingOpen(true)} />
+            <PortfolioGrid />
           </div>
         )}
 
@@ -249,22 +262,15 @@ export default function App() {
               onOpenBooking={() => setIsBookingOpen(true)}
             />
             <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
-            <WhatMakesUsSpecial
+            <BentoGridSection
               currentLang={currentLang}
-              onOpenBooking={() => setIsBookingOpen(true)}
             />
           </div>
         )}
 
-        {/* DEDICATED ABOUT CORNELIA PAGE */}
+        {/* DEDICATED ABOUT PAGE */}
         {currentPage === 'about' && (
-          <div className="space-y-16 py-8">
-            <AboutCornelia onOpenBooking={() => setIsBookingOpen(true)} />
-            <WelcomeGreetingSection
-              currentLang={currentLang}
-              onOpenBooking={() => setIsBookingOpen(true)}
-            />
-          </div>
+          <AboutPage onOpenBooking={() => setIsBookingOpen(true)} />
         )}
 
         {/* DEDICATED CONTACT PAGE */}
@@ -316,16 +322,16 @@ export default function App() {
       {/* Floating AI Staging Trigger Button - Prominent & Descriptive */}
       <button
         onClick={() => setIsStagingOpen(true)}
-        className="fixed bottom-28 right-6 z-40 bg-gradient-to-r from-[#2D2926] to-[#3D3834] text-white p-4 sm:px-5 sm:py-4 rounded-2xl shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex flex-col items-start gap-1.5 group border border-white/10 hover:border-white/30 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-bottom-right"
+        className="fixed bottom-24 right-6 z-40 bg-gradient-to-r from-[#2D2926]/90 to-[#3D3834]/90 backdrop-blur-md rounded-2xl text-white p-3 sm:px-4 sm:py-3 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex flex-col items-start gap-1 group border border-white/10 hover:border-white/30 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-bottom-right"
       >
-        <div className="flex items-center gap-2.5">
-          <div className="bg-[#8A7B9B] p-1.5 rounded-full">
-            <Sparkles className="w-4 h-4 text-white animate-pulse" />
+        <div className="flex items-center gap-2">
+          <div className="bg-[#8A7B9B] p-1.5 rounded-md">
+            <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
           </div>
-          <span className="font-bold text-sm uppercase tracking-widest text-white">AI Virtual Staging</span>
-          <span className="bg-[#7D8471] text-white text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest ml-1">Free</span>
+          <span className="font-bold text-xs uppercase tracking-widest text-white">AI Virtual Staging</span>
+          <span className="bg-[#7D8471] text-white text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest ml-1">Free</span>
         </div>
-        <span className="text-[11px] text-[#DCD7D0] max-w-[220px] text-left leading-tight hidden sm:block font-light">
+        <span className="text-[10px] text-[#DCD7D0] max-w-[200px] text-left leading-snug hidden sm:block font-light">
           Upload a photo of your empty room and see it transformed instantly by our AI!
         </span>
       </button>

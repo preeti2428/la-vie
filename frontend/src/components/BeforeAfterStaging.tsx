@@ -66,7 +66,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                 setSelectedItemIndex(idx);
                 setSliderPosition(50);
               }}
-              className={`px-4 py-2 rounded-full text-[11px] uppercase tracking-widest font-medium transition-all ${
+              className={`px-4 py-2  text-[11px] uppercase tracking-widest font-medium transition-all ${
                 selectedItemIndex === idx
                   ? 'bg-[#2D2926] text-[#F7F5F2] shadow-sm'
                   : 'bg-white/80 hover:bg-[#E6E2DC] text-[#2D2926] border border-[#2D2926]/10'
@@ -82,7 +82,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Slider Canvas (8 cols) */}
-          <div className="lg:col-span-8 bg-white/70 rounded-3xl p-3 shadow-sm border border-[#2D2926]/10">
+          <div className="lg:col-span-8 bg-white/70  p-3 shadow-sm border border-[#2D2926]/10">
             
             <div
               ref={containerRef}
@@ -91,7 +91,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               onMouseLeave={handleMouseUp}
               onMouseMove={handleMouseMove}
               onTouchMove={handleTouchMove}
-              className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl select-none cursor-ew-resize touch-none"
+              className="relative aspect-[16/10] w-full overflow-hidden  select-none cursor-ew-resize touch-none"
             >
               
               {/* "AFTER" Image (Full Base) */}
@@ -100,7 +100,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                 alt={`${currentItem.title} - Nachher Staging`}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute top-4 right-4 z-20 glass px-3 py-1.5 rounded-full text-[#2D2926] text-xs font-medium uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#2D2926]/10">
+              <div className="absolute top-4 right-4 z-20 glass px-3 py-1.5  text-[#2D2926] text-xs font-medium uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#2D2926]/10">
                 <Sparkles className="w-3.5 h-3.5 text-[#7D8471]" />
                 <span>AFTER: Living Room Harmonization</span>
               </div>
@@ -116,7 +116,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                   className="absolute inset-0 w-full h-full object-cover max-w-none grayscale brightness-75"
                   style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }}
                 />
-                <div className="absolute top-4 left-4 z-20 glass-dark text-white px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider shadow-sm border border-white/20">
+                <div className="absolute top-4 left-4 z-20 glass-dark text-white px-3 py-1.5  text-xs font-medium uppercase tracking-wider shadow-sm border border-white/20">
                   <span>BEFORE: Raw Structure</span>
                 </div>
               </div>
@@ -126,7 +126,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                 className="absolute inset-y-0 z-30 w-[2px] bg-white cursor-ew-resize shadow-xl"
                 style={{ left: `${sliderPosition}%` }}
               >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#2D2926] flex items-center justify-center shadow-lg border border-[#2D2926]/10">
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10  bg-white text-[#2D2926] flex items-center justify-center shadow-lg border border-[#2D2926]/10">
                   <Sliders className="w-4 h-4 text-[#2D2926]" />
                 </div>
               </div>
@@ -141,12 +141,12 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                   >
                     <div className="relative">
                       <span className="flex h-5 w-5 items-center justify-center">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7D8471] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#2D2926] border-2 border-white" />
+                        <span className="animate-ping absolute inline-flex h-full w-full  bg-[#7D8471] opacity-75" />
+                        <span className="relative inline-flex  h-3.5 w-3.5 bg-[#2D2926] border-2 border-white" />
                       </span>
 
                       {/* Hover Tooltip */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 p-3 rounded-xl bg-[#2D2926] text-white text-xs shadow-xl z-40">
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 p-3  bg-[#2D2926] text-white text-xs shadow-xl z-40">
                         <div className="font-bold text-[#E6E2DC] mb-1">{hs.title}</div>
                         <div className="text-gray-300 leading-tight text-[11px]">{hs.description}</div>
                       </div>
@@ -159,13 +159,13 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
             {/* Sub-bar Controls */}
             <div className="mt-3 px-2 flex items-center justify-between text-[11px] text-[#2D2926]/60">
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#7D8471]" />
+                <span className="w-2 h-2  bg-[#7D8471]" />
                 Schieberegler bewegen
               </span>
 
               <button
                 onClick={() => setShowHotspotsOverlay(!showHotspotsOverlay)}
-                className="px-3 py-1 rounded-full bg-[#E6E2DC] hover:bg-[#DCD7D0] text-[#2D2926] font-medium transition-colors uppercase text-[10px] tracking-wider"
+                className="px-3 py-1  bg-[#E6E2DC] hover:bg-[#DCD7D0] text-[#2D2926] font-medium transition-colors uppercase text-[10px] tracking-wider"
               >
                 {showHotspotsOverlay ? 'Hotspots ausblenden' : 'Feng Shui Hotspots anzeigen'}
               </button>
@@ -174,7 +174,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
           </div>
 
           {/* Details & ROI Panel (4 cols) */}
-          <div className="lg:col-span-4 bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-sm border border-[#2D2926]/10 flex flex-col justify-between">
+          <div className="lg:col-span-4 bg-white/80 backdrop-blur-md  p-6 shadow-sm border border-[#2D2926]/10 flex flex-col justify-between">
             <div>
               
               <div className="flex items-center justify-between mb-3">
@@ -182,19 +182,15 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                   {currentItem.category.replace('_', ' ')}
                 </span>
                 {currentItem.roiMetric && (
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#7D8471]/15 text-[#7D8471] text-[10px] font-bold uppercase tracking-wider">
+                  <span className="px-2.5 py-0.5  bg-[#7D8471]/15 text-[#7D8471] text-[10px] font-bold uppercase tracking-wider">
                     {currentItem.roiMetric}
                   </span>
                 )}
               </div>
 
-              <h3 className="font-serif text-2xl font-light text-[#2D2926] mb-2">
+              <h3 className="font-serif text-2xl font-light text-[#2D2926] mb-6">
                 {currentItem.title}
               </h3>
-
-              <p className="text-xs sm:text-sm text-[#2D2926]/70 leading-relaxed mb-6">
-                {currentItem.description}
-              </p>
 
               {/* Key Transformation Factors */}
               <div className="space-y-3 mb-6">
@@ -213,14 +209,10 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
 
             {/* Bottom Call to Action */}
             <div className="pt-6 border-t border-[#2D2926]/10">
-              <div className="bg-[#F7F5F2] p-4 rounded-2xl mb-4 border border-[#2D2926]/10">
-                <div className="text-xs font-bold text-[#2D2926] mb-1">Eigene Immobilie stagen lassen?</div>
-                <div className="text-[11px] text-[#2D2926]/70">Erhalte innerhalb von 24 Stunden photorealistische 3D Renderings für dein Objekt.</div>
-              </div>
 
               <button
                 onClick={onOpenBooking}
-                className="w-full py-3 px-4 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all group"
+                className="w-full py-3 px-4  bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all group"
               >
                 <span>Call a Designer buchen (€199)</span>
                 <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
@@ -235,3 +227,4 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
     </section>
   );
 };
+

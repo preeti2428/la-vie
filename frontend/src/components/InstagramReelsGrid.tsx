@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { INSTAGRAM_REELS } from '../data/mockData';
 import { InstagramReel } from '../types';
 import { Instagram, Play, Heart, Eye, Sparkles, X, Share2, ExternalLink } from 'lucide-react';
 
 export const InstagramReelsGrid: React.FC = () => {
   const [activeReelModal, setActiveReelModal] = useState<InstagramReel | null>(null);
+  const [reels, setReels] = useState<InstagramReel[]>(INSTAGRAM_REELS);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/reels')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          setReels(data);
+        }
+      })
+      .catch(err => console.error("Failed to fetch reels", err));
+  }, []);
 
   return (
     <section id="reels" className="py-20 bg-[#F7F5F2] border-t border-[#2D2926]/10">
@@ -28,7 +40,7 @@ export const InstagramReelsGrid: React.FC = () => {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="self-start md:self-auto px-5 py-2.5 rounded-full bg-white/80 hover:bg-[#E6E2DC] border border-[#2D2926]/10 text-[11px] font-medium uppercase tracking-widest text-[#2D2926] flex items-center gap-2 shadow-sm transition-all"
+            className="self-start md:self-auto px-5 py-2.5  bg-white/80 hover:bg-[#E6E2DC] border border-[#2D2926]/10 text-[11px] font-medium uppercase tracking-widest text-[#2D2926] flex items-center gap-2 shadow-sm transition-all"
           >
             <Instagram className="w-4 h-4 text-[#7D8471]" />
             <span>@cornelia.lavie folgen</span>
@@ -38,7 +50,7 @@ export const InstagramReelsGrid: React.FC = () => {
 
         {/* Asymmetrical 3D Hover Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {INSTAGRAM_REELS.map((reel, index) => {
+          {reels.map((reel, index) => {
             // Asymmetrical heights for dynamic feel
             const isTall = index % 2 === 1;
 
@@ -46,7 +58,7 @@ export const InstagramReelsGrid: React.FC = () => {
               <div
                 key={reel.id}
                 onClick={() => setActiveReelModal(reel)}
-                className={`group relative bg-white/80 rounded-2xl overflow-hidden border border-[#2D2926]/10 shadow-sm hover:shadow-lg transition-all duration-500 cursor-pointer hover:-translate-y-2 transform perspective-1000 ${
+                className={`group relative bg-white/80  overflow-hidden border border-[#2D2926]/10 shadow-sm hover:shadow-lg transition-all duration-500 cursor-pointer hover:-translate-y-2 transform perspective-1000 ${
                   isTall ? 'lg:translate-y-4' : ''
                 }`}
               >
@@ -64,17 +76,17 @@ export const InstagramReelsGrid: React.FC = () => {
 
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full glass border border-white/40 flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-lg">
+                    <div className="w-12 h-12  glass border border-white/40 flex items-center justify-center text-white group-hover:scale-110 transition-transform shadow-lg">
                       <Play className="w-5 h-5 fill-white text-white ml-0.5" />
                     </div>
                   </div>
 
                   {/* Top Stats Bar */}
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-white text-[10px] font-medium uppercase tracking-wider">
-                    <span className="px-2.5 py-1 rounded-full glass-dark border border-white/20">
+                    <span className="px-2.5 py-1  glass-dark border border-white/20">
                       {reel.handle}
                     </span>
-                    <span className="px-2 py-1 rounded-full glass-dark">
+                    <span className="px-2 py-1  glass-dark">
                       {reel.duration}
                     </span>
                   </div>
@@ -100,7 +112,7 @@ export const InstagramReelsGrid: React.FC = () => {
                 {/* Tags Bar */}
                 <div className="p-3 bg-white/90 flex flex-wrap gap-1 border-t border-[#2D2926]/10">
                   {reel.tags.map((tag, i) => (
-                    <span key={i} className="text-[10px] font-medium text-[#7D8471] bg-[#F7F5F2] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    <span key={i} className="text-[10px] font-medium text-[#7D8471] bg-[#F7F5F2] px-2 py-0.5  uppercase tracking-wider">
                       {tag}
                     </span>
                   ))}
@@ -114,18 +126,18 @@ export const InstagramReelsGrid: React.FC = () => {
         {/* Modal Video & Tip Preview */}
         {activeReelModal && (
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
-            <div className="relative bg-white max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border border-[#2D2926]/10">
+            <div className="relative bg-white max-w-sm w-full max-h-[85vh] overflow-y-auto overflow-x-hidden shadow-2xl border border-[#2D2926]/10">
               
               {/* Close Button */}
               <button
                 onClick={() => setActiveReelModal(null)}
-                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
+                className="absolute top-4 right-4 z-20 w-9 h-9  bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Reel Header / Video Placeholder */}
-              <div className="relative aspect-[9/12] bg-black">
+              <div className="relative aspect-[9/14] bg-black">
                 <img
                   src={activeReelModal.thumbnail}
                   alt={activeReelModal.title}
@@ -134,7 +146,7 @@ export const InstagramReelsGrid: React.FC = () => {
                 
                 <div className="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black/90 via-black/30 to-black/40 text-white">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#7D8471] text-white font-bold text-xs flex items-center justify-center">
+                    <div className="w-8 h-8  bg-[#7D8471] text-white font-bold text-xs flex items-center justify-center">
                       LV
                     </div>
                     <div>
@@ -145,7 +157,7 @@ export const InstagramReelsGrid: React.FC = () => {
 
                   <div>
                     <h3 className="font-serif text-xl font-light mb-2">{activeReelModal.title}</h3>
-                    <p className="text-xs text-gray-200 leading-relaxed glass-dark p-3 rounded-2xl border border-white/10">
+                    <p className="text-xs text-gray-200 leading-relaxed glass-dark p-3  border border-white/10">
                       {activeReelModal.summary}
                     </p>
                   </div>
@@ -159,10 +171,10 @@ export const InstagramReelsGrid: React.FC = () => {
                 </div>
 
                 <a
-                  href="https://instagram.com"
+                  href={activeReelModal.videoUrl || "https://instagram.com"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-full bg-[#7D8471] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-1.5 hover:bg-[#6C7360] transition-colors"
+                  className="px-4 py-2  bg-[#7D8471] text-white text-xs font-medium uppercase tracking-widest flex items-center gap-1.5 hover:bg-[#6C7360] transition-colors"
                 >
                   <Instagram className="w-3.5 h-3.5 text-white" />
                   <span>Auf Instagram ansehen</span>
@@ -177,3 +189,4 @@ export const InstagramReelsGrid: React.FC = () => {
     </section>
   );
 };
+

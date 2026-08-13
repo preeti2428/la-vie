@@ -26,7 +26,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
         
         {/* Header */}
         <div className="text-center mb-14 space-y-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
+          <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-3 py-1  font-medium inline-block shadow-sm">
             {t.tag}
           </span>
 
@@ -46,7 +46,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
             return (
               <div
                 key={idx}
-                className="glass rounded-2xl border border-[#2D2926]/10 overflow-hidden shadow-sm transition-all"
+                className="glass  border border-[#2D2926]/10 overflow-hidden shadow-sm transition-all"
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
@@ -56,7 +56,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
                     {faq.q}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                    className={`w-8 h-8  bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen ? 'rotate-180 bg-[#7D8471] text-white' : ''
                     }`}
                   >
@@ -75,7 +75,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
         </div>
 
         {/* Still Have Questions CTA */}
-        <div className="mt-12 text-center p-8 glass rounded-3xl border border-[#2D2926]/10 space-y-4">
+        <div className="mt-12 text-center p-8 glass  border border-[#2D2926]/10 space-y-4">
           <h3 className="font-serif text-xl font-light text-[#2D2926]">
             Noch Fragen offen?
           </h3>
@@ -84,7 +84,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
           </p>
           <button
             onClick={onOpenBooking}
-            className="px-6 py-3 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest inline-flex items-center gap-2 shadow-sm transition-all"
+            className="px-6 py-3  bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest inline-flex items-center gap-2 shadow-sm transition-all"
           >
             <PhoneCall className="w-3.5 h-3.5 text-white" />
             <span>Persönliches Gespräch buchen (€199)</span>
@@ -95,3 +95,4 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ currentLang, onOpenBooki
     </section>
   );
 };
+

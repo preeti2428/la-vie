@@ -25,7 +25,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-3 py-1 rounded-full font-medium inline-block shadow-sm">
+          <span className="text-[10px] uppercase tracking-[0.2em] bg-[#8A7B9B] text-white px-3 py-1  font-medium inline-block shadow-sm">
             {t.tag}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight">
@@ -42,9 +42,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
           <div className="lg:col-span-5 space-y-6">
             
             {/* Smart Calendly Booking Card */}
-            <div className="glass p-8 rounded-3xl border border-[#8A7B9B]/40 bg-white shadow-md relative overflow-hidden space-y-4">
+            <div className="glass p-8  border border-[#8A7B9B]/40 bg-white shadow-md relative overflow-hidden space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#8A7B9B]/15 text-[#5B4970] flex items-center justify-center">
+                <div className="w-10 h-10  bg-[#8A7B9B]/15 text-[#5B4970] flex items-center justify-center">
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
@@ -61,7 +61,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                 href="https://calendly.com/lavie-design/call-a-feng-shui-designer"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-3.5 rounded-full bg-[#8A7B9B] hover:bg-[#726282] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3.5  bg-[#8A7B9B] hover:bg-[#726282] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <span>{t.openCalendly}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -69,10 +69,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
             </div>
 
             {/* Direct Contact Points */}
-            <div className="glass p-8 rounded-3xl border border-[#2D2926]/10 space-y-6">
+            <div className="glass p-8  border border-[#2D2926]/10 space-y-6">
               
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10  bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
@@ -84,7 +84,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10  bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
                   <MessageCircle className="w-5 h-5 text-emerald-700" />
                 </div>
                 <div>
@@ -96,7 +96,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
               </div>
 
               <div className="flex items-start gap-4 pt-4 border-t border-[#2D2926]/10">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10  bg-[#7D8471]/15 text-[#7D8471] flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -113,11 +113,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
 
           {/* Right Column: Interactive Inquiry Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="glass p-8 sm:p-10 rounded-3xl border border-[#2D2926]/10 bg-white shadow-sm">
+            <div className="glass p-8 sm:p-10  border border-[#2D2926]/10 bg-white shadow-sm">
               
               {submitted ? (
                 <div className="py-12 text-center space-y-4 animate-fade-in">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16  bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="font-serif text-2xl font-light text-[#2D2926]">
@@ -128,7 +128,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', phone: '', message: '' }); }}
-                    className="px-6 py-2.5 rounded-full bg-[#2D2926] text-white text-xs uppercase tracking-widest"
+                    className="px-6 py-2.5  bg-[#2D2926] text-white text-xs uppercase tracking-widest"
                   >
                     Weitere Nachricht senden
                   </button>
@@ -150,7 +150,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="z.B. Alexandra Weber"
-                        className="w-full px-4 py-3 rounded-xl border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
+                        className="w-full px-4 py-3  border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
                       />
                     </div>
 
@@ -164,7 +164,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="ihre@email.com"
-                        className="w-full px-4 py-3 rounded-xl border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
+                        className="w-full px-4 py-3  border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
                       />
                     </div>
                   </div>
@@ -178,7 +178,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+41 79 123 45 67"
-                      className="w-full px-4 py-3 rounded-xl border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
+                      className="w-full px-4 py-3  border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
                     />
                   </div>
 
@@ -192,13 +192,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Beschreiben Sie kurz Ihr Wohnprojekt oder Ihr Staging-Anliegen..."
-                      className="w-full px-4 py-3 rounded-xl border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
+                      className="w-full px-4 py-3  border border-[#2D2926]/15 bg-[#F7F5F2] text-xs text-[#2D2926] focus:outline-none focus:border-[#8A7B9B]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-full bg-[#2D2926] hover:bg-[#1A1816] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all"
+                    className="w-full py-4  bg-[#2D2926] hover:bg-[#1A1816] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all"
                   >
                     <span>{t.send}</span>
                     <Send className="w-3.5 h-3.5" />
@@ -215,3 +215,4 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang, onO
     </section>
   );
 };
+

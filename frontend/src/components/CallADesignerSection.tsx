@@ -13,8 +13,8 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
     <section id="call-a-designer" className="py-20 bg-[#2D2926] text-[#F7F5F2] relative overflow-hidden">
       
       {/* Background Subtle Organic Lighting */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7D8471]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7D8471]/15  blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5  blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -36,41 +36,12 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
               Kein monatelanges Warten, keine unkalkulierbaren Agenturkosten. In einer gezielten 60-minütigen Live-Videosession analysiert Cornelia Schmid deinen Grundriss, wählt Farbpaletten nach der 60-30-10 Regel aus und löst deine Design-Dilemmas.
             </p>
 
-            {/* Feature Bullet Points Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <Video className="w-5 h-5 text-[#7D8471] mb-2" />
-                <div className="text-xs uppercase tracking-widest font-bold text-white">Live 1:1 Video-Call</div>
-                <div className="text-xs text-[#DCD7D0] mt-1 font-light">Grundriss-Analyse & Raumbegehung direkt per Smartphone/Kamera.</div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <Sparkles className="w-5 h-5 text-[#7D8471] mb-2" />
-                <div className="text-xs uppercase tracking-widest font-bold text-white">Feng Shui & Farbdramaturgie</div>
-                <div className="text-xs text-[#DCD7D0] mt-1 font-light">Exakte 60-30-10 Farbcode Empfehlung & Energiefluss Korrektur.</div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <FileText className="w-5 h-5 text-[#7D8471] mb-2" />
-                <div className="text-xs uppercase tracking-widest font-bold text-white">Actionable Summary PDF</div>
-                <div className="text-xs text-[#DCD7D0] mt-1 font-light">Nach dem Call erhältst du ein kompaktes Dokument mit Shopping-Links.</div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <ShieldCheck className="w-5 h-5 text-[#7D8471] mb-2" />
-                <div className="text-xs uppercase tracking-widest font-bold text-white">Zufriedenheitsgarantie</div>
-                <div className="text-xs text-[#DCD7D0] mt-1 font-light">Solltest du keine wertvollen Impulse erhalten, erstatten wir das Honorar.</div>
-              </div>
-
-            </div>
-
           </div>
 
           {/* Right Card Column (5 cols) */}
-          <div className="lg:col-span-5 bg-[#F7F5F2] text-[#2D2926] rounded-3xl p-8 shadow-2xl border border-white/20 relative">
+          <div className="lg:col-span-5 bg-[#F7F5F2] text-[#2D2926]  p-8 shadow-2xl border border-white/20 relative">
             
-            <div className="absolute -top-3 right-6 px-3.5 py-0.5 rounded-full bg-[#7D8471] text-white text-[10px] uppercase tracking-widest font-bold shadow-sm">
+            <div className="absolute -top-3 right-6 px-3.5 py-0.5  bg-[#7D8471] text-white text-[10px] uppercase tracking-widest font-bold shadow-sm">
               Empfohlenes Express-Format
             </div>
 
@@ -98,7 +69,7 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
 
             <button
               onClick={onOpenBooking}
-              className="w-full py-4 px-6 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-sm hover:shadow transition-all group"
+              className="w-full py-4 px-6  bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-sm hover:shadow transition-all group"
             >
               <PhoneCall className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
               <span>Jetzt Wunschtermin buchen</span>
@@ -118,3 +89,4 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
     </section>
   );
 };
+

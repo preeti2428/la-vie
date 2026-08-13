@@ -103,14 +103,14 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
       {!isOpen && (
         <button
           onClick={onToggle}
-          className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[#7D8471] text-white shadow-2xl hover:scale-105 transition-all duration-300 border border-[#2D2926]/10 flex items-center gap-3 group"
+          className="fixed bottom-6 right-6 z-50 p-2.5 px-4 rounded-full bg-[#7D8471]/90 backdrop-blur-md text-white shadow-2xl hover:scale-105 transition-all duration-300 border border-[#2D2926]/10 flex items-center gap-2.5 group"
           title="LA VIE Assistant öffnen"
         >
           <div className="relative">
-            <Bot className="w-6 h-6 text-white group-hover:rotate-12 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#7D8471]" />
+            <Bot className="w-5 h-5 text-white group-hover:rotate-12 transition-transform" />
+            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-[1.5px] border-[#7D8471]" />
           </div>
-          <span className="hidden sm:inline text-xs font-medium uppercase tracking-widest pr-1">
+          <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest pr-1">
             LA VIE Assistant
           </span>
         </button>
@@ -118,14 +118,14 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
 
       {/* Floating Chat Modal Box */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-full max-w-md bg-white rounded-3xl shadow-2xl border border-[#2D2926]/10 flex flex-col h-[560px] overflow-hidden animate-slide-up">
+        <div className="fixed bottom-6 right-6 z-50 w-full max-w-md bg-white  shadow-2xl border border-[#2D2926]/10 flex flex-col h-[560px] overflow-hidden animate-slide-up">
           
           {/* Header */}
           <div className="bg-[#2D2926] text-[#F7F5F2] p-4 flex items-center justify-between border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="relative w-9 h-9 rounded-full bg-[#7D8471] border border-white/20 flex items-center justify-center font-serif text-sm font-light text-white">
+              <div className="relative w-9 h-9  bg-[#7D8471] border border-white/20 flex items-center justify-center font-serif text-sm font-light text-white">
                 LV
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#2D2926]" />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500  border-2 border-[#2D2926]" />
               </div>
               <div>
                 <div className="font-serif text-sm font-light tracking-wide flex items-center gap-1.5">
@@ -139,7 +139,7 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={onOpenBooking}
-                className="px-2.5 py-1 rounded-full bg-[#7D8471] hover:bg-[#6C7360] text-white text-[10px] font-medium uppercase tracking-wider flex items-center gap-1"
+                className="px-2.5 py-1  bg-[#7D8471] hover:bg-[#6C7360] text-white text-[10px] font-medium uppercase tracking-wider flex items-center gap-1"
               >
                 <PhoneCall className="w-3 h-3" />
                 <span>Call €199</span>
@@ -147,7 +147,7 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
 
               <button
                 onClick={onToggle}
-                className="p-1.5 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5  text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -162,10 +162,10 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
                 className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
-                  className={`max-w-[85%] p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
+                  className={`max-w-[85%] p-3.5  text-xs sm:text-sm leading-relaxed shadow-sm ${
                     msg.sender === 'user'
-                      ? 'bg-[#2D2926] text-[#F7F5F2] rounded-br-none font-light'
-                      : 'bg-white text-[#2D2926] border border-[#2D2926]/10 rounded-bl-none font-light'
+                      ? 'bg-[#2D2926] text-[#F7F5F2]  font-light'
+                      : 'bg-white text-[#2D2926] border border-[#2D2926]/10  font-light'
                   }`}
                 >
                   <p className="whitespace-pre-line">{msg.text}</p>
@@ -182,7 +182,7 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
                       <button
                         key={i}
                         onClick={() => handleSendMessage(opt.action)}
-                        className="px-3 py-1.5 rounded-full bg-white hover:bg-[#7D8471] hover:text-white text-[#2D2926] text-xs font-medium border border-[#2D2926]/10 shadow-sm transition-all"
+                        className="px-3 py-1.5  bg-white hover:bg-[#7D8471] hover:text-white text-[#2D2926] text-xs font-medium border border-[#2D2926]/10 shadow-sm transition-all"
                       >
                         {opt.label}
                       </button>
@@ -193,7 +193,7 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
             ))}
 
             {isLoading && (
-              <div className="flex items-center gap-2 text-xs text-[#2D2926]/70 bg-white p-3 rounded-2xl w-max border border-[#2D2926]/10 font-light">
+              <div className="flex items-center gap-2 text-xs text-[#2D2926]/70 bg-white p-3  w-max border border-[#2D2926]/10 font-light">
                 <Sparkles className="w-4 h-4 text-[#7D8471] animate-spin" />
                 <span>LA VIE Assistant antwortet...</span>
               </div>
@@ -210,13 +210,13 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
               onChange={(e) => setInputMsg(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Schreibe eine Nachricht..."
-              className="flex-1 px-4 py-2.5 rounded-full bg-[#F7F5F2] border border-[#2D2926]/10 text-xs sm:text-sm text-[#2D2926] focus:outline-none focus:ring-2 focus:ring-[#7D8471]"
+              className="flex-1 px-4 py-2.5  bg-[#F7F5F2] border border-[#2D2926]/10 text-xs sm:text-sm text-[#2D2926] focus:outline-none focus:ring-2 focus:ring-[#7D8471]"
             />
 
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputMsg.trim() || isLoading}
-              className="p-3 rounded-full bg-[#7D8471] text-white hover:bg-[#6C7360] disabled:opacity-50 transition-colors shadow-sm"
+              className="p-3  bg-[#7D8471] text-white hover:bg-[#6C7360] disabled:opacity-50 transition-colors shadow-sm"
             >
               <Send className="w-4 h-4" />
             </button>
@@ -227,3 +227,4 @@ export const AIChatbotWidget: React.FC<AIChatbotWidgetProps> = ({
     </>
   );
 };
+

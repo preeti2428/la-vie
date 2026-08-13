@@ -4,6 +4,13 @@ import path from "path";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 import Replicate from "replicate";
+import fs from "fs";
+import multer from "multer";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 async function startServer() {
   const app = express();
@@ -11,6 +18,19 @@ async function startServer() {
 
   app.use(cors());
   app.use(express.json({ limit: '50mb' }));
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+  const upload = multer({ dest: path.join(__dirname, 'uploads/') });
+
+  const dataDir = path.join(__dirname, 'data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+
+  const brandingFile = path.join(dataDir, 'branding.json');
+  const bookingsFile = path.join(dataDir, 'bookings.json');
+  const reelsFile = path.join(dataDir, 'reels.json');
+  const portfolioFile = path.join(dataDir, 'portfolio.json');
 
   // Initialize Gemini Client
   const getGeminiClient = () => {
@@ -33,6 +53,69 @@ async function startServer() {
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", app: "LA VIE Academy 3D Digital Showroom" });
   });
+
+  // Global Settings API
+  app.post("/api/upload", upload.single('file'), (req, res) => {
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+    const ext = path.extname(req.file.originalname);
+    const newFileName = `${req.file.filename}${ext}`;
+    const newPath = path.join(__dirname, 'uploads', newFileName);
+    fs.renameSync(req.file.path, newPath);
+    res.json({ url: `http://localhost:${PORT}/uploads/${newFileName}` });
+  });
+
+  app.get("/api/settings/branding", (req, res) => {
+    if (fs.existsSync(brandingFile)) {
+      res.json(JSON.parse(fs.readFileSync(brandingFile, 'utf8')));
+    } else {
+      res.json({});
+    }
+  });
+
+  app.post("/api/settings/branding", (req, res) => {
+    fs.writeFileSync(brandingFile, JSON.stringify(req.body, null, 2));
+    res.json({ status: "saved" });
+  });
+
+  app.get("/api/bookings", (req, res) => {
+    if (fs.existsSync(bookingsFile)) {
+      res.json(JSON.parse(fs.readFileSync(bookingsFile, 'utf8')));
+    } else {
+      res.json([]);
+    }
+  });
+
+  app.post("/api/bookings", (req, res) => {
+    fs.writeFileSync(bookingsFile, JSON.stringify(req.body, null, 2));
+    res.json({ status: "saved" });
+  });
+
+  app.get("/api/reels", (req, res) => {
+    if (fs.existsSync(reelsFile)) {
+      res.json(JSON.parse(fs.readFileSync(reelsFile, 'utf8')));
+    } else {
+      res.json([]);
+    }
+  });
+
+  app.post("/api/reels", (req, res) => {
+    fs.writeFileSync(reelsFile, JSON.stringify(req.body, null, 2));
+    res.json({ status: "saved" });
+  });
+
+  app.get("/api/portfolio", (req, res) => {
+    if (fs.existsSync(portfolioFile)) {
+      res.json(JSON.parse(fs.readFileSync(portfolioFile, 'utf8')));
+    } else {
+      res.json([]);
+    }
+  });
+
+  app.post("/api/portfolio", (req, res) => {
+    fs.writeFileSync(portfolioFile, JSON.stringify(req.body, null, 2));
+    res.json({ status: "saved" });
+  });
+
 
   // AI Chatbot API Endpoint for LA VIE Assistant
   app.post("/api/chat", async (req, res) => {
