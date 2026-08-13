@@ -323,6 +323,7 @@ export const AdminBookingManager: React.FC<AdminBookingManagerProps> = ({ isOpen
   const heroFileInputRef = useRef<HTMLInputElement>(null);
   const aboutFileInputRef = useRef<HTMLInputElement>(null);
   const blogFileInputRef = useRef<HTMLInputElement>(null);
+  const specialFileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -1004,10 +1005,10 @@ export const AdminBookingManager: React.FC<AdminBookingManagerProps> = ({ isOpen
               isLogo={true}
             />
 
-            {/* SECTION 2: CORNELIA SCHMID PROFILE PHOTOS (3 PLACEHOLDERS) */}
+            {/* SECTION 2: CORNELIA SCHMID PROFILE PHOTOS (4 PLACEHOLDERS) */}
             <div className="space-y-6">
               <div>
-                <h4 className="font-serif text-xl text-[#2D2926] font-light">2. Cornelia Schmid Profilfotos (3 Platzhalter &amp; Bildeditor)</h4>
+                <h4 className="font-serif text-xl text-[#2D2926] font-light">2. Bilder & Profilfotos (4 Platzhalter &amp; Bildeditor)</h4>
                 <p className="text-xs text-[#2D2926]/60">Laden Sie hier direkt Ihre eigenen hochauflösenden Porträtfotos hoch und passen Sie Zoom, Bildausschnitt und Position individuell an.</p>
               </div>
 
@@ -1054,6 +1055,21 @@ export const AdminBookingManager: React.FC<AdminBookingManagerProps> = ({ isOpen
                 onUrlChange={(url) => setBranding(prev => ({ ...prev, photoBlog: url }))}
                 onTransformChange={(tf) => setBranding(prev => ({ ...prev, photoBlogTransform: tf }))}
                 presets={PRESET_PHOTOS.blog}
+              />
+
+              {/* PHOTO 4: WHAT MAKES US SPECIAL */}
+              <ImageControlBox
+                badgeText="Platzhalter 4"
+                badgeBg="bg-[#2D2926]"
+                title="Was uns BESONDERS macht"
+                description="Wird im Abschnitt 'What makes us SPECIAL' als Collage oder Hero-Bild verwendet."
+                imageUrl={branding.photoSpecial}
+                transform={branding.photoSpecialTransform}
+                fileInputRef={specialFileInputRef}
+                onFileUpload={(e) => handleFileUpload(e, 'photoSpecial')}
+                onUrlChange={(url) => setBranding(prev => ({ ...prev, photoSpecial: url }))}
+                onTransformChange={(tf) => setBranding(prev => ({ ...prev, photoSpecialTransform: tf }))}
+                presets={PRESET_PHOTOS.special}
               />
 
             </div>

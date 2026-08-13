@@ -18,6 +18,8 @@ export interface BrandingSettings {
   photoAboutTransform?: ImageTransform;
   photoBlog: string;
   photoBlogTransform?: ImageTransform;
+  photoSpecial: string;
+  photoSpecialTransform?: ImageTransform;
 }
 
 export const DEFAULT_TRANSFORM: ImageTransform = {
@@ -47,6 +49,8 @@ export const DEFAULT_BRANDING: BrandingSettings = {
   photoAboutTransform: { ...DEFAULT_TRANSFORM },
   photoBlog: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1000&q=80',
   photoBlogTransform: { ...DEFAULT_TRANSFORM },
+  photoSpecial: '/assets/game/what%20makes%20special.png',
+  photoSpecialTransform: { ...DEFAULT_TRANSFORM },
 };
 
 export const getImageStyle = (transform?: ImageTransform): React.CSSProperties => {
@@ -77,6 +81,11 @@ export const PRESET_PHOTOS = {
     { name: 'Creative Studio Portrait', url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80' },
     { name: 'Warm Lighting Editorial', url: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80' },
   ],
+  special: [
+    { name: 'Special Collage (Default)', url: '/assets/game/what%20makes%20special.png' },
+    { name: 'Minimalist Office', url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80' },
+    { name: 'Luxury Interior', url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80' },
+  ],
 };
 
 let globalBrandingCache: BrandingSettings | null = null;
@@ -96,6 +105,7 @@ export const getBrandingSettings = (): BrandingSettings => {
         photoHeroTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoHeroTransform || {}) },
         photoAboutTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoAboutTransform || {}) },
         photoBlogTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoBlogTransform || {}) },
+        photoSpecialTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoSpecialTransform || {}) },
       };
     }
   } catch (e) {
@@ -117,6 +127,7 @@ export const syncGlobalBranding = async () => {
           photoHeroTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoHeroTransform || {}) },
           photoAboutTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoAboutTransform || {}) },
           photoBlogTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoBlogTransform || {}) },
+          photoSpecialTransform: { ...DEFAULT_TRANSFORM, ...(parsed.photoSpecialTransform || {}) },
         };
         // fallback to localStorage cache
         localStorage.setItem('lavie_branding_settings', JSON.stringify(globalBrandingCache));

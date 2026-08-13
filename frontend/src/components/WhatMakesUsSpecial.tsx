@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Language } from '../types';
+import { getBrandingSettings, getImageStyle, ImageTransform } from '../lib/brandingStore';
 
 interface WhatMakesUsSpecialProps {
   currentLang: Language;
@@ -7,6 +8,20 @@ interface WhatMakesUsSpecialProps {
 }
 
 export const WhatMakesUsSpecial: React.FC<WhatMakesUsSpecialProps> = ({ currentLang, onOpenBooking }) => {
+  const [photoSpecial, setPhotoSpecial] = useState<string>('');
+  const [photoTransform, setPhotoTransform] = useState<ImageTransform | undefined>(undefined);
+
+  useEffect(() => {
+    const update = () => {
+      const b = getBrandingSettings();
+      setPhotoSpecial(b.photoSpecial || '/assets/game/what%20makes%20special.png');
+      setPhotoTransform(b.photoSpecialTransform);
+    };
+    update();
+    window.addEventListener('lavie_branding_updated', update);
+    return () => window.removeEventListener('lavie_branding_updated', update);
+  }, []);
+
   const t = {
     de: {
       title1: "Was uns",
@@ -75,11 +90,12 @@ export const WhatMakesUsSpecial: React.FC<WhatMakesUsSpecialProps> = ({ currentL
             <div className="absolute top-12 bottom-12 lg:top-20 lg:bottom-20 left-[10%] lg:left-[20%] right-[-50vw] bg-[#000000] z-0" />
             
             {/* Image container fully inside the black box */}
-            <div className="relative z-10 w-[85%] sm:w-[75%] h-[90%] flex items-center justify-center">
+            <div className="relative z-10 w-[85%] sm:w-[75%] h-[90%] flex items-center justify-center overflow-hidden">
               <img 
-                src="/assets/game/what%20makes%20special.png"
-                alt="Was uns BESONDERS macht"
-                className="w-full h-full object-contain"
+                src={photoSpecial}
+                alt={t.altText}
+                style={getImageStyle(photoTransform)}
+                className="w-full h-full"
               />
             </div>
           </div>
