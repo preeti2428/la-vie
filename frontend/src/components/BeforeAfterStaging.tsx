@@ -1,12 +1,15 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
-import { Sliders, Sparkles, CheckCircle, ArrowRight, Shield, Maximize2, Moon, Sun } from 'lucide-react';
+import { Sliders, Sparkles, CheckCircle, ArrowRight } from 'lucide-react';
+import { Language } from '../types';
+import { translations } from '../translations';
 
 interface BeforeAfterStagingProps {
+  currentLang: Language;
   onOpenBooking: () => void;
 }
 
-export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBooking }) => {
+export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ currentLang, onOpenBooking }) => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0);
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -15,6 +18,19 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
 
   const containerRef = useRef<HTMLDivElement>(null);
   const currentItem = PORTFOLIO_ITEMS[selectedItemIndex];
+
+  const t = translations[currentLang].beforeAfter;
+  
+  const localT = {
+    de: {
+      dragSlider: "Schieberegler bewegen",
+      bookCall: "Call a Designer buchen (€199)"
+    },
+    en: {
+      dragSlider: "Drag slider",
+      bookCall: "Book Call a Designer (€199)"
+    }
+  }[currentLang];
 
   const handleMove = useCallback(
     (clientX: number) => {
@@ -48,13 +64,13 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-2.5 py-0.5 mb-3 inline-block font-medium">
-            Virtual Staging & Before/After
+            {t.tag}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light tracking-tight">
-            Virtual Staging & Feng Shui Transformation
+            {t.title}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[#2D2926]/75">
-            Ziehe den Schieberegler, um zu sehen, wie leere oder unruhige Räume durch Cornelia Schmids Raumdramaturgie in harmonische Wohnträume verwandelt werden.
+            {t.subtitle}
           </p>
         </div>
 
@@ -99,7 +115,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               <div className="absolute inset-0 w-full h-full">
                 <img
                   src={currentItem.afterImage}
-                  alt={`${currentItem.title} - Nachher Staging`}
+                  alt={`${currentItem.title} - After`}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 {isNightMode && (
@@ -111,7 +127,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               </div>
               <div className="absolute top-4 right-4 z-20 glass px-3 py-1.5  text-[#2D2926] text-xs font-medium uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#2D2926]/10">
                 <Sparkles className="w-3.5 h-3.5 text-[#7D8471]" />
-                <span>AFTER: Living Room Harmonization</span>
+                <span>{t.after}</span>
               </div>
 
               {/* "BEFORE" Image (Clipped Overlay) */}
@@ -121,7 +137,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               >
                 <img
                   src={currentItem.beforeImage}
-                  alt={`${currentItem.title} - Vorher Zustand`}
+                  alt={`${currentItem.title} - Before`}
                   className="absolute inset-0 w-full h-full object-cover max-w-none grayscale brightness-75"
                   style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }}
                 />
@@ -132,7 +148,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                   </>
                 )}
                 <div className="absolute top-4 left-4 z-20 glass-dark text-white px-3 py-1.5  text-xs font-medium uppercase tracking-wider shadow-sm border border-white/20">
-                  <span>BEFORE: Raw Structure</span>
+                  <span>{t.before}</span>
                 </div>
               </div>
 
@@ -175,18 +191,16 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
             <div className="mt-3 px-2 flex items-center justify-between text-[11px] text-[#2D2926]/60">
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2  bg-[#7D8471]" />
-                Schieberegler bewegen
+                {localT.dragSlider}
               </span>
 
               <button
                 onClick={() => setShowHotspotsOverlay(!showHotspotsOverlay)}
                 className="px-3 py-1  bg-[#E6E2DC] hover:bg-[#DCD7D0] text-[#2D2926] font-medium transition-colors uppercase text-[10px] tracking-wider"
               >
-                {showHotspotsOverlay ? 'Hotspots ausblenden' : 'Feng Shui Hotspots anzeigen'}
+                {showHotspotsOverlay ? t.hotspotsToggleHide : t.hotspotsToggleShow}
               </button>
             </div>
-
-
 
           </div>
 
@@ -212,7 +226,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
               {/* Key Transformation Factors */}
               <div className="space-y-3 mb-6">
                 <h4 className="text-[10px] uppercase tracking-widest font-bold text-[#2D2926]">
-                  Schlüsselaspekte der Transformation:
+                  {t.keyChangesTitle}
                 </h4>
                 {currentItem.keyChanges.map((change, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-xs text-[#2D2926]/80">
@@ -231,7 +245,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                 onClick={onOpenBooking}
                 className="w-full py-3 px-4  bg-[#7D8471] hover:bg-[#6C7360] text-white text-xs font-medium uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all group"
               >
-                <span>Call a Designer buchen (€199)</span>
+                <span>{localT.bookCall}</span>
                 <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
