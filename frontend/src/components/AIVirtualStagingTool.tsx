@@ -1,13 +1,15 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { UploadCloud, Wand2, Image as ImageIcon, Sliders, CheckCircle2, X, Camera } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
+import { Language } from '../types';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  currentLang: Language;
 }
 
-export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose }) => {
+export const AIVirtualStagingTool: React.FC<Props> = ({ isOpen, onClose, currentLang }) => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [roomType, setRoomType] = useState<string>('Living Room');
   const [designStyle, setDesignStyle] = useState<string>('Modern Feng Shui');

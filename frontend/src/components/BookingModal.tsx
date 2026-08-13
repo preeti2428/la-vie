@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { CONSULTATION_TYPES } from '../data/mockData';
 import { X, Calendar, Clock, Check, Upload, PhoneCall, ArrowRight, ExternalLink } from 'lucide-react';
+import { Language } from '../types';
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  currentLang: Language;
 }
 
-export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
+export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, currentLang }) => {
   const [activeTab, setActiveTab] = useState<'calendly' | 'direct'>('calendly');
   const [step, setStep] = useState<number>(1);
   const [selectedService, setSelectedService] = useState<string>('call_a_designer');
