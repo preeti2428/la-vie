@@ -1,13 +1,44 @@
 import React from 'react';
 import { PhoneCall, Check, Clock, Video, FileText, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
 import { CONSULTATION_TYPES } from '../data/mockData';
+import { Language } from '../types';
 
 interface CallADesignerSectionProps {
+  currentLang: Language;
   onOpenBooking: () => void;
 }
 
-export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOpenBooking }) => {
+export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ currentLang, onOpenBooking }) => {
   const callADesignerService = CONSULTATION_TYPES[0];
+
+  const t = {
+    de: {
+      tag: "Call a Designer • 1 Hour Consultation",
+      title1: "1 Stunde mit Cornelia Schmid.",
+      title2: "Sofortige Klarheit für deine Räume.",
+      desc: "Kein monatelanges Warten, keine unkalkulierbaren Agenturkosten. In einer gezielten 60-minütigen Live-Videosession analysiert Cornelia Schmid deinen Grundriss, wählt Farbpaletten nach der 60-30-10 Regel aus und löst deine Design-Dilemmas.",
+      badge: "Empfohlenes Express-Format",
+      bookingTag: "Direct Booking • Cornelia Schmid",
+      sessionTitle: "Call a Designer Session",
+      sessionSubtitle: "Personalized Consultation",
+      duration: "/ 60 Min 1:1 Live",
+      bookBtn: "Jetzt Wunschtermin buchen",
+      availability: "Direkte Kalender-Synchronisation • Termine verfügbar"
+    },
+    en: {
+      tag: "Call a Designer • 1 Hour Consultation",
+      title1: "1 Hour with Cornelia Schmid.",
+      title2: "Immediate Clarity for Your Spaces.",
+      desc: "No waiting for months, no incalculable agency costs. In a targeted 60-minute live video session, Cornelia Schmid analyzes your floor plan, selects color palettes according to the 60-30-10 rule, and solves your design dilemmas.",
+      badge: "Recommended Express Format",
+      bookingTag: "Direct Booking • Cornelia Schmid",
+      sessionTitle: "Call a Designer Session",
+      sessionSubtitle: "Personalized Consultation",
+      duration: "/ 60 Min 1:1 Live",
+      bookBtn: "Book Your Slot Now",
+      availability: "Direct Calendar Sync • Appointments available"
+    }
+  }[currentLang];
 
   return (
     <section id="call-a-designer" className="py-20 bg-[#23201D] text-[#F7F5F2] relative overflow-hidden">
@@ -27,16 +58,16 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
           <div className="lg:col-span-7">
             
             <span className="text-[10px] uppercase tracking-[0.2em] bg-[#7D8471] text-white px-2.5 py-0.5 mb-4 inline-block font-medium">
-              Call a Designer • 1 Hour Consultation
+              {t.tag}
             </span>
 
             <h2 className="font-serif text-3xl sm:text-5xl font-light leading-tight text-white mb-6 tracking-tight">
-              1 Stunde mit Cornelia Schmid. <br />
-              <span className="italic opacity-85 text-[#E6E2DC]">Sofortige Klarheit für deine Räume.</span>
+              {t.title1} <br />
+              <span className="italic opacity-85 text-[#E6E2DC]">{t.title2}</span>
             </h2>
 
             <p className="text-sm sm:text-base text-[#DCD7D0] leading-relaxed mb-8 font-light">
-              Kein monatelanges Warten, keine unkalkulierbaren Agenturkosten. In einer gezielten 60-minütigen Live-Videosession analysiert Cornelia Schmid deinen Grundriss, wählt Farbpaletten nach der 60-30-10 Regel aus und löst deine Design-Dilemmas.
+              {t.desc}
             </p>
 
           </div>
@@ -45,20 +76,20 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
           <div className="lg:col-span-5 bg-[#F7F5F2] text-[#2D2926]  p-8 shadow-2xl border border-white/20 relative">
             
             <div className="absolute -top-3 right-6 px-3.5 py-0.5  bg-[#7D8471] text-white text-[10px] uppercase tracking-widest font-bold shadow-sm">
-              Empfohlenes Express-Format
+              {t.badge}
             </div>
 
             <div className="text-[10px] uppercase tracking-widest font-bold text-[#7D8471] mb-1">
-              Direct Booking • Cornelia Schmid
+              {t.bookingTag}
             </div>
 
             <h3 className="font-serif text-2xl font-light mb-2 text-[#2D2926]">
-              Call a Designer Session
+              {t.sessionTitle}
             </h3>
 
             <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[#2D2926]/10">
-              <span className="font-serif text-2xl font-light text-[#2D2926]">Personalized Consultation</span>
-              <span className="text-xs text-[#2D2926]/60 uppercase tracking-widest">/ 60 Min 1:1 Live</span>
+              <span className="font-serif text-2xl font-light text-[#2D2926]">{t.sessionSubtitle}</span>
+              <span className="text-xs text-[#2D2926]/60 uppercase tracking-widest">{t.duration}</span>
             </div>
 
             <div className="space-y-3 mb-8">
@@ -75,13 +106,13 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
               className="w-full py-4 px-6  bg-[#7D8471] hover:bg-[#6C7360] text-white font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-sm hover:shadow transition-all group"
             >
               <PhoneCall className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
-              <span>Jetzt Wunschtermin buchen</span>
+              <span>{t.bookBtn}</span>
               <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
             </button>
 
             <div className="mt-4 text-center text-[11px] text-[#2D2926]/60 flex items-center justify-center gap-1.5">
               <Clock className="w-3.5 h-3.5" />
-              <span>Direkte Kalender-Synchronisation • Termine verfügbar</span>
+              <span>{t.availability}</span>
             </div>
 
           </div>

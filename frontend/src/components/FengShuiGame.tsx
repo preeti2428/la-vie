@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { DoorOpen, LayoutGrid, CheckCircle2, AlertCircle, Lightbulb, Maximize2, Camera as CameraIcon, UploadCloud } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { FengShuiGame3DCanvas } from './FengShuiGame3DCanvas';
+import { Language } from '../types';
 
 export type ItemType = 'bed' | 'desk' | 'plant' | 'sofa' | 'rug' | 'custom';
 
@@ -65,13 +66,77 @@ const RealFurniture = ({ type, isDragging, customImage }: { type: ItemType, isDr
   );
 };
 
-export const FengShuiGame: React.FC = () => {
+export const FengShuiGame: React.FC<{currentLang: Language}> = ({currentLang}) => {
   const [placedItems, setPlacedItems] = useState<PlacedItem[]>([]);
   const [doorPosition, setDoorPosition] = useState({ x: 10, y: 100 }); 
   const [windowPosition, setWindowPosition] = useState({ x: 80, y: 0 }); 
   
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
-  const [score, setScore] = useState<{ points: number; hints: string[] }>({ points: 0, hints: ["Drag furniture into the room to start!"] });
+  
+  const t = {
+    de: {
+      hintStart: "Ziehe Möbel in den Raum, um zu beginnen!",
+      hintEmpty: "Ziehe Bett und Schreibtisch in den Raum, um dein Feng Shui zu prüfen.",
+      hintBedRotate: "Dein Bett ist in der Kommandoposition, aber drehe es für besseren Energiefluss.",
+      hintBedCritical: "KRITISCH: Dein Bett ist in direkter Linie mit der Tür! Schiebe es diagonal weg.",
+      hintBedMove: "Schiebe dein Bett weiter von der Tür weg, um die echte Kommandoposition zu erreichen.",
+      hintNeedBed: "Du brauchst ein Bett, um das Schlafzimmer-Feng-Shui richtig zu bewerten.",
+      hintDeskFloating: "Dein Schreibtisch schwebt im Raum. Stelle ihn an eine Wand für festen Halt.",
+      hintNeedDesk: "Füge einen Schreibtisch hinzu, um deine Karriere-Energie zu bewerten.",
+      hintPerfect: "Perfekt! Optimales Feng Shui erreicht.",
+      badge: "Ultimative Realismus-Funktionen",
+      title1: "Erweiterter",
+      title2: "Raumplaner",
+      desc: "Du kannst jetzt Tür und Fenster überall hinziehen! Klicke auf Elemente, um sie in der Größe zu ändern, oder doppelklicke zum Drehen.",
+      energyScore: "Energie-Score",
+      hintsTitle: "Berater-Tipps",
+      resize: "Skalieren:",
+      customPhoto: "Eigenes Foto",
+      theme: "Raum-Thema",
+      themeLight: "Helles Eichenholz",
+      themeDark: "Dunkles Walnussholz",
+      themeConcrete: "Moderner Beton",
+      themeCarpet: "Weicher Teppich",
+      clear: "Raum leeren",
+      cancel: "Abbrechen",
+      takePhoto: "Foto aufnehmen",
+      door: "EINGANG",
+      window: "FENSTER",
+      cameraError: "Kamera konnte nicht gestartet werden."
+    },
+    en: {
+      hintStart: "Drag furniture into the room to start!",
+      hintEmpty: "Drag the bed and desk into the room to start checking your Feng Shui.",
+      hintBedRotate: "Your bed is in the Command Position, but try rotating it for better energy flow.",
+      hintBedCritical: "CRITICAL: Your bed is in direct line with the door! Move it diagonally away.",
+      hintBedMove: "Move your bed further from the door to reach the true Command Position.",
+      hintNeedBed: "You need a Bed to properly evaluate bedroom Feng Shui.",
+      hintDeskFloating: "Your desk is floating in the room. Place it near a wall for solid backing.",
+      hintNeedDesk: "Add a Desk to evaluate your career energy.",
+      hintPerfect: "Perfect! Optimal Feng Shui achieved.",
+      badge: "Ultimate Realism Features",
+      title1: "Advanced",
+      title2: "Room Planner",
+      desc: "You can now drag the Door and Window anywhere! Click items to resize or double-click to rotate.",
+      energyScore: "Energy Score",
+      hintsTitle: "Consultant Hints",
+      resize: "Resize:",
+      customPhoto: "Custom Photo",
+      theme: "Room Theme",
+      themeLight: "Light Oak Wood",
+      themeDark: "Dark Walnut",
+      themeConcrete: "Modern Concrete",
+      themeCarpet: "Soft Carpet",
+      clear: "Clear Room",
+      cancel: "Cancel",
+      takePhoto: "Take Photo",
+      door: "ENTRANCE",
+      window: "WINDOW",
+      cameraError: "Could not access camera."
+    }
+  }[currentLang];
+
+  const [score, setScore] = useState<{ points: number; hints: string[] }>({ points: 0, hints: [t.hintStart] });
   const [hasCelebrated, setHasCelebrated] = useState(false);
   const roomRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +156,7 @@ export const FengShuiGame: React.FC = () => {
       setIsCameraActive(true);
     } catch (err) {
       console.error("Error accessing camera:", err);
-      alert("Could not access camera.");
+      alert(t.cameraError);
     }
   };
 
@@ -144,7 +209,7 @@ export const FengShuiGame: React.FC = () => {
     const hints: string[] = [];
     
     if (placedItems.length === 0) {
-      setScore({ points: 0, hints: ["Drag the bed and desk into the room to start checking your Feng Shui."] });
+      setScore({ points: 0, hints: [t.hintEmpty] });
       setHasCelebrated(false);
       return;
     }
@@ -166,16 +231,16 @@ export const FengShuiGame: React.FC = () => {
       if (isDiagonal) {
         points += 30;
         if (bed.rotation === 0 || bed.rotation === 270) points += 10;
-        else hints.push("Your bed is in the Command Position, but try rotating it for better energy flow.");
+        else hints.push(t.hintBedRotate);
       } else if (inLineOfDoor) {
         points -= 20;
-        hints.push("CRITICAL: Your bed is in direct line with the door! Move it diagonally away.");
+        hints.push(t.hintBedCritical);
       } else {
         points += 10;
-        hints.push("Move your bed further from the door to reach the true Command Position.");
+        hints.push(t.hintBedMove);
       }
     } else {
-      hints.push("You need a Bed to properly evaluate bedroom Feng Shui.");
+      hints.push(t.hintNeedBed);
     }
 
     if (desk) {
@@ -185,10 +250,10 @@ export const FengShuiGame: React.FC = () => {
         if (desk.rotation === 0 || desk.rotation === 180) points += 5;
       } else {
         points += 10;
-        hints.push("Your desk is floating in the room. Place it near a wall for solid backing.");
+        hints.push(t.hintDeskFloating);
       }
     } else {
-      hints.push("Add a Desk to evaluate your career energy.");
+      hints.push(t.hintNeedDesk);
     }
 
     if (sofa) points += 15;
@@ -196,7 +261,7 @@ export const FengShuiGame: React.FC = () => {
     if (rug) points += 5;
 
     const finalPoints = Math.max(0, Math.min(100, points));
-    if (finalPoints === 100) hints.push("Perfect! Optimal Feng Shui achieved.");
+    if (finalPoints === 100) hints.push(t.hintPerfect);
 
     setScore({ points: finalPoints, hints });
 
@@ -204,7 +269,7 @@ export const FengShuiGame: React.FC = () => {
       confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#7D8471', '#D1CCC3', '#2D2926', '#E5E0D8'] });
       setHasCelebrated(true);
     }
-  }, [placedItems, doorPosition, windowPosition, hasCelebrated]);
+  }, [placedItems, doorPosition, windowPosition, hasCelebrated, currentLang]);
 
   const handleDragStart = (e: React.DragEvent, type: string) => {
     e.dataTransfer.setData('text/plain', type);
@@ -286,13 +351,13 @@ export const FengShuiGame: React.FC = () => {
         
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-[9px] uppercase tracking-[0.2em] bg-[#2D2926] text-white px-2 py-0.5  font-medium inline-block shadow-sm mb-2">
-            Ultimate Realism Features
+            {t.badge}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#2D2926] font-light leading-tight">
-            Advanced <span className="italic text-[#7D8471]">Room Planner</span>
+            {t.title1} <span className="italic text-[#7D8471]">{t.title2}</span>
           </h2>
           <p className="mt-2 text-[#2D2926]/70 font-light text-sm">
-            You can now <strong>drag the Door and Window</strong> anywhere! Click items to resize or double-click to rotate.
+            {t.desc}
           </p>
         </div>
 
@@ -304,7 +369,7 @@ export const FengShuiGame: React.FC = () => {
             <div className="flex-1 space-y-3 flex flex-col">
               {/* Live Scorecard */}
               <div className="bg-white -mx-3 -mt-3 p-3  border-b border-[#2D2926]/5 text-center shadow-sm">
-                <span className="text-[8px] uppercase tracking-widest text-[#7D8471] font-bold">Energy Score</span>
+                <span className="text-[8px] uppercase tracking-widest text-[#7D8471] font-bold">{t.energyScore}</span>
                 <div className="flex items-center justify-center gap-1 my-0.5 transition-all duration-500">
                   <div className={`text-4xl font-serif ${score.points >= 80 ? 'text-[#7D8471]' : score.points >= 50 ? 'text-amber-600' : 'text-[#2D2926]'}`}>
                     {score.points}
@@ -317,7 +382,7 @@ export const FengShuiGame: React.FC = () => {
               <div className="bg-amber-50 border border-amber-200/50  p-2 flex-shrink-0">
                 <div className="flex items-center gap-1 mb-1.5">
                   <Lightbulb className="w-3 h-3 text-amber-600" />
-                  <span className="text-[9px] uppercase tracking-widest text-amber-800 font-bold">Consultant Hints</span>
+                  <span className="text-[9px] uppercase tracking-widest text-amber-800 font-bold">{t.hintsTitle}</span>
                 </div>
                 <ul className="space-y-1">
                   {score.hints.map((hint, i) => (
@@ -333,7 +398,7 @@ export const FengShuiGame: React.FC = () => {
                 <div className="bg-[#2D2926] text-white  p-2 animate-fade-in shadow-sm flex-shrink-0">
                   <div className="flex items-center gap-1 mb-2">
                     <Maximize2 className="w-3 h-3 text-[#7D8471]" />
-                    <span className="text-[9px] uppercase tracking-widest font-bold">Resize: {selectedItem}</span>
+                    <span className="text-[9px] uppercase tracking-widest font-bold">{t.resize} {selectedItem}</span>
                   </div>
                   <input 
                     type="range" 
@@ -372,7 +437,7 @@ export const FengShuiGame: React.FC = () => {
 
               {/* Custom Item Upload Area */}
               <div className="bg-white border border-[#2D2926]/10  p-2 shadow-sm text-center flex-shrink-0">
-                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2">Custom Photo</span>
+                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2">{t.customPhoto}</span>
                 <div className="flex gap-2 justify-center">
                    <button onClick={() => fileInputRef.current?.click()} className="p-2 bg-[#F7F5F2]  hover:bg-gray-200 transition-colors" title="Upload Photo">
                      <UploadCloud className="w-4 h-4 text-[#7D8471]" />
@@ -386,23 +451,23 @@ export const FengShuiGame: React.FC = () => {
 
               {/* Theme Picker */}
               <div className="bg-white border border-[#2D2926]/10  p-2 shadow-sm flex-shrink-0">
-                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2 text-center">Room Theme</span>
+                <span className="text-[9px] uppercase tracking-widest text-[#2D2926] font-bold block mb-2 text-center">{t.theme}</span>
                 <select 
                   value={theme}
                   onChange={(e) => setTheme(e.target.value as any)}
                   className="w-full text-xs p-1.5 border border-[#2D2926]/10  bg-[#F9F8F6] focus:outline-none focus:ring-1 focus:ring-[#7D8471]"
                 >
-                  <option value="lightWood">Light Oak Wood</option>
-                  <option value="darkWood">Dark Walnut</option>
-                  <option value="concrete">Modern Concrete</option>
-                  <option value="carpet">Soft Carpet</option>
+                  <option value="lightWood">{t.themeLight}</option>
+                  <option value="darkWood">{t.themeDark}</option>
+                  <option value="concrete">{t.themeConcrete}</option>
+                  <option value="carpet">{t.themeCarpet}</option>
                 </select>
               </div>
             </div>
             
             <div className="pt-2 mt-auto">
               <button onClick={resetGame} className="w-full py-2 bg-white border border-[#2D2926]/20 text-[#2D2926] text-[8px] uppercase tracking-widest font-bold hover:bg-gray-50  transition-colors">
-                Clear Room
+                {t.clear}
               </button>
             </div>
           </div>
@@ -427,9 +492,9 @@ export const FengShuiGame: React.FC = () => {
                 <div className="absolute inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
                   <video ref={videoRef} autoPlay playsInline className="w-full max-w-lg  shadow-2xl mb-6" />
                   <div className="flex gap-4">
-                    <button onClick={stopCamera} className="px-6 py-2 bg-white text-[#2D2926] text-xs font-bold uppercase tracking-widest ">Cancel</button>
+                    <button onClick={stopCamera} className="px-6 py-2 bg-white text-[#2D2926] text-xs font-bold uppercase tracking-widest ">{t.cancel}</button>
                     <button onClick={capturePhoto} className="px-6 py-2 bg-[#7D8471] text-white text-xs font-bold uppercase tracking-widest  flex items-center gap-2">
-                      <CameraIcon className="w-4 h-4" /> Take Photo
+                      <CameraIcon className="w-4 h-4" /> {t.takePhoto}
                     </button>
                   </div>
                 </div>
@@ -449,7 +514,7 @@ export const FengShuiGame: React.FC = () => {
                  <div className="absolute bottom-0 left-0 w-full h-full border-b-8 border-l-8 border-[#3E3A35] pointer-events-none" />
                  <div className="absolute bottom-0 left-0 w-[150%] h-[150%] border-t-2 border-r-2 border-white/40  pointer-events-none" />
                  <span className="bg-white/90 px-1.5 py-0.5 m-1  shadow text-[8px] font-bold text-gray-800 flex items-center gap-1">
-                   <DoorOpen className="w-2.5 h-2.5" /> ENTRANCE
+                   <DoorOpen className="w-2.5 h-2.5" /> {t.door}
                  </span>
               </div>
               
@@ -466,7 +531,7 @@ export const FengShuiGame: React.FC = () => {
               >
                  <div className="absolute top-0 left-0 w-full h-3 bg-blue-200/60 border-b-2 border-blue-400/40 shadow-sm pointer-events-none" />
                  <span className="bg-white/90 px-1.5 py-0.5 mt-1  shadow text-[8px] font-bold text-blue-800 flex items-center gap-1">
-                   <LayoutGrid className="w-2.5 h-2.5" /> WINDOW
+                   <LayoutGrid className="w-2.5 h-2.5" /> {t.window}
                  </span>
               </div>
 
