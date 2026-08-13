@@ -21,6 +21,9 @@ import { BookingModal } from './components/BookingModal';
 import { AdminBookingManager } from './components/AdminBookingManager';
 import { Footer } from './components/Footer';
 import { AIVirtualStagingTool } from './components/AIVirtualStagingTool';
+import { BeforeAfterStaging } from './components/BeforeAfterStaging';
+import { FengShuiQuiz } from './components/FengShuiQuiz';
+import { ShopSection } from './components/ShopSection';
 import { Language, PageView } from './types';
 import { ArrowLeft, Home, Sparkles, Box, BookOpen, Star, User, Mail, ShieldCheck } from 'lucide-react';
 import { syncGlobalBranding } from './lib/brandingStore';
@@ -242,6 +245,8 @@ export default function App() {
               </>
             )}
 
+            <BeforeAfterStaging onOpenBooking={() => setIsBookingOpen(true)} />
+
             <OurServicesSection
               currentLang={currentLang}
               onOpenBooking={() => setIsBookingOpen(true)}
@@ -251,11 +256,15 @@ export default function App() {
 
             <FengShuiGame />
 
+            <FengShuiQuiz currentLang={currentLang} />
+
             <CallADesignerSection onOpenBooking={() => setIsBookingOpen(true)} />
 
             <PortfolioGrid />
 
             <InstagramReelsGrid />
+            
+            <ShopSection currentLang={currentLang} />
 
             <ContactSection
               currentLang={currentLang}

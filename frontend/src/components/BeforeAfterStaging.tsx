@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { PORTFOLIO_ITEMS } from '../data/mockData';
-import { Sliders, Sparkles, CheckCircle, ArrowRight, Shield, Maximize2 } from 'lucide-react';
+import { Sliders, Sparkles, CheckCircle, ArrowRight, Shield, Maximize2, Moon, Sun } from 'lucide-react';
 
 interface BeforeAfterStagingProps {
   onOpenBooking: () => void;
@@ -11,6 +11,7 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [showHotspotsOverlay, setShowHotspotsOverlay] = useState<boolean>(true);
+  const [isNightMode, setIsNightMode] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const currentItem = PORTFOLIO_ITEMS[selectedItemIndex];
@@ -95,11 +96,19 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
             >
               
               {/* "AFTER" Image (Full Base) */}
-              <img
-                src={currentItem.afterImage}
-                alt={`${currentItem.title} - Nachher Staging`}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src={currentItem.afterImage}
+                  alt={`${currentItem.title} - Nachher Staging`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {isNightMode && (
+                  <>
+                    <div className="absolute inset-0 bg-[#2D2926]/40 mix-blend-multiply pointer-events-none" />
+                    <div className="absolute inset-0 bg-blue-900/20 mix-blend-color pointer-events-none" />
+                  </>
+                )}
+              </div>
               <div className="absolute top-4 right-4 z-20 glass px-3 py-1.5  text-[#2D2926] text-xs font-medium uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#2D2926]/10">
                 <Sparkles className="w-3.5 h-3.5 text-[#7D8471]" />
                 <span>AFTER: Living Room Harmonization</span>
@@ -116,6 +125,12 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                   className="absolute inset-0 w-full h-full object-cover max-w-none grayscale brightness-75"
                   style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }}
                 />
+                {isNightMode && (
+                  <>
+                    <div className="absolute inset-0 bg-[#2D2926]/40 mix-blend-multiply pointer-events-none" style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }} />
+                    <div className="absolute inset-0 bg-blue-900/20 mix-blend-color pointer-events-none" style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%' }} />
+                  </>
+                )}
                 <div className="absolute top-4 left-4 z-20 glass-dark text-white px-3 py-1.5  text-xs font-medium uppercase tracking-wider shadow-sm border border-white/20">
                   <span>BEFORE: Raw Structure</span>
                 </div>
@@ -168,6 +183,26 @@ export const BeforeAfterStaging: React.FC<BeforeAfterStagingProps> = ({ onOpenBo
                 className="px-3 py-1  bg-[#E6E2DC] hover:bg-[#DCD7D0] text-[#2D2926] font-medium transition-colors uppercase text-[10px] tracking-wider"
               >
                 {showHotspotsOverlay ? 'Hotspots ausblenden' : 'Feng Shui Hotspots anzeigen'}
+              </button>
+            </div>
+
+            {/* Day/Night Toggle Toggle */}
+            <div className="absolute bottom-4 right-4 z-40">
+              <button
+                onClick={() => setIsNightMode(!isNightMode)}
+                className="glass-dark hover:bg-[#2D2926]/90 transition-colors px-3 py-2 text-white flex items-center gap-2 shadow-sm rounded-md border border-white/20"
+              >
+                {isNightMode ? (
+                  <>
+                    <Sun className="w-4 h-4 text-[#E6E2DC]" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">Day Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-4 h-4 text-[#8A7B9B]" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">Night Mode</span>
+                  </>
+                )}
               </button>
             </div>
 

@@ -10,7 +10,10 @@ export const CallADesignerSection: React.FC<CallADesignerSectionProps> = ({ onOp
   const callADesignerService = CONSULTATION_TYPES[0];
 
   return (
-    <section id="call-a-designer" className="py-20 bg-[#2D2926] text-[#F7F5F2] relative overflow-hidden">
+    <section id="call-a-designer" className="py-20 bg-[#23201D] text-[#F7F5F2] relative overflow-hidden">
+      
+      {/* Top Divider for visual separation from previous dark section */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#8A7B9B]/40 to-transparent" />
       
       {/* Background Subtle Organic Lighting */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#7D8471]/15  blur-3xl pointer-events-none" />
