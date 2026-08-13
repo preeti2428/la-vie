@@ -8,11 +8,11 @@ interface OurServicesSectionProps {
 
 export const OurServicesSection: React.FC<OurServicesSectionProps> = ({ currentLang, onOpenBooking }) => {
   return (
-    <section id="services" className="py-24 sm:py-32 bg-[#F9F8F6] border-b border-[#2D2926]/10">
+    <section id="services" className="py-16 sm:py-20 bg-[#F9F8F6] border-b border-[#2D2926]/10">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-16 sm:mb-24">
+        <div className="text-center mb-10 sm:mb-16">
           <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#2D2926] font-light tracking-tight">
             <span className="italic">Unser</span> SERVICE
           </h2>

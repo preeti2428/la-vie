@@ -56,14 +56,19 @@ export const PortfolioGrid: React.FC = () => {
                 <img 
                   src={item.imageUrl} 
                   alt={item.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                 />
               )}
-              {/* Optional overlay on hover */}
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-serif text-xl font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {item.title}
-                </span>
+              {/* Professional Luxury Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span className="text-white font-serif text-2xl font-light tracking-wide block mb-1">
+                    {item.title}
+                  </span>
+                  <span className="text-white/70 text-[10px] uppercase tracking-widest font-medium">
+                    {item.category === 'BUSINESS' ? 'Commercial Project' : 'Private Residence'}
+                  </span>
+                </div>
               </div>
             </div>
           ))}

@@ -18,7 +18,7 @@ export const WhatMakesUsSpecial: React.FC<WhatMakesUsSpecialProps> = ({ onOpenBo
               Was uns <span className="italic uppercase">BESONDERS</span> macht?
             </h2>
             
-            <div className="space-y-3 text-[#2D2926]/80 font-light text-[13px] sm:text-[14px] leading-snug tracking-wide">
+            <div className="space-y-4 text-[#2D2926]/80 font-light text-[15px] sm:text-[16px] leading-relaxed tracking-wide">
               <p>
                 Wir vereinen Naturwissenschaft, Design und Struktur zu einem Ganzen.<br/>
                 Mit analytischem Denken, Sinn für Ästhetik und einem tiefen Verständnis für Materialien, Licht und Raumwirkung gestalten wir Räume mit Substanz.

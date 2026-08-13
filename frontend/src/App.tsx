@@ -353,18 +353,14 @@ export default function App() {
       {/* Floating AI Staging Trigger Button - Prominent & Descriptive */}
       <button
         onClick={() => setIsStagingOpen(true)}
-        className="fixed bottom-24 right-6 z-40 bg-gradient-to-r from-[#2D2926]/90 to-[#3D3834]/90 backdrop-blur-md rounded-2xl text-white p-3 sm:px-4 sm:py-3 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex flex-col items-start gap-1 group border border-white/10 hover:border-white/30 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-bottom-right"
+        className="fixed top-40 right-6 z-40 bg-gradient-to-r from-[#2D2926]/95 to-[#3D3834]/95 backdrop-blur-md rounded-full text-white px-5 py-3 shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 group border border-white/20 hover:border-white/40 hover:shadow-[0_10px_40px_rgba(138,123,155,0.3)] origin-top-right"
       >
-        <div className="flex items-center gap-2">
-          <div className="bg-[#8A7B9B] p-1.5 rounded-md">
-            <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
-          </div>
-          <span className="font-bold text-xs uppercase tracking-widest text-white">AI Virtual Staging</span>
-          <span className="bg-[#7D8471] text-white text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest ml-1">Free</span>
-        </div>
-        <span className="text-[10px] text-[#DCD7D0] max-w-[200px] text-left leading-snug hidden sm:block font-light">
-          Upload a photo of your empty room and see it transformed instantly by our AI!
+        <span className="font-bold text-xs uppercase tracking-widest text-white whitespace-nowrap">
+          AI Virtual Staging (Live)
         </span>
+        <div className="bg-[#8A7B9B] p-1.5 rounded-full shadow-inner group-hover:bg-[#9b8bad] transition-colors">
+          <Sparkles className="w-4 h-4 text-white animate-pulse" />
+        </div>
       </button>
 
       {/* Hero Theme Switcher (Floating Button) */}

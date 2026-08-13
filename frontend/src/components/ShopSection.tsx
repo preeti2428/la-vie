@@ -21,7 +21,7 @@ const PRODUCTS = [
     title: "Amethyst Energy Crystal",
     category: "Curated Decor",
     price: "€120",
-    image: "https://images.unsplash.com/photo-1598509376180-2a8d3e9cb190?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
     rating: 5,
     tag: "New"
   },
