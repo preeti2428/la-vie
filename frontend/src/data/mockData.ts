@@ -270,7 +270,7 @@ export const GRID_PORTFOLIO_ITEMS: import('../types').GridPortfolioItem[] = [
   { id: '6', title: 'Creative Studio', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80' },
   { id: '7', title: 'Luxury Bathroom', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80' },
   { id: '8', title: 'Corporate Lobby', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80' },
-  { id: '9', title: 'Outdoor Terrace', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1600607687931-cebf10255b35?w=800&q=80' },
+  { id: '9', title: 'Outdoor Terrace', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80' },
   { id: '10', title: 'Executive Boardroom', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=800&q=80' },
   { id: '11', title: 'Elegant Kitchen', category: 'privat', imageUrl: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80' },
   { id: '12', title: 'Co-working Space', category: 'business', imageUrl: 'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=800&q=80' }
