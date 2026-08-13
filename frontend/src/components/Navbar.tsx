@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#F7F5F2]/95 backdrop-blur-md border-b border-[#2D2926]/10 transition-all">
+    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-[#2D2926]/5 transition-all">
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-2 lg:gap-4">
         
         {/* Brand Logo */}
@@ -70,8 +70,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNavClick(item.id)}
                 className={`transition-all flex items-center gap-1.5 py-1.5 whitespace-nowrap ${
                   isActive
-                    ? 'text-[#2D2926]/50 font-medium'
-                    : 'text-[#2D2926] hover:text-[#7D8471]'
+                    ? 'text-[#2D2926] font-semibold'
+                    : 'text-[#2D2926]/70 hover:text-[#2D2926]'
                 }`}
               >
                 <span>{item.label}</span>
@@ -97,13 +97,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Language Switcher */}
           <button
             onClick={() => onLanguageChange(currentLang === 'de' ? 'en' : 'de')}
-            className="flex items-center gap-1.5 px-3 py-2 border border-[#2D2926]/15 bg-white hover:bg-[#E6E2DC] text-[12px] uppercase tracking-widest font-bold text-[#2D2926] transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-2 border border-[#2D2926]/10 bg-transparent hover:bg-black/5 rounded-full text-[12px] uppercase tracking-widest font-bold text-[#2D2926] transition-all shadow-sm"
             title="Switch Language / Sprache wechseln"
           >
             <Globe className="w-3.5 h-3.5 text-[#7D8471]" />
-            <span className={currentLang === 'de' ? 'text-[#7D8471]' : 'text-[#2D2926]/40'}>DE</span>
+            <span className={currentLang === 'de' ? 'text-[#2D2926]' : 'text-[#2D2926]/40'}>DE</span>
             <span className="text-[#2D2926]/20">/</span>
-            <span className={currentLang === 'en' ? 'text-[#7D8471]' : 'text-[#2D2926]/40'}>EN</span>
+            <span className={currentLang === 'en' ? 'text-[#2D2926]' : 'text-[#2D2926]/40'}>EN</span>
           </button>
 
           {/* Mobile Menu Hamburger Toggle */}

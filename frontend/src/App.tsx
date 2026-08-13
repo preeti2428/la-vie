@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
+import { HeroLuxury } from './components/HeroLuxury';
 import { Hero3D } from './components/Hero3D';
 import { WelcomeGreetingSection } from './components/WelcomeGreetingSection';
 import { BentoGridSection } from './components/BentoGridSection';
@@ -30,6 +31,8 @@ export default function App() {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   const [isStagingOpen, setIsStagingOpen] = useState<boolean>(false);
+  const [heroTheme, setHeroTheme] = useState<'luxury' | 'classic'>('classic');
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
 
   // Fetch global branding config on startup
   useEffect(() => {
@@ -50,7 +53,20 @@ export default function App() {
 
     syncPageFromHash();
     window.addEventListener('hashchange', syncPageFromHash);
-    return () => window.removeEventListener('hashchange', syncPageFromHash);
+    const handleScroll = () => {
+      // Hide hero toggle button when scrolled past the hero section
+      if (window.scrollY > window.innerHeight * 0.8) {
+        setIsHeroVisible(false);
+      } else {
+        setIsHeroVisible(true);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('hashchange', syncPageFromHash);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Update URL hash and document title when page changes
@@ -201,17 +217,24 @@ export default function App() {
         {/* HOME PAGE */}
         {currentPage === 'home' && (
           <>
-            <Hero3D
-              currentLang={currentLang}
-              onOpenBooking={() => setIsBookingOpen(true)}
-              onOpenChat={() => setIsChatOpen(true)}
-              onOpenStaging={() => setIsStagingOpen(true)}
-            />
-
-            <WelcomeGreetingSection
-              currentLang={currentLang}
-              onOpenBooking={() => setIsBookingOpen(true)}
-            />
+            {heroTheme === 'luxury' ? (
+              <HeroLuxury
+                currentLang={currentLang}
+              />
+            ) : (
+              <>
+                <Hero3D
+                  currentLang={currentLang}
+                  onOpenBooking={() => setIsBookingOpen(true)}
+                  onOpenChat={() => setIsChatOpen(true)}
+                  onOpenStaging={() => setIsStagingOpen(true)}
+                />
+                <WelcomeGreetingSection
+                  currentLang={currentLang}
+                  onOpenBooking={() => setIsBookingOpen(true)}
+                />
+              </>
+            )}
 
             <BentoGridSection
               currentLang={currentLang}
@@ -314,10 +337,7 @@ export default function App() {
       />
 
       {/* AI Virtual Staging Modal */}
-      <AIVirtualStagingTool 
-        isOpen={isStagingOpen}
-        onClose={() => setIsStagingOpen(false)}
-      />
+      {isStagingOpen && <AIVirtualStagingTool isOpen={isStagingOpen} onClose={() => setIsStagingOpen(false)} />}
 
       {/* Floating AI Staging Trigger Button - Prominent & Descriptive */}
       <button
@@ -335,6 +355,16 @@ export default function App() {
           Upload a photo of your empty room and see it transformed instantly by our AI!
         </span>
       </button>
+
+      {/* Hero Theme Switcher (Floating Button) */}
+      {currentPage === 'home' && isHeroVisible && (
+        <button
+          onClick={() => setHeroTheme(prev => prev === 'luxury' ? 'classic' : 'luxury')}
+          className="fixed bottom-6 left-6 z-50 bg-[#2D2926] text-white px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-bold shadow-lg hover:bg-[#8A7B9B] transition-colors rounded-sm animate-fade-in"
+        >
+          {heroTheme === 'luxury' ? 'Switch to Classic 3D Hero' : 'Switch to AVARIA Luxury Hero'}
+        </button>
+      )}
 
     </div>
   );
